@@ -1,12 +1,8 @@
-import { useGlobalDataStore } from "./stores";
 import { Route, Routes } from 'react-router-dom';
 
 import HomePage from "./pages/HomePage";
 
-function App() {
-
-  const { hostName } = useGlobalDataStore();
-  console.log(hostName)
+const App = () => {
 
   return (
     <div>
