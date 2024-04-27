@@ -1,6 +1,14 @@
+import { useGlobalDataStore } from "../../stores";
+import { Link } from "react-router-dom";
+
 const SiteName = () => {
+
+    const {siteName} = useGlobalDataStore();
+
     return (
-        <h1>VibrLink</h1>
+        <Link to="/">
+            <h1>{siteName}</h1>
+        </Link>
     )
 };
 
