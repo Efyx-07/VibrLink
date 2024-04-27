@@ -1,7 +1,11 @@
+import SiteName from "./SiteName";
+import Navigation from "./Navigation";
+
 const Header = () => {
     return (
         <div>
-            Header
+            <SiteName />
+            <Navigation />
         </div>
     )
 };
