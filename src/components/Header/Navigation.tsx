@@ -35,11 +35,14 @@ const Navigation = () => {
 
     return (
         <div className="navItems-container">
-            {isLogged ? (
+            {isLogged ? 
+                (
                     loggedInNavItems.map(item => (
                         <NavItem key={item.name} name={item.name} navTo={item.navTo} />
                     ))
-                ) : (
+                ) 
+                : 
+                (
                     loggedOutNavItems.map(item => (
                         <NavItem key={item.name} name={item.name} navTo={item.navTo} />
                     ))
