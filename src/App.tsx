@@ -1,4 +1,7 @@
-import { useGlobalDataStore } from "./stores"
+import { useGlobalDataStore } from "./stores";
+import { Route, Routes } from 'react-router-dom';
+
+import HomePage from "./pages/HomePage";
 
 function App() {
 
@@ -6,9 +9,11 @@ function App() {
   console.log(hostName)
 
   return (
-    <>
-    Hello World
-    </>
+    <div>
+      <Routes>
+        <Route index path="/" element={<HomePage />} />
+      </Routes>
+    </div>
   )
 }
 
