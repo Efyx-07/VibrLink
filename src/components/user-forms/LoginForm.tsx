@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useUserStore, useGlobalDataStore } from "../../stores";
 import validateData from "../../utils/validateData";
+import UserFormField from "./UserFormField";
 
 export default function LoginForm() {
 
@@ -53,14 +54,8 @@ export default function LoginForm() {
 
     return (
         <form onSubmit={userLogin}>
-            <div className="input-container">
-                <label htmlFor="email">Email</label>
-                <input type="email" name="email" id="userlogin_email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-            </div>
-            <div className="input-container">
-                <label htmlFor="password">Password</label>
-                <input type="password" name="password" id="userlogin_password" className="password-input" value={password} onChange={(e) => setPassword(e.target.value)}/>
-            </div>
+            <UserFormField label="Email" type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <UserFormField label="Password" type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             <button type="submit">Log in</button>
         </form>
     )
