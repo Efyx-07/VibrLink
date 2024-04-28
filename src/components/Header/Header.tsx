@@ -5,7 +5,7 @@ import './Header.scss';
 export default function Header() {
     return (
         <header>
-            <div className="header-content">
+            <div className="content">
                 <SiteName />
                 <Navigation />
             </div>
