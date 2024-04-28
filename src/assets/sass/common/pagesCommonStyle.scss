@@ -1,0 +1,18 @@
+.page {
+    width: 100%;
+    min-height: calc(100vh - 5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .content {
+        width: 100%;
+        max-width: 75rem;
+        padding: 2rem 2rem;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

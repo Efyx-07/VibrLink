@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useUserStore } from "../../stores";
 import { useEffect } from "react";
+import './Navigation.scss';
 
 interface NavItem {
     name: string,

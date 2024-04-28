@@ -1,12 +1,15 @@
 import SiteName from "./SiteName";
 import Navigation from "./Navigation";
+import './Header.scss';
 
 const Header = () => {
     return (
-        <div>
-            <SiteName />
-            <Navigation />
-        </div>
+        <header>
+            <div className="content">
+                <SiteName />
+                <Navigation />
+            </div>
+        </header>
     )
 };
 
