@@ -4,6 +4,7 @@ import { useUserStore, useGlobalDataStore } from "../../stores";
 import validateData from "../../utils/validateData";
 import UserFormField from "./UserFormField";
 import FormButton from "../common/FormButton";
+import '../../assets/sass/common/forms-style.scss';
 
 export default function LoginForm() {
 
@@ -57,7 +58,7 @@ export default function LoginForm() {
         <form onSubmit={userLogin}>
             <UserFormField label="Email" type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
             <UserFormField label="Password" type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} className="password-input" />
-            <FormButton type="submit" name="Log in" />
+            <FormButton type="submit" name="Log in" className="button"/>
         </form>
     )
 };

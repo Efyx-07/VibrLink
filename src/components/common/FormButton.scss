@@ -1,0 +1,24 @@
+@import '../../assets/sass/common/colors.scss';
+
+button {
+    width: 14rem;
+    height: 4rem;
+    color: $whiteColor;
+    background: rgba($accentColor, .05);
+    border: solid 3px rgba($accentColor, .5);
+    border-radius: 2rem 0;
+    cursor: pointer;
+    transition: transform .2s ease;
+
+    p {
+        font-size: 1rem;
+        font-weight: 500;
+        letter-spacing: 1px;
+    }
+
+    &:hover {
+        background: rgba($accentColor, .25);
+        border-color: rgba($accentColor, 1);
+        transform: translateY(.25rem);
+    }
+}
