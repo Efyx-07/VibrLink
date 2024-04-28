@@ -1,5 +1,5 @@
-import SiteName from "./SiteName";
-import Navigation from "./Navigation";
+import SiteName from './SiteName';
+import Navigation from './Navigation';
 import './Header.scss';
 
 const Header = () => {
