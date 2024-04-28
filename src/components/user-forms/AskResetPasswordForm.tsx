@@ -14,14 +14,14 @@ export default function AskResetPasswordForm() {
         e.preventDefault();
 
         try {
-
+    
             const response: Response =  await fetch(`${hostName}/passwordRoute/forgot-password`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',    
                 },
                 body: JSON.stringify({
-                    emailToCheck
+                    email: emailToCheck
                 }),
             });
 
@@ -32,7 +32,7 @@ export default function AskResetPasswordForm() {
             } else {
                 console.error('Error while asking reset email: ', response.statusText);
             }
-            
+
         } catch (error) {
             console.error('Error while asking reset email :', error);
         }
