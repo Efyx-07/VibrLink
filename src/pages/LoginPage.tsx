@@ -1,4 +1,5 @@
 import LoginForm from "../components/user-forms/LoginForm";
+import AskResetPasswordForm from "../components/user-forms/AskResetPasswordForm";
 import '../assets/sass/common/pages-common-styles.scss';
 import './LoginPage.scss';
 import { useState } from "react";
@@ -14,6 +15,7 @@ export default function LoginPage() {
     const showLoginForm = () => {
         setIsLoginFormVisible(true)
     };
+
     return (
         <div className="page">
             <div className="content">
@@ -26,7 +28,7 @@ export default function LoginPage() {
                     </div>
                 :
                     <div className="form-container">
-                        Je suis Form 2
+                        <AskResetPasswordForm />
                         <p className="option" onClick={showLoginForm}>Back to sign in</p>
                     </div>
                 }    
