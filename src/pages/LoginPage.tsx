@@ -1,6 +1,6 @@
 import LoginForm from "../components/user-forms/LoginForm";
 import Separator from "../components/common/Separator";
-import '../assets/sass/common/pagesCommonStyle.scss';
+import '../assets/sass/common/pages-common-styles.scss';
 import styles from './LoginPage.module.scss';
 
 export default function LoginPage() {
