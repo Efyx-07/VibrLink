@@ -13,4 +13,4 @@ export default function UserFormField({ label, type, name, value, onChange }: Fi
         <input type={type} name={name} value={value} onChange={onChange} />
       </div>
     );
-  };
+};
