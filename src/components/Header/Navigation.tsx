@@ -24,7 +24,7 @@ export default function Navigation() {
     }, [isLogged]);
 
     const loggedOutNavItems: NavItem[] = [
-        { name: 'Create a free account', navTo: '/register'},
+        { name: 'Create a free account', navTo: '/signup'},
         { name: 'Sign in', navTo: '/login'}
     ];
 

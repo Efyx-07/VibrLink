@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
+import SignupPage from './pages/SignupPage';
 import Header from './components/header/Header';
 import { useUserStore, useReleaseStore } from './stores';
 
@@ -39,7 +39,7 @@ export default function App() {
       <Routes>
         <Route index path="/" element={<HomePage />} />
         <Route index path="/login" element={<LoginPage />} />
-        <Route index path="/register" element={<RegisterPage />} />
+        <Route index path="/signup" element={<SignupPage />} />
       </Routes>
     </div>
   );
