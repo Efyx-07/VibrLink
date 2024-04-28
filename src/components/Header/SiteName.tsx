@@ -2,7 +2,7 @@ import { useGlobalDataStore } from "../../stores";
 import { Link } from "react-router-dom";
 import './SiteName.scss';
 
-const SiteName = () => {
+export default function SiteName() {
 
     const {siteName} = useGlobalDataStore();
 
@@ -13,4 +13,3 @@ const SiteName = () => {
     )
 };
 
-export default SiteName;

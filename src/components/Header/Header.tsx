@@ -2,7 +2,7 @@ import SiteName from './SiteName';
 import Navigation from './Navigation';
 import './Header.scss';
 
-const Header = () => {
+export default function Header() {
     return (
         <header>
             <div className="content">
@@ -12,5 +12,3 @@ const Header = () => {
         </header>
     )
 };
-
-export default Header;

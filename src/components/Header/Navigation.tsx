@@ -8,7 +8,7 @@ interface NavItem {
     navTo: string
 };
 
-const NavItem = ({name, navTo}: NavItem) => {
+function NavItem({name, navTo}: NavItem) {
     return (
         <Link className="navItem" to={navTo}>
             <p>{name}</p>
@@ -16,7 +16,7 @@ const NavItem = ({name, navTo}: NavItem) => {
     )
 };
 
-const Navigation = () => {
+export default function Navigation() {
 
     const isLogged = useUserStore(state => state.isLoggedIn);
 
@@ -52,5 +52,3 @@ const Navigation = () => {
         </div>
     )
 }; 
-
-export default Navigation

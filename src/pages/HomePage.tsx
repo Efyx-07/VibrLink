@@ -1,6 +1,6 @@
 import { useUserStore } from '../stores';
 
-const HomePage = () => {
+export default function HomePage() {
     const userStore = useUserStore();
 
     return (
@@ -15,4 +15,3 @@ const HomePage = () => {
     );
 };
 
-export default HomePage;

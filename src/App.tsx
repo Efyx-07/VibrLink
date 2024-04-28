@@ -5,7 +5,7 @@ import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import Header from './components/header/Header';
 
-const App = () => {
+export default function App() {
 
   return (
     <div>
@@ -17,6 +17,4 @@ const App = () => {
       </Routes>
     </div>
   )
-}
-
-export default App;
+};
