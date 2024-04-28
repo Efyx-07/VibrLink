@@ -55,7 +55,7 @@ export default function LoginForm() {
     return (
         <form onSubmit={userLogin}>
             <UserFormField label="Email" type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-            <UserFormField label="Password" type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <UserFormField label="Password" type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} className="password-input" />
             <button type="submit">Log in</button>
         </form>
     )
