@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useUserStore, useGlobalDataStore } from "../../stores";
+import validateData from "../../utils/validateData";
 
 export default function LoginForm() {
 
@@ -13,6 +14,11 @@ export default function LoginForm() {
 
     const userLogin = async(e: React.FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
+
+        if (!validateData(email, password)) {
+            console.error('Invalid email or password format');
+            return;
+        }
 
         try {
 
