@@ -1,16 +1,12 @@
-import { useUserStore } from '../stores';
+import '../assets/sass/common/pages-common-styles.scss';
 
 export default function HomePage() {
-    const userStore = useUserStore();
 
     return (
-        <div>
-            {userStore.isLoggedIn ? (
-                <p>Logged in</p>
-            ) : (
-                <p>Not logged in</p>
-            )}
-            <h1>I am HomePage</h1>
+        <div className='page'>
+            <div className="content">
+                <h1>I am HomePage</h1>
+            </div>
         </div>
     );
 };

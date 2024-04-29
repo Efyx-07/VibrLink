@@ -19,6 +19,7 @@ function NavItem({name, navTo}: NavItem) {
 export default function Navigation() {
 
     const isLogged = useUserStore(state => state.isLoggedIn);
+    const user = useUserStore(state => state.user );
 
     useEffect(() => {
     }, [isLogged]);
@@ -30,8 +31,7 @@ export default function Navigation() {
 
     const loggedInNavItems: NavItem[] = [
         { name: 'New vibrlink', navTo: '' },
-        { name: 'My vibrlinks', navTo: '' },
-        { name: 'Account', navTo: ''},
+        { name: 'My vibrlinks', navTo: '' }
     ];
 
     return (
@@ -47,8 +47,10 @@ export default function Navigation() {
                     loggedOutNavItems.map(item => (
                         <NavItem key={item.name} name={item.name} navTo={item.navTo} />
                     ))
-                )
-            }    
+
+                ) 
+            } 
+            {isLogged && <p>{user?.email}</p>} 
         </div>
     )
 }; 

@@ -1,0 +1,40 @@
+@import '../../assets/sass/common/colors.scss';
+
+.user-panel {
+    width: 15rem;
+    background: $whiteColor;
+    color: $darkColor;
+    border: solid 4px $accentColor;
+    border-radius: .5rem;
+    position: absolute;
+    top: 5rem;
+    right: 2rem;
+
+    .items-container {
+        display: flex;
+        flex-direction: column;
+
+        .item-container {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            padding: 1rem 2rem 1rem 1rem;
+            transition: all .2s ease;
+            cursor: pointer;
+
+            &:hover {
+                background: $darkColor;
+                color: $whiteColor;
+            }
+
+            .icon {
+                font-size: 1.25rem;
+            }
+
+            p {
+                font-size: .9rem;
+                font-weight: 600;
+            }
+        }
+    }
+}
