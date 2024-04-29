@@ -12,6 +12,12 @@ form {
         flex-direction: column;
         gap: .5rem;
 
+        .mention {
+            font-size: .75rem;
+            font-weight: 300;
+            opacity: .5;
+        }
+
         input {
             height: 4rem;
             background: transparent;
