@@ -1,7 +1,9 @@
 import type { ImportMetaEnv } from '../vite-env';
 
+// backend server address
 const hostName: ImportMetaEnv = import.meta.env.VITE_BACKEND_URL;
 
+// backend query for user login
 export async function login(email: string, password: string) {
 
     try {
@@ -29,6 +31,7 @@ export async function login(email: string, password: string) {
     }
 };
 
+// backend query to send a reset password link
 export async function sendResetLink(email: string) {
 
     try {
