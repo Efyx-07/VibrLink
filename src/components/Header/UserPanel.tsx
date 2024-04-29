@@ -22,8 +22,8 @@ export default function UserPanel() {
 
     const navigate = useNavigate();
 
-    const navToSettings = () => {
-        navigate('/settings');
+    const navToSettings = (): void => {
+        navigate('/account-settings');
     }
 
     return (

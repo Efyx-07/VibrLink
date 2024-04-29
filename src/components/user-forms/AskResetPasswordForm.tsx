@@ -48,7 +48,7 @@ export default function AskResetPasswordForm() {
                 value={emailToCheck} 
                 onChange={(e) => setEmail(e.target.value)} 
             />
-            <FormButton type="submit" name="Send reset email" className="button"/>
+            <FormButton type="submit" name="Send reset email" />
         </form>
     )
 }

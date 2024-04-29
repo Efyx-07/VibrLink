@@ -76,7 +76,7 @@ export default function SignupForm() {
                 mention="must be identical to your password"
                 className="password-input" 
             />
-            <FormButton type="submit" name="Sign up" className="button"/>
+            <FormButton type="submit" name="Sign up" />
         </form>
     )
 }
