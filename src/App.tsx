@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
+import AccountSettingsPage from './pages/AccountSettingsPage';
 import Header from './components/header/Header';
 import { useUserStore, useReleaseStore } from './stores';
 
@@ -40,6 +41,7 @@ export default function App() {
         <Route index path="/" element={<HomePage />} />
         <Route index path="/login" element={<LoginPage />} />
         <Route index path="/signup" element={<SignupPage />} />
+        <Route index path="/account-settings" element={<AccountSettingsPage />} />
       </Routes>
     </div>
   );
