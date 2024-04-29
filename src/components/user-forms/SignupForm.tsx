@@ -17,8 +17,6 @@ export default function SignupForm() {
     const signup = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
 
-        console.log('data: ', email, password, confirmPassword);
-
         if (!validateData(email, password) || !validateConfirmPassword(password, confirmPassword)) {
             console.error('Invalid email or password format');
             return;
