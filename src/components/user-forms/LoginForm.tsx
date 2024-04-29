@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useUserStore } from "../../stores";
-import { validateData } from "../../utils";
+import { validateData } from "../../utils/validateData";
 import { login } from "../../services/authService";
 import UserFormField from "./UserFormField";
 import FormButton from "../common/FormButton";

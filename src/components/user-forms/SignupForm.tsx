@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { validateData, validateConfirmPassword } from "../../utils";
+import { validateData, validateConfirmPassword } from "../../utils/validateData";
 import { useNavigate } from "react-router-dom";
 import { register } from "../../services/authService";
 import UserFormField from "./UserFormField";
