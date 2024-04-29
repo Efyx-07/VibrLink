@@ -19,7 +19,7 @@ export default function SignupForm() {
                 onChange={(e) => setEmail(e.target.value)} 
             />
             <UserFormField 
-                label="Enter your password" 
+                label="Create a password" 
                 type="password" 
                 name="password" 
                 value={password} 
