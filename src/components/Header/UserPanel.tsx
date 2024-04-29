@@ -2,7 +2,6 @@ import './UserPanel.scss';
 import { Icon } from '@iconify-icon/react';
 import { MouseEventHandler } from "react";
 import { useNavigate } from 'react-router-dom';
-import { useModal } from '../../context/ModalContext';
 
 interface UserItem {
     name: string;
@@ -23,7 +22,7 @@ export default function UserPanel() {
 
     const navigate = useNavigate();
 
-    const { openSignoutModal } = useModal();
+    const openSignoutModal = () => {};
 
     const navToSettings = (): void => {
         navigate('/account-settings');

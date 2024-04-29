@@ -2,7 +2,6 @@ import { MouseEventHandler } from "react";
 import './ConfirmationModal.scss';
 
 interface ConfirmationModal {
-    isOpen: boolean;
     icon: string;
     topline: string;
     message: string;
@@ -10,9 +9,10 @@ interface ConfirmationModal {
     onCancel: MouseEventHandler<HTMLButtonElement>;
 }
 
-export default function ConfirmationModal({ isOpen, icon, topline, message, onConfirm, onCancel }: ConfirmationModal) {
+export default function ConfirmationModal({ icon, topline, message, onConfirm, onCancel }: ConfirmationModal) {
+    
     return (
-        <div className={`modal ${isOpen ? 'open' : ''}`}>
+        <div className="modal">
             <div className="modal-content">
                 <div className="icon-container">
                     <p className="icon">{icon}</p>
