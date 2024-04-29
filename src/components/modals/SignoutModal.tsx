@@ -1,13 +1,18 @@
 import ConfirmationModal from "./ConfirmationModal";
+import { useModal } from "../../context/ModalContext";
 
 export default function SignoutModal() {
+
+    const { isSignoutModalOpen, closeSignoutModal } = useModal();
+
     const handleSignout = () => {
-        // Logique de déconnexion
+        closeSignoutModal(); 
     };
 
     const handleCancel = () => {
-        // Annulation de la déconnexion
+        closeSignoutModal();
     };
+
     return (
         <ConfirmationModal 
             icon="?"
@@ -15,6 +20,7 @@ export default function SignoutModal() {
             message="Please confirm to sign out."
             onConfirm={handleSignout}
             onCancel={handleCancel}
+            isOpen={isSignoutModalOpen}
         />
     )
 }
