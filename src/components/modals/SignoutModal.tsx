@@ -1,23 +1,20 @@
-import './Modals-style.scss';
+import ConfirmationModal from "./ConfirmationModal";
 
 export default function SignoutModal() {
+    const handleSignout = () => {
+        // Logique de déconnexion
+    };
+
+    const handleCancel = () => {
+        // Annulation de la déconnexion
+    };
     return (
-        <div className="modal">
-            <div className="modal-content">
-                <div className="icon">
-                    <p>?</p>
-                </div>
-                <div className="mention-container">
-                    <div className="text-container">
-                        <p className="topline">Are you sure?</p>
-                        <p className="mention">Please confirm to logout.</p>
-                    </div>
-                    <div className="buttons-container">
-                        <button className="confirm">Confirm</button>
-                        <button className="cancel">Cancel</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <ConfirmationModal 
+            icon="?"
+            topline="Are you sure ?"
+            message="Please confirm to sign out."
+            onConfirm={handleSignout}
+            onCancel={handleCancel}
+        />
     )
 }
