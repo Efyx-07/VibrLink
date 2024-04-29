@@ -1,6 +1,5 @@
 import SiteName from './SiteName';
 import Navigation from './Navigation';
-import UserPanel from './UserPanel';
 import './Header.scss';
 
 export default function Header() {
@@ -9,7 +8,6 @@ export default function Header() {
             <div className="content">
                 <SiteName />
                 <Navigation />
-                <UserPanel />
             </div>
         </header>
     )

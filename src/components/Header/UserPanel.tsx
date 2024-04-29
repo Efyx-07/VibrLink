@@ -2,7 +2,9 @@ import './UserPanel.scss';
 import { Icon } from '@iconify-icon/react';
 
 export default function UserPanel() {
+
     return (
+
         <div className="user-panel">
             <div className="items-container">
                 <div className="item-container">

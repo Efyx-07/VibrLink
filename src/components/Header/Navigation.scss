@@ -3,14 +3,23 @@
 .navItems-container {
     display: flex;
     gap: 2rem;
+    height: 100%;
 
     .navItem {
+        display: flex;
+        align-items: center;
         cursor: pointer;
         transition: transform .2s ease;
 
         &:hover {
             color: $accentColor;
             transform: translateY(.25rem)
+        }
+
+        .user-email {
+            font-size: .9rem;
+            font-weight: 300;
+            opacity: .5;
         }
     }
 }
