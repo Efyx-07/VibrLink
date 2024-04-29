@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useUserStore, useGlobalDataStore } from "../../stores";
-import validateData from "../../utils/validateData";
+import { validateData } from "../../utils";
 import UserFormField from "./UserFormField";
 import FormButton from "../common/FormButton";
 import '../../assets/sass/common/forms-style.scss';
