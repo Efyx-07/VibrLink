@@ -57,4 +57,33 @@ export async function sendResetLink(email: string) {
     } catch (error) {
         throw new Error('Error while asking reset email :' + error);
     }
-}
+};
+
+// backend query to register an user
+export async function register(email: string, password: string) {
+
+    try {
+
+        const response = await fetch(`${hostName}/user/register`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email,
+                password
+            })
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            return data;
+
+        } else {
+            throw new Error('Error during registration:' + response.statusText);
+        }
+
+    } catch (error) {
+        throw new Error('Error during registration:' + error);
+    }
+};

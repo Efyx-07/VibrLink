@@ -1,17 +1,17 @@
 import { useState } from "react";
+import { validateData, validateConfirmPassword } from "../../utils";
+import { useNavigate } from "react-router-dom";
+import { register } from "../../services/authService";
 import UserFormField from "./UserFormField";
 import FormButton from "../common/FormButton";
 import '../../assets/sass/common/forms-style.scss';
-import { validateData, validateConfirmPassword } from "../../utils";
-import { useGlobalDataStore } from "../../stores";
-import { useNavigate } from "react-router-dom";
+
 
 export default function SignupForm() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const {hostName} = useGlobalDataStore();
     const navigate = useNavigate();
 
     const signup = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
@@ -23,32 +23,15 @@ export default function SignupForm() {
         }
 
         try {
-            const response = await fetch(`${hostName}/user/register`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    email,
-                    password
-                })
-            });
+            const data = await register(email, password);
+            console.log('Successfully registered, datas:', data)
+            navigate('/login');
 
-            if (response.ok) {
-                const data = await response.json();
-                console.log('Successfully registered, datas:', data);
-                navigate('/login');
-
-            } else {
-                console.error('Error during registration:', response.statusText);
-            }
-
-        } catch (error){
+        } catch (error) {
             console.error('Error during registration:', error);
         }
-    }
-
-
+    };
+    
     return (
         <form onSubmit={signup}>
             <UserFormField 
