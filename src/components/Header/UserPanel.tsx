@@ -30,9 +30,9 @@ export default function UserPanel() {
 
         <div className="user-panel">
             <div className="items-container">
-                <UserItem name="Update password" icon="mdi:tools" onClick={navToSettings}/>
-                <UserItem name="Delete account" icon="material-symbols:delete-outline-sharp" />
-                <UserItem name="Sign out" icon="material-symbols:logout-sharp" />
+                <UserItem name="Update password" icon="mdi:tools" onClick={navToSettings} />
+                <UserItem name="Delete account" icon="material-symbols:delete-outline-sharp" onClick={} />
+                <UserItem name="Sign out" icon="material-symbols:logout-sharp" onClick={} />
             </div>
         </div>
     )
