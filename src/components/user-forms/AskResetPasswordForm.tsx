@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useGlobalDataStore } from "../../stores";
+import { sendResetLink } from "../../services/authService";
 import UserFormField from "./UserFormField";
 import FormButton from "../common/FormButton";
 import '../../assets/sass/common/forms-style.scss';
@@ -8,39 +8,20 @@ export default function AskResetPasswordForm() {
 
     const [emailToCheck, setEmail] = useState('');
 
-    const {hostName} = useGlobalDataStore();
-
-    const sendResetLink = async(e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+    const askResetLink = async(e: React.FormEvent<HTMLFormElement>): Promise <void> => {
         e.preventDefault();
 
         try {
-    
-            const response: Response =  await fetch(`${hostName}/passwordRoute/forgot-password`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',    
-                },
-                body: JSON.stringify({
-                    email: emailToCheck
-                }),
-            });
-
-            if (response.ok) {
-                const data = await response.json();
-                console.log(data.message)
-    
-            } else {
-                console.error('Error while asking reset email: ', response.statusText);
-            }
+            const data = await sendResetLink(emailToCheck);
+            console.log(data.message);
 
         } catch (error) {
             console.error('Error while asking reset email :', error);
         }
-
-    } 
+    };
 
     return (
-        <form onSubmit={sendResetLink}>
+        <form onSubmit={askResetLink}>
             <UserFormField 
                 label="Email address" 
                 type="email" 

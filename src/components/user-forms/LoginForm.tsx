@@ -15,7 +15,7 @@ export default function LoginForm() {
     const userStore = useUserStore();
     const navigate = useNavigate();
 
-    const userLogin = async(e: React.FormEvent<HTMLFormElement>) => {
+    const userLogin = async(e: React.FormEvent<HTMLFormElement>): Promise <void> => {
         e.preventDefault();
 
         if (!validateData(email, password)) {
