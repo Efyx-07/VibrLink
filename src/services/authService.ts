@@ -1,3 +1,5 @@
+import type { ImportMetaEnv } from '../vite-env';
+
 const hostName: ImportMetaEnv = import.meta.env.VITE_BACKEND_URL;
 
 export async function login(email: string, password: string) {
