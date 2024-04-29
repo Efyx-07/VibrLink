@@ -5,6 +5,7 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import AccountSettingsPage from './pages/AccountSettingsPage';
 import SignoutModal from './components/modals/SignoutModal';
+import DeleteAccountModal from './components/modals/DeleteAccountModal';
 import Header from './components/header/Header';
 import { useUserStore, useReleaseStore } from './stores';
 
@@ -38,7 +39,8 @@ export default function App() {
   return (
     <div>
       <Header />
-      <SignoutModal />
+      {/* <SignoutModal /> */}
+      <DeleteAccountModal />
       <Routes>
         <Route index path="/" element={<HomePage />} />
         <Route index path="/login" element={<LoginPage />} />

@@ -1,0 +1,109 @@
+@import '../../assets/sass/common/colors.scss';
+
+.modal {
+    width: 100vw;
+    height: 100vh;
+    background: rgba($darkColor, .75);
+    position: fixed;
+    top: 0;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .3s ease;
+
+    .modal-content {
+        background: $whiteColor;
+        color: $darkColor;
+        border: solid 4px $accentColor;
+        border-radius: .5rem;
+        width: 20rem;
+        padding-bottom: 1rem;
+        position: relative;
+        display: grid;
+        grid-template-rows: .75fr 2fr;
+        transition: transform .3s ease;
+
+        .icon {
+            background: $darkColor;
+            border: solid 4px $accentColor;
+            width: 5rem;
+            height: 5rem;
+            border-radius: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            left: 50%;
+            top: -2.5rem;
+            transform: translateX(-50%);
+
+            p {
+                color: $whiteColor;
+                font-size: 3rem;
+            }
+        }
+    }
+
+    .mention-container {
+        grid-row: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+
+        .text-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+            gap: .5rem;
+
+            .topline {
+                font-size: 1.3rem;
+                font-weight: 600;
+            }
+
+            .mention {
+                font-size: .9rem;
+            }
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: .5rem;
+
+            button {
+                width: 8rem;
+                height: 2rem;
+                border-radius: .25rem;
+                cursor: pointer;
+                transition: transform .2s ease;
+
+                &:hover {
+                    transform: translateY(.15rem);
+                }
+            }
+
+            .confirm {
+                background: $darkColor;
+                color: $whiteColor;
+                border: none;
+
+                &:hover {
+                    background: rgba($darkColor, .9);
+                }
+            }
+
+            .cancel {
+                background: transparent;
+                border: solid 1px $darkColor; 
+
+                &:hover {
+                    background: rgba($darkColor, .1);
+                }
+            }
+        }
+    }
+}
