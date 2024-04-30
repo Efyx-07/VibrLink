@@ -13,28 +13,30 @@ export default function ResetPasswordForm() {
     const [confirmNewPassword, setConfirmNewPassword] = useState('');
 
     const {token} = useParams();
+    const navigate = useNavigate();
 
-    const navigate =useNavigate();
-
-    const resetUserPassword = async(e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+    const resetUserPassword = async(e: React.FormEvent<HTMLFormElement>): Promise <void> => {
         e.preventDefault();
 
         if (!validatePassword(newPassword) || !validateConfirmPassword(newPassword, confirmNewPassword)) {
-            console.error('Invalid email or password format');
+            console.error('Invalid password format');
             return;
         }
 
         try {
-            const data = await resetPassword(token, newPassword);
-            console.log(data.message);
-            navigate('/login')
 
+            if (!token) {
+                console.error('Token is undefined');
+                return;
+            }
+
+            await resetPassword(token, newPassword);
+            navigate('/login');
+            
         } catch (error) {
-            console.error('Error while resetting password: ', error);
+            console.error('Erreur lors de la réinitialisation du mot de passe: ', error);
         }
     };
-
-
 
     return (
         <form onSubmit={resetUserPassword}>

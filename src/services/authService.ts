@@ -119,7 +119,7 @@ export async function sendResetLink(email: string) {
 };
 
 // backend query to reset a user password 
-export async function resetPassword(token: string | undefined, password: string) {
+export async function resetPassword(token:string, newPassword: string): Promise <void> {
 
     try {
 
@@ -129,7 +129,7 @@ export async function resetPassword(token: string | undefined, password: string)
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                password
+                newPassword
             }),
         });
 
