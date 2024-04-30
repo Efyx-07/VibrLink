@@ -1,6 +1,8 @@
 export default function DbVibrlinkCard() {
 
     return (
-        <div className="card"></div>
+        <div className="card">
+            card
+        </div>
     )
 }
