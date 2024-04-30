@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useUserStore, useReleaseStore, useGlobalDataStore } from "../../stores";
 import { useNavigate } from "react-router-dom";
 import FormButton from "../common/FormButton";
+import './NewVibrlinkForm.scss';
 
 export default function NewVibrlinkForm() {
 
@@ -37,13 +38,11 @@ export default function NewVibrlinkForm() {
             }
         
             const data = await response.json();
-            console.log('Les datas de la nouvelle release:',data);
-        
-            const releaseId: number = data.releaseId;
+            console.log('New release datas:',data);
         
             if (userId) {
               await releaseStore.loadReleasesData(userId);
-              navigate(`/edit-links/${releaseId}`);
+              navigate(`/my-vibrlinks`);
             }
         
           } catch (error) {
