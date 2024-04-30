@@ -25,14 +25,12 @@ export default function VibrlinksPage() {
             }
         }
         fetchReleasesData(); 
-    }, [releaseStore])
+    }, [releaseStore, user]);
 
     return (
         <div className="page">
             <div className="content">
-                <div className="dbVibrlinkCards-container">
-                    <DbVibrlinkCard releases={releases} />
-                </div>
+                <DbVibrlinkCard releases={releases} />
             </div>
         </div>
     )

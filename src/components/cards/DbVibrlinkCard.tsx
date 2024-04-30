@@ -8,7 +8,7 @@ interface DbVibrlinkCard {
 export default function DbVibrlinkCard({releases}: DbVibrlinkCard) {
 
     return (
-        <div>
+        <div className="container">
             {releases.map(release => (
                 <div className="release-card" key={release.id}>
                     <div className="image-container">
