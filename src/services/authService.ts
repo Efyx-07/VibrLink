@@ -87,3 +87,33 @@ export async function register(email: string, password: string) {
         throw new Error('Error during registration:' + error);
     }
 };
+
+// backend query to update a user password
+export async function updatePassword(token: string, userId: number, currentPassword: string, newUserPassword: string) {
+
+    try {
+        const response = await fetch(`${hostName}/passwordRoute/update-password`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                userId,
+                currentPassword,
+                newUserPassword,
+            }),
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            return data;
+
+        } else {
+            throw new Error('Error during updating password:' + response.statusText);
+        }
+
+    } catch (error) {
+        throw new Error('Error during updating password:' + error);
+    }
+}

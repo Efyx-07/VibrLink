@@ -1,4 +1,8 @@
 import { useState } from "react";
+import { validatePassword, validateConfirmPassword } from "../../utils/validateData";
+import { updatePassword } from "../../services/authService";
+import { useUserStore } from "../../stores";
+import { useNavigate } from "react-router-dom";
 import UserFormField from "./UserFormField";
 import FormButton from "../common/FormButton";
 import '../../assets/sass/common/forms-style.scss';
@@ -8,16 +12,46 @@ export default function UpdatePasswordForm() {
     const [currentPassword, setCurrentPassword] = useState('');
     const [newUserPassword, setNewUserPassword] = useState('');
     const [confirmNewUserPassword, setConfirmNewUserPassword] = useState('');
+    const userStore = useUserStore();
+    const navigate = useNavigate();
 
-    const updatePassword = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+    const updateUserPassword = async(e: React.FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
 
-        
-    }
+        if (!validatePassword(newUserPassword) || !validateConfirmPassword(newUserPassword, confirmNewUserPassword)) {
+            console.error('Invalid email or password format');
+            return;
+        }
 
-    
+        // get the token from localStorage
+        const token: string | null = localStorage.getItem('token');
+        
+        if (!token) {
+            console.error('No token found in the localStorage');
+            return;
+        }
+
+        // decode the token to get the userId
+        const tokenParts: string[] = token.split('.');
+        // decode the payload part
+        const tokenPayload: any = JSON.parse(atob(tokenParts[1]));
+        // extract userId from the payload
+        const userId: any = tokenPayload.userId;
+
+        try {
+            const data = await updatePassword(token, userId, currentPassword, newUserPassword);
+            console.log(data.message);
+            userStore.logOutUser();
+            navigate('/login')
+
+        } catch (error) {
+            console.error('Error during updating password: ', error);
+        }
+
+    };
+
     return (
-        <form onSubmit={updatePassword}>
+        <form onSubmit={updateUserPassword}>
             <UserFormField 
                 label="Type your current password" 
                 type="password" 
