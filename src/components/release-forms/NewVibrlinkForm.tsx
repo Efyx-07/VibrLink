@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useUserStore, useReleaseStore, useGlobalDataStore } from "../../stores";
+import { useUserStore, useReleaseStore } from "../../stores";
+import { createLink } from "../../services/releaseService";
 import { useNavigate } from "react-router-dom";
 import FormButton from "../common/FormButton";
 import './NewVibrlinkForm.scss';
@@ -8,7 +9,6 @@ export default function NewVibrlinkForm() {
 
     const [spotifyId, setSpotifyId] = useState('');
     const spotifyPrefix: string = "https://open.spotify.com/intl-fr/album/";
-    const { hostName } = useGlobalDataStore();
     const userStore = useUserStore();
     const releaseStore = useReleaseStore();
     const navigate = useNavigate();
@@ -20,33 +20,20 @@ export default function NewVibrlinkForm() {
     const sendSpotifyUrlAndUserId = async(e: React.FormEvent<HTMLFormElement>): Promise <void> => {
         e.preventDefault();
 
-        const spotifyUrl: string = getSpotifyUrl();
+        const albumUrl: string = getSpotifyUrl();
+        const userId: number | undefined = userStore.user?.id;
 
         try {
-            const userId: number | undefined = userStore.user?.id;
-        
-            const response = await fetch(`${hostName}/releasesRoute/getReleaseSpotifyUrl`, { 
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({ albumUrl: spotifyUrl, userId: userId })
-            });
-        
-            if (!response.ok) {
-              throw new Error('Failed to send Spotify URL');
-            }
-        
-            const data = await response.json();
+            const data = await createLink(albumUrl, userId);
             console.log('New release datas:',data);
         
             if (userId) {
               await releaseStore.loadReleasesData(userId);
               navigate(`/my-vibrlinks`);
             }
-        
+            
           } catch (error) {
-            console.error('Error sending Spotify URL:', error);
+            console.error('Failed to send album URL: ', error);
           }
     }
 
