@@ -145,3 +145,23 @@ export async function resetPassword(token:string, newPassword: string): Promise 
         throw new Error('Error while resetting password' + error);
     }
 };
+
+export async function deleteAccount(userId: number | undefined) {
+
+    try {
+
+        const response = await fetch(`${hostName}/user/${userId}`, {
+            method: 'DELETE',
+        });
+
+        if (response.ok) {
+            console.log('user account successfully deleted')
+
+        } else {
+            throw new Error('Erreur while deleting user account' + response.statusText);
+        }
+
+    } catch (error) {
+        throw new Error('Erreur while deleting user account' + error);
+    }
+}
