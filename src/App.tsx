@@ -7,6 +7,7 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import AccountSettingsPage from './pages/AccountSettingsPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
+import VibrlinksPage from './pages/VibrlinksPage';
 import Header from './components/header/Header';
 import SignoutModal from './components/modals/SignoutModal';
 import DeleteAccountModal from './components/modals/DeleteAccountModal';
@@ -48,6 +49,7 @@ export default function App() {
           <Route index path="/signup" element={<SignupPage />} />
           <Route index path="/account-settings" element={<AccountSettingsPage />} />
           <Route index path="/reset-password/:token" element={<ResetPasswordPage />} />
+          <Route index path="/my-vibrlinks" element={<VibrlinksPage />} />
         </Routes>
         <SignoutModal />
         <DeleteAccountModal />
