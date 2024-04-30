@@ -3,13 +3,19 @@ import './DbVibrlinkCard.scss';
 
 interface DbVibrlinkCard {
     releases: Release[];
-}
+};
+
+const reverseReleases = (releases: readonly Release[]) => {
+    return [...releases].reverse();
+};
 
 export default function DbVibrlinkCard({releases}: DbVibrlinkCard) {
 
+    const reversedReleases = reverseReleases(releases);
+
     return (
         <div className="container">
-            {releases.map(release => (
+            {reversedReleases.map(release => (
                 <div className="release-card" key={release.id}>
                     <div className="image-container">
                         <img src={release.cover} />
@@ -22,4 +28,4 @@ export default function DbVibrlinkCard({releases}: DbVibrlinkCard) {
             ))}   
         </div>
     )
-}
+};
