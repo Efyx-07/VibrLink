@@ -1,12 +1,14 @@
+import { useUserStore, useReleaseStore } from './stores';
 import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { ModalProvider } from './contexts/ModalContext';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import AccountSettingsPage from './pages/AccountSettingsPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
 import Header from './components/header/Header';
-import { useUserStore, useReleaseStore } from './stores';
+import SignoutModal from './components/modals/SignoutModal';
 
 export default function App() {
   const userStore = useUserStore();
@@ -36,15 +38,18 @@ export default function App() {
   }, []);
 
   return (
-    <div>
-      <Header />
-      <Routes>
-        <Route index path="/" element={<HomePage />} />
-        <Route index path="/login" element={<LoginPage />} />
-        <Route index path="/signup" element={<SignupPage />} />
-        <Route index path="/account-settings" element={<AccountSettingsPage />} />
-        <Route index path="/reset-password/:token" element={<ResetPasswordPage />} />
-      </Routes>
-    </div>
+    <ModalProvider>
+      <div>
+        <Header /> 
+        <Routes>
+          <Route index path="/" element={<HomePage />} />
+          <Route index path="/login" element={<LoginPage />} />
+          <Route index path="/signup" element={<SignupPage />} />
+          <Route index path="/account-settings" element={<AccountSettingsPage />} />
+          <Route index path="/reset-password/:token" element={<ResetPasswordPage />} />
+        </Routes>
+        <SignoutModal />
+      </div>
+    </ModalProvider>
   );
 }

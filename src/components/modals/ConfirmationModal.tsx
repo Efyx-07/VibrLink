@@ -7,13 +7,14 @@ interface ConfirmationModal {
     message: string;
     onConfirm: MouseEventHandler<HTMLButtonElement>;
     onCancel: MouseEventHandler<HTMLButtonElement>;
+    isOpen: boolean;
 }
 
-export default function ConfirmationModal({ icon, topline, message, onConfirm, onCancel }: ConfirmationModal) {
+export default function ConfirmationModal({ icon, topline, message, onConfirm, onCancel, isOpen }: ConfirmationModal) {
     
     return (
-        <div className="modal">
-            <div className="modal-content">
+        <div className={`modal ${isOpen ? '' : 'hidden'}`}>
+            <div className={`modal-content ${isOpen ? '' : 'hidden-modal-content'}`}>
                 <div className="icon-container">
                     <p className="icon">{icon}</p>
                 </div>
@@ -30,4 +31,4 @@ export default function ConfirmationModal({ icon, topline, message, onConfirm, o
             </div>
         </div>
     )
-}
+};

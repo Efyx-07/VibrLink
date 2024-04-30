@@ -1,7 +1,8 @@
-import './UserPanel.scss';
-import { Icon } from '@iconify-icon/react';
 import { MouseEventHandler } from "react";
 import { useNavigate } from 'react-router-dom';
+import { useModal } from "../../contexts/ModalContext";
+import { Icon } from '@iconify-icon/react';
+import './UserPanel.scss';
 
 interface UserItem {
     name: string;
@@ -21,14 +22,14 @@ function UserItem({name, icon, onClick}: UserItem) {
 export default function UserPanel() {
 
     const navigate = useNavigate();
-
-    const openSignoutModal = () => {};
-
     const navToSettings = (): void => {
         navigate('/account-settings');
-    }
+    };
 
-    const openDeleteAccountModal = () => {}
+    const { openSignOutModal } = useModal();
+
+    const openDeleteAccountModal = () => {};
+
 
     return (
         <>
@@ -36,7 +37,7 @@ export default function UserPanel() {
             <div className="items-container">
                 <UserItem name="Update password" icon="mdi:tools" onClick={navToSettings} />
                 <UserItem name="Delete account" icon="material-symbols:delete-outline-sharp" onClick={openDeleteAccountModal} />
-                <UserItem name="Sign out" icon="material-symbols:logout-sharp" onClick={openSignoutModal} />
+                <UserItem name="Sign out" icon="material-symbols:logout-sharp" onClick={openSignOutModal} />
             </div>
         </div>
         </>

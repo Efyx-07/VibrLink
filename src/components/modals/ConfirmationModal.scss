@@ -1,5 +1,14 @@
 @import '../../assets/sass/common/colors.scss';
 
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.hidden-modal-content {
+    transform: scale(0);
+}
+
 .modal {
     width: 100vw;
     height: 100vh;
