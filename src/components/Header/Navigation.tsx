@@ -41,7 +41,7 @@ export default function Navigation() {
     ];
 
     const loggedInNavItems: NavItem[] = [
-        { name: 'New vibrlink', navTo: '' },
+        { name: 'New vibrlink', navTo: '/new-vibrlink' },
         { name: 'My vibrlinks', navTo: '/my-vibrlinks' }
     ];
 
