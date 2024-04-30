@@ -13,7 +13,7 @@ export default function UserFormField({ label, type, name, value, onChange, ment
       <div className="input-container">
         <label htmlFor={name}>{label}</label>
         <p className="mention">{mention}</p>
-        <input type={type} name={name} value={value} onChange={onChange} className={className} />
+        <input type={type} name={name} value={value} onChange={onChange} className={className} required />
       </div>
     );
 };
