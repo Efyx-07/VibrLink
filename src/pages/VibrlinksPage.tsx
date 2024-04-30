@@ -1,31 +1,19 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useUserStore, useReleaseStore } from "../stores";
-import { Release } from "../types/releaseTypes";
-import { User } from "../types/userTypes";
 import DbVibrlinkCard from "../components/cards/DbVibrlinkCard";
 import '../assets/sass/common/pages-common-styles.scss';
 
 export default function VibrlinksPage() {
 
-    const userStore = useUserStore();
-    const releaseStore = useReleaseStore();
-    const user: User | null = userStore.user;
-    const [releases, setReleases] = useState<Release[]>([]);
+    const user = useUserStore(state => state.user);
+    const releases = useReleaseStore(state => state.releases);
+    const loadReleasesData = useReleaseStore(state => state.loadReleasesData);
 
     useEffect(() => {
-        const fetchReleasesData = async () => {
-            try {
-                if(!!user) {
-                    const userId = user.id;
-                    await releaseStore.loadReleasesData(userId);
-                    setReleases(releaseStore.releases);
-                }
-            } catch (error) {
-                console.error('Error while fetching datas: ', error);
-            }
+        if (user) {
+            loadReleasesData(user.id);
         }
-        fetchReleasesData(); 
-    }, [releaseStore, user]);
+    }, [user, loadReleasesData]);
 
     return (
         <div className="page">
