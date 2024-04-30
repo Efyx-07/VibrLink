@@ -28,7 +28,7 @@ export default function UserPanel() {
 
     const { openSignOutModal } = useModal();
 
-    const openDeleteAccountModal = () => {};
+    const { openDeleteAccountModal } = useModal();
 
 
     return (

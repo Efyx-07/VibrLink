@@ -4,6 +4,9 @@ interface ModalContextType {
   isSignOutModalOpen: boolean;
   openSignOutModal: () => void;
   closeSignOutModal: () => void;
+  isDeleteAccountModalOpen: boolean;
+  openDeleteAccountModal: () => void;
+  closeDeleteAccountModal: () => void;
 }
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined);
@@ -27,10 +30,25 @@ export const ModalProvider = ({ children }: { children: React.ReactNode }): JSX.
     setIsSignOutModalOpen(false);
   };
 
+  const [isDeleteAccountModalOpen, setIsDeleteAccountModalOpen] = useState(false);
+
+  const openDeleteAccountModal = () => {
+    setIsDeleteAccountModalOpen(true);
+  };
+
+  const closeDeleteAccountModal = () => {
+    setIsDeleteAccountModalOpen(false);
+  };
+
+
+
   const value: ModalContextType = {
     isSignOutModalOpen,
     openSignOutModal,
     closeSignOutModal,
+    isDeleteAccountModalOpen,
+    openDeleteAccountModal,
+    closeDeleteAccountModal
   };
 
   return (

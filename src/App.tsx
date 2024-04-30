@@ -9,6 +9,7 @@ import AccountSettingsPage from './pages/AccountSettingsPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
 import Header from './components/header/Header';
 import SignoutModal from './components/modals/SignoutModal';
+import DeleteAccountModal from './components/modals/DeleteAccountModal';
 
 export default function App() {
   const userStore = useUserStore();
@@ -49,6 +50,7 @@ export default function App() {
           <Route index path="/reset-password/:token" element={<ResetPasswordPage />} />
         </Routes>
         <SignoutModal />
+        <DeleteAccountModal />
       </div>
     </ModalProvider>
   );
