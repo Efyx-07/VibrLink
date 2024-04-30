@@ -1,0 +1,76 @@
+@import '../../assets/sass/common/colors.scss';
+
+.release-card {
+    width: 100%;
+    border: solid 1px rgba($whiteColor, .1);
+    background: $darkColor;
+    border-radius: .5rem;
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    gap: 2rem;
+    padding: 1rem;
+    transition: all .4s ease;
+
+    &:hover {
+        border-color: rgba($accentColor, .5);
+        background: #1e1e1e;
+    }
+
+    .image-container {
+        width: 100%;
+        max-width: 12rem;
+        max-height: 12rem;
+        display: inline-block;
+        overflow: hidden;
+
+        img {
+            display: block;
+            width: 100%;
+        }
+    }
+
+    .infos-container {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+
+        .title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .artist {
+            font-size: .9rem;
+            opacity: .75;
+        }
+    }
+
+    .buttons-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        gap: 1rem;
+
+        .link {
+            color: $accentColor;
+            font-size: .8rem;
+            cursor: pointer;
+        }
+
+        button {
+            width: 100%;
+            height: 2rem;
+            color: $whiteColor;
+            background: rgba($accentColor, .05);
+            border: solid 1px rgba($accentColor, .5);
+            cursor: pointer;
+            transition: transform .2s ease;
+
+            &:hover {
+                background: rgba($accentColor, .25);
+                border-color: rgba($accentColor, 1);
+                transform: translateY(.15rem);
+            }
+        }
+    }
+}
