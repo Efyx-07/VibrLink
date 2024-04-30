@@ -43,7 +43,7 @@ export default function App() {
         <Route index path="/login" element={<LoginPage />} />
         <Route index path="/signup" element={<SignupPage />} />
         <Route index path="/account-settings" element={<AccountSettingsPage />} />
-        <Route index path="/reset-password" element={<ResetPasswordPage />} />
+        <Route index path="/reset-password/:token" element={<ResetPasswordPage />} />
       </Routes>
     </div>
   );

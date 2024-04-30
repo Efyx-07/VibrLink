@@ -31,34 +31,6 @@ export async function login(email: string, password: string) {
     }
 };
 
-// backend query to send a reset password link
-export async function sendResetLink(email: string) {
-
-    try {
-
-        const response: Response =  await fetch(`${hostName}/passwordRoute/forgot-password`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',    
-            },
-            body: JSON.stringify({
-                email
-            }),
-        });
-
-        if (response.ok) {
-            const data = await response.json();
-            return data;
-
-        } else {
-            throw new Error('Error while asking reset email: ' + response.statusText);
-        }
-
-    } catch (error) {
-        throw new Error('Error while asking reset email :' + error);
-    }
-};
-
 // backend query to register an user
 export async function register(email: string, password: string) {
 
@@ -89,7 +61,7 @@ export async function register(email: string, password: string) {
 };
 
 // backend query to update a user password
-export async function updatePassword(token: string, userId: number, currentPassword: string, newUserPassword: string) {
+export async function updatePassword(token: string | null, userId: number, currentPassword: string, newUserPassword: string) {
 
     try {
         const response = await fetch(`${hostName}/passwordRoute/update-password`, {
@@ -116,4 +88,60 @@ export async function updatePassword(token: string, userId: number, currentPassw
     } catch (error) {
         throw new Error('Error during updating password:' + error);
     }
-}
+};
+
+// backend query to send a reset password link
+export async function sendResetLink(email: string) {
+
+    try {
+
+        const response: Response =  await fetch(`${hostName}/passwordRoute/forgot-password`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',    
+            },
+            body: JSON.stringify({
+                email
+            }),
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            return data;
+
+        } else {
+            throw new Error('Error while asking reset email: ' + response.statusText);
+        }
+
+    } catch (error) {
+        throw new Error('Error while asking reset email :' + error);
+    }
+};
+
+// backend query to reset a user password 
+export async function resetPassword(token: string | undefined, password: string) {
+
+    try {
+
+        const response = await fetch(`${hostName}/passwordRoute/reset-password/${token}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                password
+            }),
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            return data;
+
+        } else {
+            throw new Error('Error while resetting password' + response.statusText);
+        }
+
+    } catch (error) {
+        throw new Error('Error while resetting password' + error);
+    }
+};
