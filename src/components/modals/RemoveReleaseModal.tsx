@@ -11,8 +11,6 @@ export default function RemoveReleaseModal() {
     const userStore = useUserStore();
     const userId = userStore.user?.id;
 
-    console.log(release?.title)
-
     const removeRelease = async (): Promise <void> => {
 
         if (modalReleaseId === null) {
