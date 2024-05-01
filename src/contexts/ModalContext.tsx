@@ -7,6 +7,10 @@ interface ModalContextType {
   isDeleteAccountModalOpen: boolean;
   openDeleteAccountModal: () => void;
   closeDeleteAccountModal: () => void;
+  isRemoveReleaseModalOpen: boolean;
+  openRemoveReleaseModal: (releaseId: number) => void;
+  closeRemoveReleaseModal: () => void;
+  modalReleaseId: number | null;
 }
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined);
@@ -40,7 +44,18 @@ export const ModalProvider = ({ children }: { children: React.ReactNode }): JSX.
     setIsDeleteAccountModalOpen(false);
   };
 
+  const [isRemoveReleaseModalOpen, setIsRemoveReleaseModalOpen] = useState(false);
+  const [modalReleaseId, setModalReleaseId] = useState<number | null>(null);
 
+  const openRemoveReleaseModal = (releaseId: number) => {
+    setModalReleaseId(releaseId);
+    setIsRemoveReleaseModalOpen(true);
+  };
+
+  const closeRemoveReleaseModal = () => {
+    setModalReleaseId(null);
+    setIsRemoveReleaseModalOpen(false);
+  };
 
   const value: ModalContextType = {
     isSignOutModalOpen,
@@ -48,7 +63,11 @@ export const ModalProvider = ({ children }: { children: React.ReactNode }): JSX.
     closeSignOutModal,
     isDeleteAccountModalOpen,
     openDeleteAccountModal,
-    closeDeleteAccountModal
+    closeDeleteAccountModal,
+    isRemoveReleaseModalOpen,
+    openRemoveReleaseModal: (releaseId: number) => openRemoveReleaseModal(releaseId),
+    closeRemoveReleaseModal,
+    modalReleaseId
   };
 
   return (

@@ -12,6 +12,7 @@ import NewVibrlinkPage from './pages/NewVibrlinkPage';
 import Header from './components/header/Header';
 import SignoutModal from './components/modals/SignoutModal';
 import DeleteAccountModal from './components/modals/DeleteAccountModal';
+import RemoveReleaseModal from './components/modals/RemoveReleaseModal';
 
 export default function App() {
   const userStore = useUserStore();
@@ -55,6 +56,7 @@ export default function App() {
         </Routes>
         <SignoutModal />
         <DeleteAccountModal />
+        <RemoveReleaseModal />
       </div>
     </ModalProvider>
   );

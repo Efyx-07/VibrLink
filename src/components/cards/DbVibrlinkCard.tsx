@@ -1,6 +1,5 @@
 import { Release } from "../../types/releaseTypes";
-import { useReleaseStore, useUserStore } from "../../stores";
-import { removeReleaseById } from "../../services/releaseService";
+import { useModal } from "../../contexts/ModalContext";
 import CardButton from "./CardButton";
 import './DbVibrlinkCard.scss';
 
@@ -15,26 +14,10 @@ const reverseReleases = (releases: readonly Release[]) => {
 export default function DbVibrlinkCard({releases}: DbVibrlinkCard) {
 
     const reversedReleases = reverseReleases(releases);
-    
-    const releaseStore = useReleaseStore();
-    const userStore = useUserStore();
-    const userId = userStore.user?.id;
 
     const navToReleaseToEditPage = () => {};
 
-    const removeRelease = async (releaseId: number): Promise <void> => {
-        try {
-
-            await removeReleaseById(releaseId);
-    
-            if (userId) {
-                releaseStore.loadReleasesData(userId);
-            }
-    
-        } catch (error) {
-            console.error('Error while removing release:', error);
-        }
-    };
+    const { openRemoveReleaseModal } = useModal();
 
     const navToReleaseLandingPage = () => {};
 
@@ -51,7 +34,7 @@ export default function DbVibrlinkCard({releases}: DbVibrlinkCard) {
                     </div>
                     <div className="buttons-container">
                         <CardButton name="Edit link" icon="mdi:tools" onClick={navToReleaseToEditPage}/>
-                        <CardButton name="Delete link" icon="mdi:skull-crossbones" onClick={() => removeRelease(release.id)}/>
+                        <CardButton name="Delete link" icon="mdi:skull-crossbones" onClick={() => openRemoveReleaseModal(release.id)}/>
                         <CardButton name="View landing page" icon="mdi:telescope" onClick={navToReleaseLandingPage} />
                     </div>
                 </div>
