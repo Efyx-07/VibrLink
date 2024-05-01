@@ -24,7 +24,7 @@ export default function DbVibrlinkCard({releases}: DbVibrlinkCard) {
     const { openRemoveReleaseModal } = useModal();
 
     const navToReleaseLandingPage = (releaseSlug: string): void => {
-        window.open(`/${releaseSlug}`, '_blank');
+        navigate(`/${releaseSlug}`);
     };
 
     return (
