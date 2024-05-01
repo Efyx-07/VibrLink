@@ -10,6 +10,7 @@ import ResetPasswordPage from './pages/ResetPasswordPage';
 import VibrlinksPage from './pages/VibrlinksPage';
 import NewVibrlinkPage from './pages/NewVibrlinkPage';
 import LinkEditorPage from './pages/LinkEditorPage';
+import VibrlinkLandingPage from './pages/VibrlinkLandingPage';
 import Header from './components/header/Header';
 import SignoutModal from './components/modals/SignoutModal';
 import DeleteAccountModal from './components/modals/DeleteAccountModal';
@@ -55,6 +56,7 @@ export default function App() {
           <Route index path="/my-vibrlinks" element={<VibrlinksPage />} />
           <Route index path="/new-vibrlink" element={<NewVibrlinkPage />} />
           <Route index path="/link-editor/:releaseId" element={<LinkEditorPage />} />
+          <Route index path="/:releaseSlug" element={<VibrlinkLandingPage />} />
         </Routes>
         <SignoutModal />
         <DeleteAccountModal />

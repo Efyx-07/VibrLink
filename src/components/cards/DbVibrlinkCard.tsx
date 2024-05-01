@@ -23,7 +23,8 @@ export default function DbVibrlinkCard({releases}: DbVibrlinkCard) {
 
     const { openRemoveReleaseModal } = useModal();
 
-    const navToReleaseLandingPage = () => {;
+    const navToReleaseLandingPage = (releaseSlug: string): void => {
+        window.open(`/${releaseSlug}`, '_blank');
     };
 
     return (
@@ -40,7 +41,7 @@ export default function DbVibrlinkCard({releases}: DbVibrlinkCard) {
                     <div className="buttons-container">
                         <CardButton name="Edit link" icon="mdi:tools" onClick={() => navToReleaseToEditPage(release.id)}/>
                         <CardButton name="Delete link" icon="mdi:skull-crossbones" onClick={() => openRemoveReleaseModal(release.id)}/>
-                        <CardButton name="View landing page" icon="mdi:telescope" onClick={navToReleaseLandingPage} />
+                        <CardButton name="View landing page" icon="mdi:telescope" onClick={() => navToReleaseLandingPage(release.slug)} />
                     </div>
                 </div>
             ))}   
