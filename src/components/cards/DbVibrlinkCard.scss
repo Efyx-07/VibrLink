@@ -62,22 +62,6 @@
                 font-size: .8rem;
                 cursor: pointer;
             }
-    
-            button {
-                width: 100%;
-                height: 2rem;
-                color: $whiteColor;
-                background: rgba($accentColor, .05);
-                border: solid 1px rgba($accentColor, .5);
-                cursor: pointer;
-                transition: transform .2s ease;
-    
-                &:hover {
-                    background: rgba($accentColor, .25);
-                    border-color: rgba($accentColor, 1);
-                    transform: translateY(.15rem);
-                }
-            }
         }
     }
 }

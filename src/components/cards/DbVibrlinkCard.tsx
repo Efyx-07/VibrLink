@@ -1,4 +1,5 @@
 import { Release } from "../../types/releaseTypes";
+import CardButton from "./CardButton";
 import './DbVibrlinkCard.scss';
 
 interface DbVibrlinkCard {
@@ -23,6 +24,11 @@ export default function DbVibrlinkCard({releases}: DbVibrlinkCard) {
                     <div className="infos-container">
                         <p className="title">{release.title}</p>
                         <p className="artist">{release.artist}</p>
+                    </div>
+                    <div className="buttons-container">
+                        <CardButton name="Edit link" />
+                        <CardButton name="Delete link" />
+                        <CardButton name="View landing page" />
                     </div>
                 </div>
             ))}   
