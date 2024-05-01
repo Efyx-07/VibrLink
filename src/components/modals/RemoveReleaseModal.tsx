@@ -43,7 +43,7 @@ export default function RemoveReleaseModal() {
         <>
             {isRemoveReleaseModalOpen && (
                 <ConfirmationModal 
-                    icon="?"
+                    icon="mdi:skull-crossbones"
                     topline={`Are you sure you want to delete "${release?.title}?"`}
                     message="This will definitely remove this release."
                     onConfirm={() => {

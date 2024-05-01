@@ -36,7 +36,7 @@ export default function UserPanel() {
         <div className="user-panel">
             <div className="items-container">
                 <UserItem name="Update password" icon="mdi:tools" onClick={navToSettings} />
-                <UserItem name="Delete account" icon="material-symbols:delete-outline-sharp" onClick={openDeleteAccountModal} />
+                <UserItem name="Delete account" icon="mdi:skull-crossbones" onClick={openDeleteAccountModal} />
                 <UserItem name="Sign out" icon="material-symbols:logout-sharp" onClick={openSignOutModal} />
             </div>
         </div>

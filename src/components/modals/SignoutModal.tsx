@@ -25,7 +25,7 @@ export default function SignoutModal() {
         <>
             {isSignOutModalOpen && (
                 <ConfirmationModal 
-                    icon="?"
+                    icon="material-symbols:question-mark"
                     topline="Are you sure ?"
                     message="Please confirm to sign out."
                     onConfirm={handleSignoutAndNavToHomePage}

@@ -38,7 +38,7 @@ export default function DeleteAccountModal() {
         <>
             {isDeleteAccountModalOpen && (
                 <ConfirmationModal 
-                    icon="?"
+                    icon="mdi:skull-crossbones"
                     topline="Are you sure you want to delete your account?"
                     message="This will definitely remove your account and all your datas."
                     onConfirm={deleteUserAccount}
