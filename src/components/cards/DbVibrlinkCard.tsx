@@ -14,6 +14,12 @@ export default function DbVibrlinkCard({releases}: DbVibrlinkCard) {
 
     const reversedReleases = reverseReleases(releases);
 
+    const navToReleaseToEditPage = () => {};
+
+    const removeRelease = () => {};
+
+    const navToReleaseLandingPage = () => {};
+
     return (
         <div className="container">
             {reversedReleases.map(release => (
@@ -26,9 +32,9 @@ export default function DbVibrlinkCard({releases}: DbVibrlinkCard) {
                         <p className="artist">{release.artist}</p>
                     </div>
                     <div className="buttons-container">
-                        <CardButton name="Edit link" icon="mdi:tools" />
-                        <CardButton name="Delete link" icon="mdi:skull-crossbones"/>
-                        <CardButton name="View landing page" icon="mdi:telescope" />
+                        <CardButton name="Edit link" icon="mdi:tools" onClick={navToReleaseToEditPage}/>
+                        <CardButton name="Delete link" icon="mdi:skull-crossbones" onClick={removeRelease}/>
+                        <CardButton name="View landing page" icon="mdi:telescope" onClick={navToReleaseLandingPage}/>
                     </div>
                 </div>
             ))}   
