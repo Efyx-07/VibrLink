@@ -1,6 +1,6 @@
 import { useUserStore, useReleaseStore } from './stores';
-import { useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { ModalProvider } from './contexts/ModalContext';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
@@ -20,6 +20,7 @@ export default function App() {
   const userStore = useUserStore();
   const releaseStore = useReleaseStore();
 
+  // get the datas before app initialisation
   useEffect(() => {
     const initApp = async (): Promise<void> => {
       try {
@@ -43,10 +44,19 @@ export default function App() {
     initApp();
   }, []);
 
+  // conditionnal display of the header 
+  const location = useLocation();
+  const [shouldShowHeader, setShouldShowHeader] = useState(true);
+
+  useEffect(() => {
+    const isVibrlinkLandingPage = location.pathname.includes('/v');
+    setShouldShowHeader(!isVibrlinkLandingPage);
+  }, [location.pathname]);
+
   return (
     <ModalProvider>
       <div>
-        <Header /> 
+      {shouldShowHeader && <Header />}
         <Routes>
           <Route index path="/" element={<HomePage />} />
           <Route index path="/login" element={<LoginPage />} />
@@ -56,7 +66,7 @@ export default function App() {
           <Route index path="/my-vibrlinks" element={<VibrlinksPage />} />
           <Route index path="/new-vibrlink" element={<NewVibrlinkPage />} />
           <Route index path="/link-editor/:releaseId" element={<LinkEditorPage />} />
-          <Route index path="/:releaseSlug" element={<VibrlinkLandingPage />} />
+          <Route index path="/v/:releaseSlug" element={<VibrlinkLandingPage />} />
         </Routes>
         <SignoutModal />
         <DeleteAccountModal />
