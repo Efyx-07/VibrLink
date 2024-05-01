@@ -11,7 +11,7 @@ interface CardButton {
 export default function CardButton({name, icon, onClick}: CardButton) {
 
     return (
-        <div className="card-button" onClick={onClick} >
+        <div className="card-button" onClick={onClick}>
             <Icon icon={icon} />
             <p>{name}</p>
         </div>

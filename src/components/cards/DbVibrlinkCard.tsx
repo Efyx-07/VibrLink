@@ -1,4 +1,5 @@
 import { Release } from "../../types/releaseTypes";
+import { useReleaseStore, useUserStore, useGlobalDataStore } from "../../stores";
 import CardButton from "./CardButton";
 import './DbVibrlinkCard.scss';
 
@@ -13,10 +14,35 @@ const reverseReleases = (releases: readonly Release[]) => {
 export default function DbVibrlinkCard({releases}: DbVibrlinkCard) {
 
     const reversedReleases = reverseReleases(releases);
+    
+    const { hostName } = useGlobalDataStore();
+    const releaseStore = useReleaseStore();
+    const userStore = useUserStore();
+    const userId = userStore.user?.id;
 
     const navToReleaseToEditPage = () => {};
 
-    const removeRelease = () => {};
+    const removeRelease = async (releaseId: number): Promise <void> => {
+        try {
+
+            const response = await fetch(`${hostName}/releasesRoute/${releaseId}`, {
+                method: 'DELETE'
+            });
+    
+            if (!response.ok) {
+                throw new Error('Failed to delete release');
+            }
+    
+            console.log('Release succesfully removed: ', releaseId);
+    
+            if (userId) {
+                releaseStore.loadReleasesData(userId);
+            }
+    
+        } catch (error) {
+            console.error('Error removing release:', error);
+        }
+    };
 
     const navToReleaseLandingPage = () => {};
 
@@ -33,8 +59,8 @@ export default function DbVibrlinkCard({releases}: DbVibrlinkCard) {
                     </div>
                     <div className="buttons-container">
                         <CardButton name="Edit link" icon="mdi:tools" onClick={navToReleaseToEditPage}/>
-                        <CardButton name="Delete link" icon="mdi:skull-crossbones" onClick={removeRelease}/>
-                        <CardButton name="View landing page" icon="mdi:telescope" onClick={navToReleaseLandingPage}/>
+                        <CardButton name="Delete link" icon="mdi:skull-crossbones" onClick={() => removeRelease(release.id)}/>
+                        <CardButton name="View landing page" icon="mdi:telescope" onClick={navToReleaseLandingPage} />
                     </div>
                 </div>
             ))}   
