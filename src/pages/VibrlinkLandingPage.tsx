@@ -13,6 +13,8 @@ export default function VibrlinkLandingPage() {
         return release.slug === releaseSlug;
     });
 
+    console.log('title: ', selectedRelease?.title)
+
     return (
         <div className="page">
             <div className="content">
@@ -20,4 +22,4 @@ export default function VibrlinkLandingPage() {
             </div>
         </div>
     )
-}
+};
