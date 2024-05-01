@@ -26,3 +26,22 @@ export async function createLink(albumUrl: string, userId: number | undefined): 
         throw new Error('Failed to send album URL' + error);
     }
 };
+
+// backend query to remove a release by Id
+export async function removeReleaseById(releaseId: number): Promise <void> {
+
+    try {
+        const response = await fetch(`${hostName}/releasesRoute/${releaseId}`, {
+            method: 'DELETE'
+        });
+
+        if (response.ok) {
+            console.log('Release succesfully removed: ', releaseId)
+        } else {
+            throw new Error('Failed to delete release' + response.statusText);
+        }
+
+    } catch (error) {
+        throw new Error('Failed to delete release' + error);
+    }
+}

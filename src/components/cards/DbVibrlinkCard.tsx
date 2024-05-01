@@ -1,5 +1,6 @@
 import { Release } from "../../types/releaseTypes";
-import { useReleaseStore, useUserStore, useGlobalDataStore } from "../../stores";
+import { useReleaseStore, useUserStore } from "../../stores";
+import { removeReleaseById } from "../../services/releaseService";
 import CardButton from "./CardButton";
 import './DbVibrlinkCard.scss';
 
@@ -15,7 +16,6 @@ export default function DbVibrlinkCard({releases}: DbVibrlinkCard) {
 
     const reversedReleases = reverseReleases(releases);
     
-    const { hostName } = useGlobalDataStore();
     const releaseStore = useReleaseStore();
     const userStore = useUserStore();
     const userId = userStore.user?.id;
@@ -25,22 +25,14 @@ export default function DbVibrlinkCard({releases}: DbVibrlinkCard) {
     const removeRelease = async (releaseId: number): Promise <void> => {
         try {
 
-            const response = await fetch(`${hostName}/releasesRoute/${releaseId}`, {
-                method: 'DELETE'
-            });
-    
-            if (!response.ok) {
-                throw new Error('Failed to delete release');
-            }
-    
-            console.log('Release succesfully removed: ', releaseId);
+            await removeReleaseById(releaseId);
     
             if (userId) {
                 releaseStore.loadReleasesData(userId);
             }
     
         } catch (error) {
-            console.error('Error removing release:', error);
+            console.error('Error while removing release:', error);
         }
     };
 
