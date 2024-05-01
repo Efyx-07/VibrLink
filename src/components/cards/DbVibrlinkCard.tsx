@@ -26,12 +26,12 @@ export default function DbVibrlinkCard({releases}: DbVibrlinkCard) {
                         <p className="artist">{release.artist}</p>
                     </div>
                     <div className="buttons-container">
-                        <CardButton name="Edit link" />
-                        <CardButton name="Delete link" />
-                        <CardButton name="View landing page" />
+                        <CardButton name="Edit link" icon="mdi:tools" />
+                        <CardButton name="Delete link" icon="mdi:skull-crossbones"/>
+                        <CardButton name="View landing page" icon="mdi:telescope" />
                     </div>
                 </div>
             ))}   
         </div>
-    )
+    ) 
 };
