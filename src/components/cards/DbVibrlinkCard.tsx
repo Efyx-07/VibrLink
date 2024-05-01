@@ -1,5 +1,6 @@
 import { Release } from "../../types/releaseTypes";
 import { useModal } from "../../contexts/ModalContext";
+import { useNavigate } from "react-router-dom";
 import CardButton from "./CardButton";
 import './DbVibrlinkCard.scss';
 
@@ -14,12 +15,16 @@ const reverseReleases = (releases: readonly Release[]) => {
 export default function DbVibrlinkCard({releases}: DbVibrlinkCard) {
 
     const reversedReleases = reverseReleases(releases);
+    const navigate = useNavigate();
 
-    const navToReleaseToEditPage = () => {};
+    const navToReleaseToEditPage = (releaseId: number): void => {
+        navigate(`/link-editor/${releaseId}`);
+    };
 
     const { openRemoveReleaseModal } = useModal();
 
-    const navToReleaseLandingPage = () => {};
+    const navToReleaseLandingPage = () => {;
+    };
 
     return (
         <div className="container">
@@ -33,7 +38,7 @@ export default function DbVibrlinkCard({releases}: DbVibrlinkCard) {
                         <p className="artist">{release.artist}</p>
                     </div>
                     <div className="buttons-container">
-                        <CardButton name="Edit link" icon="mdi:tools" onClick={navToReleaseToEditPage}/>
+                        <CardButton name="Edit link" icon="mdi:tools" onClick={() => navToReleaseToEditPage(release.id)}/>
                         <CardButton name="Delete link" icon="mdi:skull-crossbones" onClick={() => openRemoveReleaseModal(release.id)}/>
                         <CardButton name="View landing page" icon="mdi:telescope" onClick={navToReleaseLandingPage} />
                     </div>
