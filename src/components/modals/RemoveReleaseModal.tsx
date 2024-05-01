@@ -7,8 +7,11 @@ export default function RemoveReleaseModal() {
 
     const { isRemoveReleaseModalOpen, modalReleaseId, closeRemoveReleaseModal } = useModal();
     const releaseStore = useReleaseStore();
+    const release = useReleaseStore(state => state.getReleaseById(modalReleaseId ?? 0));
     const userStore = useUserStore();
     const userId = userStore.user?.id;
+
+    console.log(release?.title)
 
     const removeRelease = async (): Promise <void> => {
 
@@ -41,8 +44,8 @@ export default function RemoveReleaseModal() {
             {isRemoveReleaseModalOpen && (
                 <ConfirmationModal 
                     icon="?"
-                    topline="Are you sure you want to delete this release?"
-                    message="This will definitely remove your account and all your datas."
+                    topline={`Are you sure you want to delete "${release?.title}?"`}
+                    message="This will definitely remove this release."
                     onConfirm={() => {
                         if (modalReleaseId !== null) {
                             removeRelease();

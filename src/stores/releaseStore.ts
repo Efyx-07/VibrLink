@@ -5,9 +5,10 @@ import { Release } from '../types/releaseTypes';
 interface State {
     releases: Release[];
     loadReleasesData: (userId: number) => Promise<void>;
+    getReleaseById: (releaseId: number) => Release | undefined;
 }
 
-const useReleaseStore = create<State>((set) => ({
+const useReleaseStore = create<State>((set, get) => ({
     releases: [],
     loadReleasesData: async(userId) => {
         try {
@@ -16,6 +17,10 @@ const useReleaseStore = create<State>((set) => ({
         } catch (error) {
             console.error('Error fetching releases data:', error);
         }
+    }, 
+    getReleaseById: (releaseId) => {
+        const release = get().releases.find((release) => release.id === releaseId);
+        return release;
     }
 }));
 
