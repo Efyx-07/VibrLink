@@ -20,8 +20,8 @@ form {
 
         input {
             height: 4rem;
-            background: transparent;
-            border: solid 1px rgba($whiteColor, .25);
+            background: $darkColorRelief;
+            border: solid 1px rgba($whiteColor, .1);
             outline: none;
             color: $whiteColor;
             padding-left: 1rem;
