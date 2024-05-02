@@ -1,5 +1,5 @@
 import '../assets/sass/common/pages-common-styles.scss';
-import ResetPasswordForm from '../components/user-forms/ResetPasswordPage';
+import ResetPasswordForm from '../components/user-forms/ResetPasswordForm';
 
 export default function ResetPasswordPage () {
 
