@@ -24,12 +24,14 @@ export default function NewVibrlinkForm() {
         const userId: number | undefined = userStore.user?.id;
 
         try {
-            const data = await createLink(albumUrl, userId);
+            const data  = await createLink(albumUrl, userId);
             console.log('New release datas:',data);
+
+            const releaseId: number = data.releaseId;
         
             if (userId) {
               await releaseStore.loadReleasesData(userId);
-              navigate(`/my-vibrlinks`);
+              navigate(`/link-editor/${releaseId}`);
             }
             
           } catch (error) {
