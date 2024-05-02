@@ -9,7 +9,7 @@
     .link-card {
         width: 100%;
         border: solid 1px rgba($whiteColor, .1);
-        background: $darkColor;
+        background: $darkColorRelief;
         border-radius: .5rem;
         display: grid;
         grid-template-columns: 1fr 3fr 1fr;
@@ -19,7 +19,6 @@
     
         &:hover {
             border-color: rgba($accentColor, .5);
-            background: $darkColorRelief;
             transform: translateY(-.5rem);
         }
     
