@@ -2,7 +2,6 @@
 
 .navItems-container {
     display: flex;
-    gap: 2rem;
     height: 100%;
 
     .navItem {
@@ -10,6 +9,7 @@
         align-items: center;
         cursor: pointer;
         transition: transform .2s ease;
+        padding: 0 2rem;
 
         &:hover {
             color: $accentColor;

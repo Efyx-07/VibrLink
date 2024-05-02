@@ -20,7 +20,6 @@ function NavItem({name, navTo}: NavItem) {
 export default function Navigation() {
 
     const isLogged = useUserStore(state => state.isLoggedIn);
-    const user = useUserStore(state => state.user );
 
     const [isHoverUserMenuVisible, setIsHoverUserMenuVisible] = useState(false);
 
@@ -60,14 +59,14 @@ export default function Navigation() {
                     ))
 
                 ) 
-            } 
+            }
             {isLogged && (
                 <div
                     className="navItem"
                     onMouseEnter={handleEmailMouseEnter}
                     onMouseLeave={handleEmailMouseLeave}
                 >
-                    <p> Account: <span className="user-email">{user?.email}</span></p>
+                    <p>My Account</p>
                     {isHoverUserMenuVisible && (
                         <HoverUserMenu />
                     )}

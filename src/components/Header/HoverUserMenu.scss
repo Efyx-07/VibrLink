@@ -2,7 +2,7 @@
 
 .hover-user-menu {
     width: 15rem;
-    background: $whiteColor;
+    background: $darkColor;
     color: $darkColor;
     border: solid 4px $accentColor;
     border-radius: .5rem;
@@ -14,11 +14,28 @@
         display: flex;
         flex-direction: column;
 
+        .userEmail-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            background: $darkColor;
+            color: $whiteColor;
+            border-bottom: solid 1px rgba($whiteColor, .25);
+
+            p {
+                font-size: .75rem;
+                font-weight: 600;
+            }
+        }
+
         .item-container {
             display: flex;
             align-items: center;
+            justify-content: start;
             gap: .5rem;
-            padding: 1rem 2rem 1rem 1rem;
+            padding: 1rem;
+            background: $whiteColor;
             transition: all .2s ease;
             cursor: pointer;
 

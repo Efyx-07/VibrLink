@@ -3,7 +3,6 @@ import './FormButton.scss';
 interface Button {
     type: "submit" | "reset" | "button" | undefined;
     name: string;
-    //className?: string;
 };
 
 export default function FormButton({ type, name }: Button) {
