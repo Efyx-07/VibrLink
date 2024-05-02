@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Release } from "../types/releaseTypes";
 import { useParams } from "react-router-dom";
 import { fetchReleaseDataBySlug } from "../services/releasesApi";
+import './VibrlinkLandingPage.scss';
 
 export default function VibrlinkLandingPage() {
 
@@ -26,10 +27,12 @@ export default function VibrlinkLandingPage() {
 
 
     return (
-        <div className="page">
-            <div className="content">
-                <h1>{selectedRelease?.title}</h1>
-            </div>
+        <div className="landing-page" style={{ backgroundImage: `url(${selectedRelease?.cover})`, backgroundSize: 'cover', backgroundAttachment: 'fixed', backgroundPosition:'center' }}>
+            {selectedRelease && (
+                <div className="content">
+                    <h1>{selectedRelease.title}</h1>
+                </div>
+            )}  
         </div>
     )
 };
