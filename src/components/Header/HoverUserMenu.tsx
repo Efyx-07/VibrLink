@@ -2,7 +2,7 @@ import { MouseEventHandler } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useModal } from "../../contexts/ModalContext";
 import { Icon } from '@iconify-icon/react';
-import './UserPanel.scss';
+import './HoverUserMenu.scss';
 
 interface UserItem {
     name: string;
@@ -19,7 +19,7 @@ function UserItem({name, icon, onClick}: UserItem) {
     )
 };
 
-export default function UserPanel() {
+export default function HoverUserMenu() {
 
     const navigate = useNavigate();
     const navToSettings = (): void => {
@@ -33,7 +33,7 @@ export default function UserPanel() {
 
     return (
         <>
-        <div className="user-panel">
+        <div className="hover-user-menu">
             <div className="items-container">
                 <UserItem name="Update password" icon="mdi:tools" onClick={navToSettings} />
                 <UserItem name="Delete account" icon="mdi:skull-crossbones" onClick={openDeleteAccountModal} />

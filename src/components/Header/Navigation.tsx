@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useUserStore } from "../../stores";
 import { useState, useEffect } from "react";
-import UserPanel from './UserPanel';
+import HoverUserMenu from './HoverUserMenu';
 import './Navigation.scss';
 
 interface NavItem {
@@ -22,14 +22,14 @@ export default function Navigation() {
     const isLogged = useUserStore(state => state.isLoggedIn);
     const user = useUserStore(state => state.user );
 
-    const [isUserPanelVisible, setIsUserPanelVisible] = useState(false);
+    const [isHoverUserMenuVisible, setIsHoverUserMenuVisible] = useState(false);
 
     const handleEmailMouseEnter = () => {
-        setIsUserPanelVisible(true);
+        setIsHoverUserMenuVisible(true);
     };
 
     const handleEmailMouseLeave = () => {
-        setIsUserPanelVisible(false);
+        setIsHoverUserMenuVisible(false);
     };
 
     useEffect(() => {
@@ -68,8 +68,8 @@ export default function Navigation() {
                     onMouseLeave={handleEmailMouseLeave}
                 >
                     <p> Account: <span className="user-email">{user?.email}</span></p>
-                    {isUserPanelVisible && (
-                        <UserPanel />
+                    {isHoverUserMenuVisible && (
+                        <HoverUserMenu />
                     )}
                 </div>
             )}
