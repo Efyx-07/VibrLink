@@ -3,7 +3,7 @@ import { useUserStore, useReleaseStore } from "../stores";
 import DbVibrlinkCard from "../components/cards/DbVibrlinkCard";
 import '../assets/sass/common/pages-common-styles.scss';
 
-export default function VibrlinksPage() {
+export default function MyLinksPage() {
 
     const user = useUserStore(state => state.user);
     const releases = useReleaseStore(state => state.releases);

@@ -2,15 +2,19 @@ import { useUserStore, useReleaseStore } from './stores';
 import { useEffect, useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { ModalProvider } from './contexts/ModalContext';
+
+// routed components
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import AccountSettingsPage from './pages/AccountSettingsPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
-import VibrlinksPage from './pages/VibrlinksPage';
-import NewVibrlinkPage from './pages/NewVibrlinkPage';
+import MyLinksPage from './pages/MyLinksPage';
+import NewLinkPage from './pages/NewLinkPage';
 import LinkEditorPage from './pages/LinkEditorPage';
 import VibrlinkLandingPage from './pages/VibrlinkLandingPage';
+
+// components available in the whole app
 import Header from './components/header/Header';
 import SignoutModal from './components/modals/SignoutModal';
 import DeleteAccountModal from './components/modals/DeleteAccountModal';
@@ -44,7 +48,7 @@ export default function App() {
     initApp();
   }, []);
 
-  // conditionnal display of the header 
+  // conditionnal display of the header by pathname
   const location = useLocation();
   const [shouldShowHeader, setShouldShowHeader] = useState(true);
 
@@ -63,8 +67,8 @@ export default function App() {
           <Route index path="/signup" element={<SignupPage />} />
           <Route index path="/account-settings" element={<AccountSettingsPage />} />
           <Route index path="/reset-password/:token" element={<ResetPasswordPage />} />
-          <Route index path="/my-vibrlinks" element={<VibrlinksPage />} />
-          <Route index path="/new-vibrlink" element={<NewVibrlinkPage />} />
+          <Route index path="/my-vibrlinks" element={<MyLinksPage />} />
+          <Route index path="/new-vibrlink" element={<NewLinkPage />} />
           <Route index path="/link-editor/:releaseId" element={<LinkEditorPage />} />
           <Route index path="/v/:releaseSlug" element={<VibrlinkLandingPage />} />
         </Routes>

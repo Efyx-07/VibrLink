@@ -1,6 +1,6 @@
 import NewVibrlinkForm from "../components/release-forms/NewVibrlinkForm"
 
-export default function NewVibrlinkPage() {
+export default function NewLinkPage() {
 
     return(
         <div className="page">
