@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useUserStore, useReleaseStore } from "../stores";
-import DbVibrlinkCard from "../components/cards/DbVibrlinkCard";
+import DashboardLinkCard from "../components/cards/DashboardLinkCard";
 import '../assets/sass/common/pages-common-styles.scss';
 
 export default function MyLinksPage() {
@@ -18,7 +18,7 @@ export default function MyLinksPage() {
     return (
         <div className="page">
             <div className="content">
-                <DbVibrlinkCard releases={releases} />
+                <DashboardLinkCard releases={releases} />
             </div>
         </div>
     )

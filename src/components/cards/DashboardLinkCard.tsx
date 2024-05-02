@@ -2,9 +2,9 @@ import { Release } from "../../types/releaseTypes";
 import { useModal } from "../../contexts/ModalContext";
 import { useNavigate } from "react-router-dom";
 import CardButton from "./CardButton";
-import './DbVibrlinkCard.scss';
+import './DashboardLinkCard.scss';
 
-interface DbVibrlinkCard {
+interface DashboardLinkCard {
     releases: Release[];
 };
 
@@ -12,7 +12,7 @@ const reverseReleases = (releases: readonly Release[]) => {
     return [...releases].reverse();
 };
 
-export default function DbVibrlinkCard({releases}: DbVibrlinkCard) {
+export default function DashboardLinkCard({releases}: DashboardLinkCard) {
 
     const reversedReleases = reverseReleases(releases);
     const navigate = useNavigate();
@@ -30,7 +30,7 @@ export default function DbVibrlinkCard({releases}: DbVibrlinkCard) {
     return (
         <div className="container">
             {reversedReleases.map(release => (
-                <div className="release-card" key={release.id}>
+                <div className="link-card" key={release.id}>
                     <div className="image-container">
                         <img src={release.cover} />
                     </div>
