@@ -19,7 +19,8 @@
     
         &:hover {
             border-color: rgba($accentColor, .5);
-            background: #1e1e1e;
+            background: $darkColorRelief;
+            transform: translateY(-.5rem);
         }
     
         .image-container {
