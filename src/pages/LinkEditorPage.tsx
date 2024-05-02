@@ -1,6 +1,7 @@
 import { useReleaseStore } from "../stores";
 import { Release } from "../types/releaseTypes";
 import { useParams } from "react-router-dom";
+import ReleaseBanner from "../components/cards/ReleaseBanner";
 
 export default function LinkEditorPage() {
 
@@ -16,7 +17,9 @@ export default function LinkEditorPage() {
     return (
         <div className="page">
             <div className="content">
-                <h1>{selectedRelease?.title}</h1>
+                {selectedRelease ? (
+                    <ReleaseBanner selectedRelease={selectedRelease} />
+                ): null}   
             </div>
         </div>
     )

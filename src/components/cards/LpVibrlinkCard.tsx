@@ -3,7 +3,7 @@ import './LpVibrlinkCard.scss';
 
 interface SelectedReleaseProps {
     selectedRelease: Release;
-}
+};
 
 export default function LpVibrlinkCard({selectedRelease}: SelectedReleaseProps) {
     return (
