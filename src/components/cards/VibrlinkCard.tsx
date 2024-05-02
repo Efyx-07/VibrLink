@@ -1,5 +1,5 @@
 import { Release } from "../../types/releaseTypes";
-import './LpVibrlinkCard.scss';
+import './VibrlinkCard.scss';
 
 interface SelectedReleaseProps {
     selectedRelease: Release;

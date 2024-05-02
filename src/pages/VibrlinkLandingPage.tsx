@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Release } from "../types/releaseTypes";
 import { useParams } from "react-router-dom";
 import { fetchReleaseDataBySlug } from "../services/releasesApi";
-import LpVibrlinkCard from "../components/cards/LpVibrlinkCard";
+import VibrlinkCard from "../components/cards/VibrlinkCard";
 import './VibrlinkLandingPage.scss';
 
 export default function VibrlinkLandingPage() {
@@ -31,7 +31,7 @@ export default function VibrlinkLandingPage() {
         <div className="landing-page" style={{ backgroundImage: `url(${selectedRelease?.cover})`, backgroundSize: 'cover', backgroundAttachment: 'fixed', backgroundPosition:'center' }}>
             {selectedRelease && (
                 <div className="content">
-                    <LpVibrlinkCard selectedRelease={selectedRelease} />
+                    <VibrlinkCard selectedRelease={selectedRelease} />
                 </div>
             )}  
         </div>
