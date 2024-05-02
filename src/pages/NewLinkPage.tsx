@@ -1,11 +1,11 @@
-import NewVibrlinkForm from "../components/release-forms/NewVibrlinkForm"
+import NewLinkForm from "../components/release-forms/NewLinkForm"
 
 export default function NewLinkPage() {
 
     return(
         <div className="page">
             <div className="content">
-                <NewVibrlinkForm />
+                <NewLinkForm />
             </div>
         </div>
     )

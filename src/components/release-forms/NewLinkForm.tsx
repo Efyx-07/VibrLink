@@ -3,7 +3,7 @@ import { useUserStore, useReleaseStore } from "../../stores";
 import { createLink } from "../../services/releaseService";
 import { useNavigate } from "react-router-dom";
 import FormButton from "../common/FormButton";
-import './NewVibrlinkForm.scss';
+import './NewLinkForm.scss';
 
 export default function NewVibrlinkForm() {
 
