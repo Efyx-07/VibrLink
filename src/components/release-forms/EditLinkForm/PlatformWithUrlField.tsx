@@ -4,9 +4,10 @@ import { Platform } from "../../../types/releaseTypes";
 interface PlatformFieldProps {
     platforms: Platform[];
     updateNewUrls: (updatedUrls: {[key: number]: string}) => void;
+    updatePlatformsVisibility: (updatedPlatformsVisibility: {[key: number]: boolean}) => void;
 }
 
-export default function PlatformWithUrlField({platforms, updateNewUrls}: PlatformFieldProps) {
+export default function PlatformWithUrlField({platforms, updateNewUrls, updatePlatformsVisibility}: PlatformFieldProps) {
 
     const [newUrls, setNewUrls] = useState<{[key: number]: string}>({});
 

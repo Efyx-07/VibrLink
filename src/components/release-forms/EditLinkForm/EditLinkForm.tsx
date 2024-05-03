@@ -15,6 +15,7 @@ export default function EditLinkForm({selectedRelease}: SelectedReleaseProps) {
 
     const [releasePlatforms, setPlatforms] = useState<Platform[]>(selectedRelease.platforms);
     const [newUrls, setNewUrls] = useState<{[key: number]: string}>({});
+    const [platformsVisibility, setPlatformsVisibility] = useState<{[key: number]: boolean}>({});
     const releaseId: number = selectedRelease.id;
 
     const platformsWithUrl: Platform[] = releasePlatforms.filter(platform => platform.url);
@@ -22,6 +23,10 @@ export default function EditLinkForm({selectedRelease}: SelectedReleaseProps) {
     const updateNewUrls = (updatedUrls: {[key: number]: string}) => {
         setNewUrls(updatedUrls);
     };
+
+    const updatePlatformsVisibility = (updatedPlatformsVisibility: {[key: number]: boolean}) => {
+        setPlatformsVisibility(updatedPlatformsVisibility);
+    }
     //const platformsWithoutUrl: Platform[] = releasePlatforms.filter(platform => !platform.url);
 
     //const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(null);
@@ -39,7 +44,7 @@ export default function EditLinkForm({selectedRelease}: SelectedReleaseProps) {
 
     return(
         <form onSubmit={updateReleaseLinks}>
-            <PlatformWithUrlField platforms={platformsWithUrl} updateNewUrls={updateNewUrls} />
+            <PlatformWithUrlField platforms={platformsWithUrl} updateNewUrls={updateNewUrls} updatePlatformsVisibility={updatePlatformsVisibility} />
             {/* {platformsWithoutUrl.length > 0 &&
                 <div className="manualLinks-container">
                     <PlatformWithoutUrlField platforms={platformsWithoutUrl} />

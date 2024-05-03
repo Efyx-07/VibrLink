@@ -47,7 +47,7 @@ export async function removeReleaseById(releaseId: number): Promise <void> {
 };
 
 // backend query to update a release 
-export async function updateRelease(newUrls: { [key: number]: string }, platformsVisibility: { [key: number]: boolean }, releaseId: number) {
+export async function updateRelease(newUrls: {[key: number]: string}, platformsVisibility: {[key: number]: boolean}, releaseId: number) {
     try {
         const response = await fetch(`${hostName}/releasesRoute/${releaseId}`, {
             method: 'PUT',
