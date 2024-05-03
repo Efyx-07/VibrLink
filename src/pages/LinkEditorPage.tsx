@@ -12,6 +12,7 @@ export default function LinkEditorPage() {
     const releaseStore = useReleaseStore();
     const userId = useUserStore().user?.id;
 
+    
     useEffect(() => {
         const initialize = async () => {
             await releaseStore.initializeStore(Number(userId));
@@ -19,7 +20,7 @@ export default function LinkEditorPage() {
             setSelectedRelease(release || null);
         };
         initialize();
-    }, [releaseStore, releaseId]);
+    }, [userId]);
 
     return (
         <div className="page">
