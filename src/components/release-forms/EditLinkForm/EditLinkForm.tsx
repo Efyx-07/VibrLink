@@ -1,8 +1,9 @@
 import { Release, Platform } from "../../../types/releaseTypes";
 import { useState } from "react";
+import { updateRelease } from "../../../services/releaseService";
 import PlatformWithUrlField from "./PlatformWithUrlField";
-import PlatformWithoutUrlField from "./PlatformWithoutUrlField";
-import PlatformSelect from "./PlatformSelect";
+//import PlatformWithoutUrlField from "./PlatformWithoutUrlField";
+//import PlatformSelect from "./PlatformSelect";
 import './EditLinkForm.scss';
 
 interface SelectedReleaseProps {
@@ -13,21 +14,38 @@ interface SelectedReleaseProps {
 export default function EditLinkForm({selectedRelease}: SelectedReleaseProps) {
 
     const [releasePlatforms, setPlatforms] = useState<Platform[]>(selectedRelease.platforms);
+    const [newUrls, setNewUrls] = useState<{[key: number]: string}>({});
+    const releaseId: number = selectedRelease.id;
 
     const platformsWithUrl: Platform[] = releasePlatforms.filter(platform => platform.url);
-    const platformsWithoutUrl: Platform[] = releasePlatforms.filter(platform => !platform.url);
 
-    const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(null);
+    const updateNewUrls = (updatedUrls: {[key: number]: string}) => {
+        setNewUrls(updatedUrls);
+    };
+    //const platformsWithoutUrl: Platform[] = releasePlatforms.filter(platform => !platform.url);
+
+    //const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(null);
+
+    const updateReleaseLinks = async(e: React.FormEvent<HTMLFormElement>): Promise <void> => {
+        e.preventDefault();
+
+        try {
+            const data = await updateRelease(newUrls, platformsVisibility, releaseId);
+            console.log('Updated release: ', data)
+        } catch(error) {
+            console.error('Error updating release:', error);
+        }    
+    };
 
     return(
-        <form>
-            <PlatformWithUrlField platforms={platformsWithUrl} />
-            {platformsWithoutUrl.length > 0 &&
+        <form onSubmit={updateReleaseLinks}>
+            <PlatformWithUrlField platforms={platformsWithUrl} updateNewUrls={updateNewUrls} />
+            {/* {platformsWithoutUrl.length > 0 &&
                 <div className="manualLinks-container">
                     <PlatformWithoutUrlField platforms={platformsWithoutUrl} />
                     <PlatformSelect platforms={platformsWithoutUrl} onSelectPlatform={setSelectedPlatform} />
                 </div>
-            }
+            } */}
         </form>
     )
 };

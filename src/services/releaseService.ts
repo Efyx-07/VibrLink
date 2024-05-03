@@ -44,4 +44,26 @@ export async function removeReleaseById(releaseId: number): Promise <void> {
     } catch (error) {
         throw new Error('Failed to delete release' + error);
     }
+};
+
+// backend query to update a release 
+export async function updateRelease(newUrls: { [key: number]: string }, platformsVisibility: { [key: number]: boolean }, releaseId: number) {
+    try {
+        const response = await fetch(`${hostName}/releasesRoute/${releaseId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ newUrls, platformsVisibility })
+        })
+
+        if (response.ok) {
+            const data = await response.json();
+            return data;
+        } else {
+            throw new Error('Failed to update release' + response.statusText);
+        }
+    } catch (error) {
+        throw new Error('Failed to update release' + error);
+    }
 }
