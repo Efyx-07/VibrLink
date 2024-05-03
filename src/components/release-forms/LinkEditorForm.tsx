@@ -1,5 +1,5 @@
 import { Release, Platform } from "../../types/releaseTypes";
-//import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import './LinkEditorForm.scss';
 
@@ -10,9 +10,36 @@ interface SelectedReleaseProps {
 
 export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) {
 
+    // get all the platforms of the release
     const platforms: Platform[] = selectedRelease.platforms;
 
+    // filter the platforms to get the ones with url
     const platformsWithUrl: Platform[] = platforms.filter(platform => platform.url);
+
+    // stock the new urls in a state
+    const [newUrls, setNewUrls] = useState<{ [key: number]: string }>({})
+
+    // function to update the urls changed in the inputs
+    const handleUrlChange = (platformId: number, url: string) => {
+        setNewUrls((prevUrls) => {
+            const updatedUrls = {
+                ...prevUrls,
+                [platformId]: url,
+            };
+            return updatedUrls; 
+        });
+    };
+
+    // initialize newUrls with the existing urls of the platforms
+    useEffect(() => {
+        const initialUrls: { [key: number]: string } = {};
+        platforms.forEach(platform => {
+            if (platform.url) {
+                initialUrls[platform.id] = platform.url;
+            }
+        });
+        setNewUrls(initialUrls);
+    }, [platforms]);
 
     return (
         <form className="linkEditor-form">
@@ -21,7 +48,13 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
                     <div className="logo-container">
                         <img src={platform.logoUrl} />
                     </div>
-                    <input type="url"/>
+                    <input 
+                        type="url" 
+                        name="url" 
+                        id="url" 
+                        value={newUrls[platform.id] || ""}
+                        onChange={(e) => handleUrlChange(platform.id, e.target.value)} 
+                    />
                     <div className="buttons-container">
                         <button>Test link</button>
                         <button>Visible</button>
@@ -31,4 +64,4 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
             <button type="submit">Update link</button>
         </form>
     )
-}
+};
