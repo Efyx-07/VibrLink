@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Release } from "../types/releaseTypes";
 import { useReleaseStore, useUserStore } from "../stores";
 import ReleaseBanner from "../components/cards/ReleaseBanner";
-import EditLinkForm from "../components/release-forms/EditLinkForm";
+import EditLinkForm from "../components/release-forms/EditLinkForm/EditLinkForm";
 
 export default function LinkEditorPage() {
 
