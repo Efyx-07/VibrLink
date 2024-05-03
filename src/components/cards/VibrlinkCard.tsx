@@ -5,7 +5,7 @@ interface SelectedReleaseProps {
     selectedRelease: Release;
 };
 
-export default function LpVibrlinkCard({selectedRelease}: SelectedReleaseProps) {
+export default function VibrlinkCard({selectedRelease}: SelectedReleaseProps) {
     return (
         <div className="vibrlink-card">
             <ReleaseCoverAndPlayer selectedRelease={selectedRelease}/>

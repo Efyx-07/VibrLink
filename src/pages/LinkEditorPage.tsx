@@ -1,8 +1,9 @@
-import { useReleaseStore, useUserStore } from "../stores";
-import { Release } from "../types/releaseTypes";
 import { useParams } from "react-router-dom";
-import ReleaseBanner from "../components/cards/ReleaseBanner";
 import { useEffect, useState } from "react";
+import { Release } from "../types/releaseTypes";
+import { useReleaseStore, useUserStore } from "../stores";
+import ReleaseBanner from "../components/cards/ReleaseBanner";
+import EditLinkForm from "../components/release-forms/EditLinkForm";
 
 export default function LinkEditorPage() {
 
@@ -26,6 +27,7 @@ export default function LinkEditorPage() {
                 {selectedRelease ? (
                     <div>
                         <ReleaseBanner selectedRelease={selectedRelease} />
+                        <EditLinkForm selectedRelease={selectedRelease} />
                     </div>
                 ) 
                 : 
