@@ -44,7 +44,7 @@ export default function EditLinkForm({selectedRelease}: SelectedReleaseProps) {
     };
 
     return(
-        <form onSubmit={updateReleaseLinks}>
+        <form className="EditLink-form" onSubmit={updateReleaseLinks}>
             <PlatformWithUrlField platforms={platformsWithUrl} updateNewUrls={updateNewUrls} updatePlatformsVisibility={updatePlatformsVisibility} />
             {/* {platformsWithoutUrl.length > 0 &&
                 <div className="manualLinks-container">
