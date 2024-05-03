@@ -1,5 +1,6 @@
 import { Release, Platform } from "../../types/releaseTypes";
 import { useState, useEffect } from "react";
+import { Switch, FormControlLabel } from '@mui/material';
 
 import './LinkEditorForm.scss';
 
@@ -57,7 +58,14 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
                     />
                     <div className="buttons-container">
                         <button>Test link</button>
-                        <button>Visible</button>
+                        <FormControlLabel
+                            control={
+                                <Switch 
+                                    style={{ color: platform.visibility ? "red" : "blue" }}
+                                />}
+                            label={platform.visibility ? "Visible" : "Hidden"}
+                            labelPlacement="end"
+                        />
                     </div>
                 </div>
             ))}
