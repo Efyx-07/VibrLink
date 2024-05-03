@@ -10,6 +10,7 @@ interface PlatformFieldProps {
 export default function PlatformWithUrlField({platforms, updateNewUrls, updatePlatformsVisibility}: PlatformFieldProps) {
 
     const [newUrls, setNewUrls] = useState<{[key: number]: string}>({});
+    const [platformsVisibility, setPlatformsVisibility] = useState<{[key: number]: boolean}>({});
 
     const handleUrlChange = (platformId: number, url: string) => {
         setNewUrls(prevState => ({
@@ -17,6 +18,14 @@ export default function PlatformWithUrlField({platforms, updateNewUrls, updatePl
             [platformId]: url
         }));
         updateNewUrls(newUrls);
+    };
+
+    const handleVisibilityChange = (platformId: number, visibility: boolean) => {
+        setPlatformsVisibility(prevVisibility => ({
+            ...prevVisibility,
+            [platformId]: !visibility
+        }));
+        updatePlatformsVisibility(platformsVisibility);
     };
 
     const openInANewTab = (url: string): void => {
@@ -42,10 +51,35 @@ export default function PlatformWithUrlField({platforms, updateNewUrls, updatePl
                         <div className="actions-container" onClick={() => platform.url && openInANewTab(platform.url)}>
                             <p>Test link</p>
                         </div>
-                        {/* <ToggleSwitchButton v-model="platformsVisibility[platform.id]" @click="handleVisibilityChange(platform.id, platformsVisibility[platform.id])" label="visible|hidden" /> */}
+                        <ToggleButton
+                            initialValue={platformsVisibility[platform.id]} 
+                            onToggle={() => handleVisibilityChange(platform.id, platformsVisibility[platform.id])}
+                        />
                     </div>
                 </div>
             ))}
         </div>
     )
+};
+
+
+interface ToggleButtonProps {
+    initialValue: boolean;
+    onToggle: (newValue: boolean) => void;
+}
+
+function ToggleButton({ initialValue, onToggle }: ToggleButtonProps) {
+    const [value, setValue] = useState(initialValue);
+  
+    const toggleValue = () => {
+        const newValue = !value;
+        setValue(newValue);
+        onToggle(newValue);
+    };
+  
+    return (
+      <button onClick={toggleValue}>
+        {value ? "Visible" : "Hidden"}
+      </button>
+    );
 };
