@@ -4,6 +4,7 @@ import { updateRelease } from "../../../services/releaseService";
 import PlatformWithUrlField from "./PlatformWithUrlField";
 //import PlatformWithoutUrlField from "./PlatformWithoutUrlField";
 //import PlatformSelect from "./PlatformSelect";
+import FormButton from "../../common/FormButton";
 import './EditLinkForm.scss';
 
 interface SelectedReleaseProps {
@@ -51,6 +52,7 @@ export default function EditLinkForm({selectedRelease}: SelectedReleaseProps) {
                     <PlatformSelect platforms={platformsWithoutUrl} onSelectPlatform={setSelectedPlatform} />
                 </div>
             } */}
+            <FormButton type="submit" name="Update the link" />
         </form>
     )
 };

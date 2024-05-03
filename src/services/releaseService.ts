@@ -66,4 +66,4 @@ export async function updateRelease(newUrls: {[key: number]: string}, platformsV
     } catch (error) {
         throw new Error('Failed to update release' + error);
     }
-}
+};

@@ -17,7 +17,7 @@ export default function PlatformWithUrlField({platforms, updateNewUrls, updatePl
             ...prevState,
             [platformId]: url
         }));
-        updateNewUrls(newUrls);
+        updateNewUrls({...newUrls});
     };
 
     const handleVisibilityChange = (platformId: number, visibility: boolean) => {
@@ -25,7 +25,7 @@ export default function PlatformWithUrlField({platforms, updateNewUrls, updatePl
             ...prevVisibility,
             [platformId]: !visibility
         }));
-        updatePlatformsVisibility(platformsVisibility);
+        updatePlatformsVisibility({...platformsVisibility});
     };
 
     const openInANewTab = (url: string): void => {
