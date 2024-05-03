@@ -1,0 +1,39 @@
+@import '../../assets/sass/common/colors.scss';
+
+.linkEditor-form {
+    width: 100%;
+    max-width: unset;
+    display: flex;
+    flex-direction: column;
+
+    .field-wrapper {
+        display: grid;
+        grid-template-columns: .75fr 5fr 1fr;
+        gap: 2rem;
+        align-items: center;
+
+        .logo-container {
+            display: inline-block;
+
+            img {
+                display: block;
+                width: 100%;
+            }
+        }
+
+        input {
+            height: 4rem;
+            background: $darkColorRelief;
+            border: solid 1px rgba($whiteColor, .1);
+            outline: none;
+            color: $whiteColor;
+            padding-left: 1rem;
+            font-size: .9rem;
+            font-weight: 400;
+
+            &:focus {
+                border: solid 1px $accentColor;
+            }
+        }
+    }
+}

@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import { Release } from "../types/releaseTypes";
 import { useReleaseStore, useUserStore } from "../stores";
 import ReleaseBanner from "../components/cards/ReleaseBanner";
-import EditLinkForm from "../components/release-forms/EditLinkForm/EditLinkForm";
+import LinkEditorForm from "../components/release-forms/LinkEditorForm";
+//import EditLinkForm from "../components/release-forms/EditLinkForm/EditLinkForm";
+import './LinkEditorPage.scss'
 
 export default function LinkEditorPage() {
 
@@ -26,9 +28,10 @@ export default function LinkEditorPage() {
         <div className="page">
             <div className="content">
                 {selectedRelease ? (
-                    <div>
+                    <div className="linkEditor-wrapper">
                         <ReleaseBanner selectedRelease={selectedRelease} />
-                        <EditLinkForm selectedRelease={selectedRelease} />
+                        <LinkEditorForm selectedRelease={selectedRelease} />
+                        {/* <EditLinkForm selectedRelease={selectedRelease} /> */}
                     </div>
                 ) 
                 : 
