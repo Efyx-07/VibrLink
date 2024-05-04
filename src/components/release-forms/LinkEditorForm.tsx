@@ -17,11 +17,9 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
     const platforms: Platform[] = selectedRelease.platforms;
 
     // filter the platforms to get the ones with url
-    //const platformsWithUrl: Platform[] = platforms.filter(platform => platform.url);
     const [platformsWithUrl, setPlatformsWithUrl] = useState<Platform[]>(platforms.filter(platform => platform.url));
 
     // filter the platforms to get the ones without url
-    //const platformsWithoutUrl: Platform[] = platforms.filter(platform => !platform.url);
     const [platformsWithoutUrl, setPlatformsWithoutUrl] = useState<Platform[]>(platforms.filter(platform => !platform.url));
 
     // state for the newUrls
