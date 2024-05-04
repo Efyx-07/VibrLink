@@ -22,7 +22,7 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
     // filter the platforms to get the ones without url
     const platformsWithoutUrl: Platform[] = platforms.filter(platform => !platform.url);
 
-    // stock the new urls in a state
+    // state for the newUrls
     const [newUrls, setNewUrls] = useState<{[key: number]: string}>({});
 
     // state to track if an update needs to be submitted
@@ -39,7 +39,7 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
         });
     };
 
-    // stock the platform visibility status in a state
+    // state for the platform visibility status
     const [platformsVisibility, setPlatformsVisibility] = useState<{[key: number]: boolean}>({});
 
     // function to update the visibility status changed with the switch button
@@ -50,6 +50,19 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
         }));
         // allow the form submission
         setShouldSubmitUpdate(true);
+    };
+
+    // state for the selected platform
+    const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(null);
+
+    // manage the change of the selected platform in the selector by updating the selected platform state
+    const handlePlatformChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const target = e.target as HTMLSelectElement;
+        const platformId = parseInt(target.value);
+        const platform = platforms.find(p => p.id === platformId);
+        if (platform) {
+            setSelectedPlatform(platform);
+        }
     };
 
     useEffect(() => {
@@ -134,7 +147,7 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
             ))}
             {platformsWithoutUrl.length > 0 && (
                 <div className="manual-links">
-                    <select>
+                    <select onChange={handlePlatformChange}>
                         <option disabled selected className="default-option">- - add a platform</option>
                         {platformsWithoutUrl.map(platform => (
                             <option key={platform.id} value={platform.id}>{platform.name}</option>
