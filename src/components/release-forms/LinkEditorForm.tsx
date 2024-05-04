@@ -19,6 +19,9 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
     // filter the platforms to get the ones with url
     const platformsWithUrl: Platform[] = platforms.filter(platform => platform.url);
 
+    // filter the platforms to get the ones without url
+    const platformsWithoutUrl: Platform[] = platforms.filter(platform => !platform.url);
+
     // stock the new urls in a state
     const [newUrls, setNewUrls] = useState<{[key: number]: string}>({});
 
@@ -129,6 +132,16 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
                     </div>
                 </div>
             ))}
+            {platformsWithoutUrl.length > 0 && (
+                <div className="manual-links">
+                    <select>
+                        <option disabled selected className="default-option">- - add a platform</option>
+                        {platformsWithoutUrl.map(platform => (
+                            <option key={platform.id} value={platform.id}>{platform.name}</option>
+                        ))}
+                    </select>
+                </div>
+            )}
             <FormButton type="submit" name="Update link" />
         </form>
     )

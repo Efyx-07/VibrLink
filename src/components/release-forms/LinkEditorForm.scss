@@ -42,9 +42,31 @@
 
             .switch {
                 width: 100%;
-                font-size: .5rem;
                 display: flex;
                 justify-content: center;
+            }
+        }
+    }
+
+    .manual-links {
+        width: 100%;
+
+        select {
+            width: 100%;
+            height: 3rem;
+            background: $darkColorRelief;
+            color: $whiteColor;
+            font-size: 1rem;
+            padding-left: .5rem;
+            outline: none;
+            border-color: rgba($whiteColor, .1);
+
+            &:focus {
+                border-color: $accentColor;
+            }
+
+            .default-option {
+                color: rgba($whiteColor, .25);
             }
         }
     }
