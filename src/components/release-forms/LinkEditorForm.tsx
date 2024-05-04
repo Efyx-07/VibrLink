@@ -25,7 +25,7 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
     // stock the new urls in a state
     const [newUrls, setNewUrls] = useState<{[key: number]: string}>({});
 
-    // state to track whether an update needs to be submitted
+    // state to track if an update needs to be submitted
     const [shouldSubmitUpdate, setShouldSubmitUpdate] = useState<boolean>(false);
 
     // function to update the urls changed in the inputs
