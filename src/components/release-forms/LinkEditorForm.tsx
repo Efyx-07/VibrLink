@@ -2,6 +2,7 @@ import { Release, Platform } from "../../types/releaseTypes";
 import { useState, useEffect } from "react";
 import { updateRelease } from "../../services/releaseService";
 import { Switch, FormControlLabel } from '@mui/material';
+import FormButton from "../common/FormButton";
 
 import './LinkEditorForm.scss';
 
@@ -19,7 +20,10 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
     const platformsWithUrl: Platform[] = platforms.filter(platform => platform.url);
 
     // stock the new urls in a state
-    const [newUrls, setNewUrls] = useState<{[key: number]: string}>({})
+    const [newUrls, setNewUrls] = useState<{[key: number]: string}>({});
+
+    // state to track whether an update needs to be submitted
+    const [shouldSubmitUpdate, setShouldSubmitUpdate] = useState<boolean>(false);
 
     // function to update the urls changed in the inputs
     const handleUrlChange = (platformId: number, url: string) => {
@@ -41,9 +45,10 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
             ...prevVisibilityStatus,
             [platformId]: checked,
         }));
+        // allow the form submission
+        setShouldSubmitUpdate(true);
     };
 
-    
     useEffect(() => {
         // initialize newUrls with the existing urls of the platforms
         const initialUrls: {[key: number]: string} = {};
@@ -64,16 +69,24 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
         setPlatformsVisibility(initialPlatformsVisibility);
     }, [platforms]);
 
+    // watch when a change justifies a form submission to update
+    useEffect(() => {
+        if (shouldSubmitUpdate) {
+            submitReleaseUpdate();
+            // reset shouldSubmitUpdate after submission
+            setShouldSubmitUpdate(false);
+        }
+    }, [platformsVisibility, shouldSubmitUpdate]);
+
     // submit the form with the updated datas
-    const submitReleaseUpdate = async (e: React.FormEvent<HTMLFormElement>): Promise <void> => {
-        e.preventDefault();
+    const submitReleaseUpdate = async (): Promise <void> => {
 
         // get the id of the selected release
         const releaseId: number = selectedRelease.id;
 
         try {
             const data = await updateRelease(newUrls, platformsVisibility, releaseId);
-            console.log('Release updated datas: ', data)
+            console.log('updated succesfully: ', data)
 
         } catch (error) {
             console.error('Failed to update release: ', error);
@@ -81,7 +94,7 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
     };
 
     return (
-        <form className="linkEditor-form" onSubmit={submitReleaseUpdate}>
+        <form className="linkEditor-form" onSubmit={(e) => { e.preventDefault(); submitReleaseUpdate(); }}>
             {platformsWithUrl.map(platform => (
                 <div className="field-wrapper" key={platform.id}>
                     <div className="logo-container">
@@ -109,7 +122,7 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
                     </div>
                 </div>
             ))}
-            <button type="submit">Update link</button>
+            <FormButton type="submit" name="Update link" />
         </form>
     )
 };
