@@ -35,5 +35,17 @@
                 border: solid 1px $accentColor;
             }
         }
+
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+
+            .switch {
+                width: 100%;
+                font-size: .5rem;
+                display: flex;
+                justify-content: center;
+            }
+        }
     }
 }

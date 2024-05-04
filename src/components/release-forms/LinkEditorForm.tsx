@@ -2,8 +2,8 @@ import { Release, Platform } from "../../types/releaseTypes";
 import { useState, useEffect } from "react";
 import { updateRelease } from "../../services/releaseService";
 import { Switch, FormControlLabel } from '@mui/material';
+import CardButton from "../cards/CardButton";
 import FormButton from "../common/FormButton";
-
 import './LinkEditorForm.scss';
 
 interface SelectedReleaseProps {
@@ -108,16 +108,18 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
                         onChange={(e) => handleUrlChange(platform.id, e.target.value)} 
                     />
                     <div className="buttons-container">
-                        <button>Test link</button>
+                        <CardButton name="Test link" icon="" onClick={() => {}} />
                         <FormControlLabel
                             control={
                                 <Switch 
-                                    style={{ color: platformsVisibility[platform.id] ? "red" : "blue" }}
+                                    style={{ color: platformsVisibility[platform.id] ? "#16F1E4" : "#fef6e2" }}
                                     checked={platformsVisibility[platform.id] || false}
-                                    onChange={(e) => handleVisibilityChange(platform.id, e.target.checked)} // Utiliser e.target.checked pour obtenir la valeur booléenne
+                                    onChange={(e) => handleVisibilityChange(platform.id, e.target.checked)} 
                                 />}
-                            label={platformsVisibility[platform.id] ? "Visible" : "Hidden"} // Utiliser platformsVisibility
+                            label={platformsVisibility[platform.id] ? "Visible" : "Hidden"}
+                            style={{ color: platformsVisibility[platform.id] ? "#16F1E4" : "#fef6e2" }}
                             labelPlacement="end"
+                            className="switch"
                         />
                     </div>
                 </div>
