@@ -67,13 +67,16 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
         }
     };
 
+    // state to stock the ids of the platforms to add
+    const [platformIdsToAdd, setPlatformIdsToAdd] = useState<number[]>([]);
+
     // add the selectedPlatorm to the platorms with url
     const addToPlatformsWithUrl = async () => {
 
         if (selectedPlatform && newUrls[selectedPlatform.id]) {
-
             const newUrl: string = newUrls[selectedPlatform.id];
-
+    
+            // create a new platform with the selectedPlatform details and the newUrl
             const platformToAdd: Platform = {
                 id: selectedPlatform.id,
                 name: selectedPlatform.name,
@@ -82,20 +85,29 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
                 url: newUrl,
                 visibility: selectedPlatform.visibility
             };
-
+    
             // update PlatformsWithUrl list
             setPlatformsWithUrl(prevPlatformsWithUrl => [...prevPlatformsWithUrl, platformToAdd]);
-
+    
             // remove the selectedPlatform from the platformWithoutUrl list
-            setPlatformsWithoutUrl(prevPlatformsWithoutUrl => prevPlatformsWithoutUrl.filter(p => p !== selectedPlatform));
-
+            setPlatformIdsToAdd(prevPlatformIds => [...prevPlatformIds, selectedPlatform.id]);
+    
             // reset the selectedPlatform
             setSelectedPlatform(null);
-
+    
             // allow the form submission
             setShouldSubmitUpdate(true);
         }
     };
+
+    // update the platformsWithoutUrl list when platformIdsToAdd list changes
+    useEffect(() => {
+        if (platformIdsToAdd.length > 0) {
+            // filter the platformsWithoutUrl by ids to add
+            const updatedPlatformsWithoutUrl = platformsWithoutUrl.filter(platform => !platformIdsToAdd.includes(platform.id));
+            setPlatformsWithoutUrl(updatedPlatformsWithoutUrl);
+        }
+    }, [platformIdsToAdd]);
 
     useEffect(() => {
         // initialize newUrls with the existing urls of the platforms
