@@ -116,6 +116,7 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
 
     return (
         <form className="linkEditor-form" onSubmit={(e) => { e.preventDefault(); submitReleaseUpdate(); }}>
+
             {platformsWithUrl.map(platform => (
                 <div className="field-wrapper" key={platform.id}>
                     <div className="logo-container">
@@ -145,8 +146,28 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
                     </div>
                 </div>
             ))}
+
             {platformsWithoutUrl.length > 0 && (
                 <div className="manual-links">
+
+                    {selectedPlatform && (
+                        <div className="field-wrapper" key={selectedPlatform.id}>
+                            <div className="logo-container">
+                                <img src={selectedPlatform.logoUrl} />
+                            </div>
+                            <input 
+                                type="url" 
+                                name="url" 
+                                id="url" 
+                                value={newUrls[selectedPlatform.id] || ""}
+                                onChange={(e) => handleUrlChange(selectedPlatform.id, e.target.value)} 
+                            />
+                            <div className="buttons-container">
+                                <CardButton name="Add" icon="" onClick={() => {}} />
+                            </div>
+                        </div>
+                    )}
+
                     <select onChange={handlePlatformChange}>
                         <option disabled selected className="default-option">- - add a platform</option>
                         {platformsWithoutUrl.map(platform => (
@@ -155,7 +176,9 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
                     </select>
                 </div>
             )}
+
             <FormButton type="submit" name="Update link" />
+
         </form>
     )
 };
