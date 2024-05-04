@@ -4,6 +4,7 @@ import { Release } from "../types/releaseTypes";
 import { useReleaseStore, useUserStore } from "../stores";
 import ReleaseBanner from "../components/cards/ReleaseBanner";
 import LinkEditorForm from "../components/release-forms/LinkEditorForm";
+import LoadingSpinner from "../components/common/LoadingSpinner";
 //import EditLinkForm from "../components/release-forms/EditLinkForm/EditLinkForm";
 import './LinkEditorPage.scss'
 
@@ -35,7 +36,7 @@ export default function LinkEditorPage() {
                     </div>
                 ) 
                 : 
-                <p>No release found for ID {releaseId}</p>}   
+                <LoadingSpinner />}   
             </div>
         </div>
     )
