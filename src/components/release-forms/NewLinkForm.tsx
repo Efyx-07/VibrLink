@@ -17,7 +17,7 @@ export default function NewVibrlinkForm() {
         return spotifyPrefix + spotifyId;
     };
 
-    const sendSpotifyUrlAndUserId = async(e: React.FormEvent<HTMLFormElement>): Promise <void> => {
+    const sendSpotifyUrlAndUserId = async (e: React.FormEvent<HTMLFormElement>): Promise <void> => {
         e.preventDefault();
 
         const albumUrl: string = getSpotifyUrl();
