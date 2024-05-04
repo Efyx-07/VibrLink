@@ -78,6 +78,11 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
         }
     }, [platformsVisibility, shouldSubmitUpdate]);
 
+    // open the platform link in a new tab
+    const openInANewTab = (url: string): void => {
+        window.open(url, '_blank');
+    };
+
     // submit the form with the updated datas
     const submitReleaseUpdate = async (): Promise <void> => {
 
@@ -108,7 +113,7 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
                         onChange={(e) => handleUrlChange(platform.id, e.target.value)} 
                     />
                     <div className="buttons-container">
-                        <CardButton name="Test link" icon="" onClick={() => {}} />
+                        <CardButton name="Test link" icon="" onClick={() => platform.url && openInANewTab(platform.url)} />
                         <FormControlLabel
                             control={
                                 <Switch 
