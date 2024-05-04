@@ -17,10 +17,12 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
     const platforms: Platform[] = selectedRelease.platforms;
 
     // filter the platforms to get the ones with url
-    const platformsWithUrl: Platform[] = platforms.filter(platform => platform.url);
+    //const platformsWithUrl: Platform[] = platforms.filter(platform => platform.url);
+    const [platformsWithUrl, setPlatformsWithUrl] = useState<Platform[]>(platforms.filter(platform => platform.url));
 
     // filter the platforms to get the ones without url
-    const platformsWithoutUrl: Platform[] = platforms.filter(platform => !platform.url);
+    //const platformsWithoutUrl: Platform[] = platforms.filter(platform => !platform.url);
+    const [platformsWithoutUrl, setPlatformsWithoutUrl] = useState<Platform[]>(platforms.filter(platform => !platform.url));
 
     // state for the newUrls
     const [newUrls, setNewUrls] = useState<{[key: number]: string}>({});
@@ -62,6 +64,36 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
         const platform = platforms.find(p => p.id === platformId);
         if (platform) {
             setSelectedPlatform(platform);
+        }
+    };
+
+    // add the selectedPlatorm to the platorms with url
+    const addToPlatformsWithUrl = async () => {
+
+        if (selectedPlatform && newUrls[selectedPlatform.id]) {
+
+            const newUrl: string = newUrls[selectedPlatform.id];
+
+            const platformToAdd: Platform = {
+                id: selectedPlatform.id,
+                name: selectedPlatform.name,
+                logoUrl: selectedPlatform.logoUrl,
+                actionVerb: selectedPlatform.actionVerb,
+                url: newUrl,
+                visibility: selectedPlatform.visibility
+            };
+
+            // update PlatformsWithUrl list
+            setPlatformsWithUrl(prevPlatformsWithUrl => [...prevPlatformsWithUrl, platformToAdd]);
+
+            // remove the selectedPlatform from the platformWithoutUrl list
+            setPlatformsWithoutUrl(prevPlatformsWithoutUrl => prevPlatformsWithoutUrl.filter(p => p !== selectedPlatform));
+
+            // reset the selectedPlatform
+            setSelectedPlatform(null);
+
+            // allow the form submission
+            setShouldSubmitUpdate(true);
         }
     };
 
@@ -163,7 +195,7 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
                                 onChange={(e) => handleUrlChange(selectedPlatform.id, e.target.value)} 
                             />
                             <div className="buttons-container">
-                                <CardButton name="Add" icon="" onClick={() => {}} />
+                                <CardButton name="Add" icon="" onClick={addToPlatformsWithUrl} />
                             </div>
                         </div>
                     )}
