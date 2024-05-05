@@ -1,10 +1,8 @@
 import { Release, Platform } from "../../types/releaseTypes";
 import { useState, useEffect } from "react";
 import { updateRelease } from "../../services/releaseService";
-import { openInANewTab } from "../../utils/openInANewTab";
-import { Switch, FormControlLabel } from '@mui/material';
+import LinkEditorPlatformField from "./LinkEditorPlatformField";
 import LinkEditorSelect from "./LinkEditorSelect";
-import CardButton from "../cards/CardButton";
 import FormButton from "../common/FormButton";
 import './LinkEditorForm.scss';
 
@@ -161,57 +159,33 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
 
     return (
         <form className="linkEditor-form" onSubmit={(e) => { e.preventDefault(); submitReleaseUpdate(); }}>
-
             {platformsWithUrl.map(platform => (
-                <div className="field-wrapper" key={platform.id}>
-                    <div className="logo-container">
-                        <img src={platform.logoUrl} />
-                    </div>
-                    <input 
-                        type="url" 
-                        name="url" 
-                        id="url" 
-                        value={newUrls[platform.id] || ""}
-                        onChange={(e) => handleUrlChange(platform.id, e.target.value)} 
-                    />
-                    <div className="buttons-container">
-                        <CardButton name="Test link" icon="" onClick={() => platform.url && openInANewTab(platform.url)} />
-                        <FormControlLabel
-                            control={
-                                <Switch 
-                                    style={{ color: platformsVisibility[platform.id] ? "#16F1E4" : "#fef6e2" }}
-                                    checked={platformsVisibility[platform.id] || false}
-                                    onChange={(e) => handleVisibilityChange(platform.id, e.target.checked)} 
-                                />}
-                            label={platformsVisibility[platform.id] ? "Visible" : "Hidden"}
-                            style={{ color: platformsVisibility[platform.id] ? "#16F1E4" : "#fef6e2" }}
-                            labelPlacement="end"
-                            className="switch"
-                        />
-                    </div>
-                </div>
+                // field for the platform with url
+                <LinkEditorPlatformField 
+                    platformsWithUrl={platformsWithUrl} 
+                    platform={platform}
+                    newUrls={newUrls}
+                    onChange={handleUrlChange}
+                    platformsVisibility={platformsVisibility}
+                    onVisibilityChange={handleVisibilityChange}
+                    onAddButtonClick={() => {}}
+                />
             ))}
-
             {platformsWithoutUrl.length > 0 && (
                 <div className="manual-links">
-
                     {selectedPlatform && (
-                        <div className="field-wrapper" key={selectedPlatform.id}>
-                            <div className="logo-container">
-                                <img src={selectedPlatform.logoUrl} />
-                            </div>
-                            <input 
-                                type="url" 
-                                name="url" 
-                                id="url" 
-                                value={newUrls[selectedPlatform.id] || ""}
-                                onChange={(e) => handleUrlChange(selectedPlatform.id, e.target.value)} 
-                            />
-                            <div className="buttons-container">
-                                <CardButton name="Add" icon="" onClick={addToPlatformsWithUrl} />
-                            </div>
-                        </div>
+                        // field for the platform without url
+                        <LinkEditorPlatformField 
+                            platformsWithoutUrl={platformsWithoutUrl} 
+                            platform={selectedPlatform}
+                            newUrls={newUrls}
+                            onChange={handleUrlChange}
+                            platformsVisibility={{}}
+                            onVisibilityChange={() => {}}
+                            onAddButtonClick={addToPlatformsWithUrl}
+                        />
                     )}
+                    {/* select for a new platform */}
                     <LinkEditorSelect 
                         onChange={handlePlatformChange} 
                         platformsWithoutUrl={platformsWithoutUrl} 
@@ -219,9 +193,7 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
                     />
                 </div>
             )}
-
             <FormButton type="submit" name="Update link" />
-
         </form>
     )
 };
