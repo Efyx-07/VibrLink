@@ -212,7 +212,11 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
                             </div>
                         </div>
                     )}
-                    <LinkEditorSelect onChange={handlePlatformChange} platformsWithoutUrl={platformsWithoutUrl}/>
+                    <LinkEditorSelect 
+                        onChange={handlePlatformChange} 
+                        platformsWithoutUrl={platformsWithoutUrl} 
+                        defaultOptionValue="- - add a platform"
+                    />
                 </div>
             )}
 
