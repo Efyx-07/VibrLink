@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { updateRelease } from "../../services/releaseService";
 import { openInANewTab } from "../../utils/openInANewTab";
 import { Switch, FormControlLabel } from '@mui/material';
+import LinkEditorSelect from "./LinkEditorSelect";
 import CardButton from "../cards/CardButton";
 import FormButton from "../common/FormButton";
 import './LinkEditorForm.scss';
@@ -211,13 +212,7 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
                             </div>
                         </div>
                     )}
-
-                    <select onChange={handlePlatformChange} id="platform-select">
-                        <option disabled selected className="default-option">- - add a platform</option>
-                        {platformsWithoutUrl.map(platform => (
-                            <option key={platform.id} value={platform.id}>{platform.name}</option>
-                        ))}
-                    </select>
+                    <LinkEditorSelect onChange={handlePlatformChange} platformsWithoutUrl={platformsWithoutUrl}/>
                 </div>
             )}
 
