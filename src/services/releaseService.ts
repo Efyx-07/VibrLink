@@ -4,7 +4,7 @@ import type { ImportMetaEnv } from '../vite-env';
 const hostName: ImportMetaEnv = import.meta.env.VITE_BACKEND_URL;
 
 // backend query to create a new link
-export async function createLink(albumUrl: string, userId: number | undefined): Promise <{ releaseId: number }> {
+export async function createLink(albumUrl: string, userId: number | undefined): Promise <{ releaseSlug: string }> {
 
     try {
         const response = await fetch(`${hostName}/releasesRoute/getReleaseSpotifyUrl`, { 

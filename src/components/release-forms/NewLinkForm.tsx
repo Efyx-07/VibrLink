@@ -27,11 +27,11 @@ export default function NewVibrlinkForm() {
             const data  = await createLink(albumUrl, userId);
             console.log('New release datas:',data);
 
-            const releaseId: number = data.releaseId;
+            const releaseSlug: string = data.releaseSlug;
         
             if (userId) {
               await releaseStore.loadReleasesData(userId);
-              navigate(`/link-editor/${releaseId}`);
+              navigate(`/link-editor/${releaseSlug}`);
             }
             
           } catch (error) {

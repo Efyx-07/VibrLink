@@ -19,8 +19,8 @@ export default function DashboardLinkCard({releases}: DashboardLinkCard) {
     const reversedReleases = reverseReleases(releases);
     const navigate = useNavigate();
 
-    const navToReleaseToEditPage = (releaseId: number): void => {
-        navigate(`/link-editor/${releaseId}`);
+    const navToReleaseToEditPage = (releaseSlug: string): void => {
+        navigate(`/link-editor/${releaseSlug}`);
     };
 
     const { openRemoveReleaseModal } = useModal();
@@ -41,7 +41,7 @@ export default function DashboardLinkCard({releases}: DashboardLinkCard) {
                         <p className="artist">{release.artist}</p>
                     </div>
                     <div className="buttons-container">
-                        <CardButton name="Edit link" icon="mdi:tools" onClick={() => navToReleaseToEditPage(release.id)}/>
+                        <CardButton name="Edit link" icon="mdi:tools" onClick={() => navToReleaseToEditPage(release.slug)}/>
                         <CardButton name="Delete link" icon="mdi:skull-crossbones" onClick={() => openRemoveReleaseModal(release.id)}/>
                         <CardButton name="View landing page" icon="mdi:telescope" onClick={() => navToReleaseLandingPage(release.slug)} />
                     </div>

@@ -9,7 +9,7 @@ import './LinkEditorPage.scss'
 
 export default function LinkEditorPage() {
 
-    const { releaseId } = useParams();
+    const { releaseSlug } = useParams();
     const [selectedRelease, setSelectedRelease] = useState<Release | null>(null);
     const releaseStore = useReleaseStore();
     const userId = useUserStore().user?.id;
@@ -18,7 +18,7 @@ export default function LinkEditorPage() {
     useEffect(() => {
         const initialize = async () => {
             await releaseStore.initializeStore(Number(userId));
-            const release = await releaseStore.getReleaseById(Number(releaseId));
+            const release = await releaseStore.getReleaseBySlug(String(releaseSlug));
             setSelectedRelease(release || null);
         };
         initialize();

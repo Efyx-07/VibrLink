@@ -69,7 +69,7 @@ export default function App() {
           <Route index path="/reset-password/:token" element={<ResetPasswordPage />} />
           <Route index path="/my-vibrlinks" element={<MyLinksPage />} />
           <Route index path="/new-vibrlink" element={<NewLinkPage />} />
-          <Route index path="/link-editor/:releaseId" element={<LinkEditorPage />} />
+          <Route index path="/link-editor/:releaseSlug" element={<LinkEditorPage />} />
           <Route index path="/v/:releaseSlug" element={<VibrlinkLandingPage />} />
         </Routes>
         <SignoutModal />

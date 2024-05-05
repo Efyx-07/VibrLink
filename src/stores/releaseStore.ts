@@ -6,6 +6,7 @@ interface State {
     releases: Release[];
     loadReleasesData: (userId: number) => Promise<void>;
     getReleaseById: (releaseId: number) => Promise<Release | undefined>;
+    getReleaseBySlug: (releaseSlug: string) => Promise<Release | undefined>;
     initializeStore: (userId: number) => Promise<void>;
 }
 
@@ -25,7 +26,11 @@ const useReleaseStore = create<State>((set, get) => ({
 
     getReleaseById: async (releaseId) => {
         const release = get().releases.find((release) => release.id === releaseId);
-        console.log('Release fetched from store:', release);
+        return release;
+    },
+
+    getReleaseBySlug: async (releaseSlug) => {
+        const release = get().releases.find((release) => release.slug === releaseSlug);
         return release;
     },
 
