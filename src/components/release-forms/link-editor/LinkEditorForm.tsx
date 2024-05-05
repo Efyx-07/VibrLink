@@ -1,9 +1,9 @@
-import { Release, Platform } from "../../types/releaseTypes";
+import { Release, Platform } from "../../../types/releaseTypes";
 import { useState, useEffect } from "react";
-import { updateRelease } from "../../services/releaseService";
+import { updateRelease } from "../../../services/releaseService";
 import LinkEditorPlatformField from "./LinkEditorPlatformField";
 import LinkEditorSelect from "./LinkEditorSelect";
-import FormButton from "../common/FormButton";
+import FormButton from "../../common/FormButton";
 import './LinkEditorForm.scss';
 
 interface SelectedReleaseProps {

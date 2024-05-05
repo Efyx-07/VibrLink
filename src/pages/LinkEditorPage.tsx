@@ -3,9 +3,8 @@ import { useEffect, useState } from "react";
 import { Release } from "../types/releaseTypes";
 import { useReleaseStore, useUserStore } from "../stores";
 import ReleaseBanner from "../components/cards/ReleaseBanner";
-import LinkEditorForm from "../components/release-forms/LinkEditorForm";
+import LinkEditorForm from "../components/release-forms/link-editor/LinkEditorForm";
 import LoadingSpinner from "../components/common/LoadingSpinner";
-//import EditLinkForm from "../components/release-forms/EditLinkForm/EditLinkForm";
 import './LinkEditorPage.scss'
 
 export default function LinkEditorPage() {
@@ -32,7 +31,6 @@ export default function LinkEditorPage() {
                     <div className="linkEditor-wrapper">
                         <ReleaseBanner selectedRelease={selectedRelease} />
                         <LinkEditorForm selectedRelease={selectedRelease} />
-                        {/* <EditLinkForm selectedRelease={selectedRelease} /> */}
                     </div>
                 ) 
                 : 

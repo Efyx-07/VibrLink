@@ -1,6 +1,6 @@
-import { Platform } from "../../types/releaseTypes";
-import CardButton from "../cards/CardButton";
-import { openInANewTab } from "../../utils/openInANewTab";
+import { Platform } from "../../../types/releaseTypes";
+import CardButton from "../../cards/CardButton";
+import { openInANewTab } from "../../../utils/openInANewTab";
 import { Switch, FormControlLabel } from '@mui/material';
 import { MouseEventHandler } from "react";
 
