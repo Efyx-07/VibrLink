@@ -1,6 +1,7 @@
 import { Release } from "../../types/releaseTypes";
 import { useModal } from "../../contexts/ModalContext";
 import { useNavigate } from "react-router-dom";
+import { openInANewTab } from "../../utils/openInANewTab";
 import CardButton from "./CardButton";
 import './DashboardLinkCard.scss';
 
@@ -8,6 +9,7 @@ interface DashboardLinkCard {
     releases: Release[];
 };
 
+// function to invert the display of the releases
 const reverseReleases = (releases: readonly Release[]) => {
     return [...releases].reverse();
 };
@@ -24,7 +26,7 @@ export default function DashboardLinkCard({releases}: DashboardLinkCard) {
     const { openRemoveReleaseModal } = useModal();
 
     const navToReleaseLandingPage = (releaseSlug: string): void => {
-        window.open(`/v/${releaseSlug}`, '_blank');
+        openInANewTab(`/v/${releaseSlug}`);
     };
 
     return (

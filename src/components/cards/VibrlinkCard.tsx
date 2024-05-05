@@ -1,4 +1,5 @@
 import { Release } from "../../types/releaseTypes";
+import { openInANewTab } from "../../utils/openInANewTab";
 import './VibrlinkCard.scss';
 
 interface SelectedReleaseProps {
@@ -34,10 +35,6 @@ function ReleaseInfos({selectedRelease}: SelectedReleaseProps) {
 };
 
 function ReleaseLinks({selectedRelease}: SelectedReleaseProps) {
-
-    const openInANewTab = (url: string): void => {
-        window.open(url, '_blank');
-    }
 
     return (
         <div className="links-container">

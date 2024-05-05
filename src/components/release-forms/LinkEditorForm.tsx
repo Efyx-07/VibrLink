@@ -1,6 +1,7 @@
 import { Release, Platform } from "../../types/releaseTypes";
 import { useState, useEffect } from "react";
 import { updateRelease } from "../../services/releaseService";
+import { openInANewTab } from "../../utils/openInANewTab";
 import { Switch, FormControlLabel } from '@mui/material';
 import CardButton from "../cards/CardButton";
 import FormButton from "../common/FormButton";
@@ -141,11 +142,6 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
             setShouldSubmitUpdate(false);
         }
     }, [platformsVisibility, shouldSubmitUpdate]);
-
-    // open the platform link in a new tab
-    const openInANewTab = (url: string): void => {
-        window.open(url, '_blank');
-    };
 
     // submit the form with the updated datas
     const submitReleaseUpdate = async (): Promise <void> => {
