@@ -61,10 +61,6 @@
             outline: none;
             border-color: rgba($whiteColor, .1);
 
-            &:focus {
-                border-color: $accentColor;
-            }
-
             .default-option {
                 color: rgba($whiteColor, .25);
             }
