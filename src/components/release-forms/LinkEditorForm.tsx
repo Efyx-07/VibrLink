@@ -8,7 +8,7 @@ import './LinkEditorForm.scss';
 
 interface SelectedReleaseProps {
     selectedRelease: Release;
-    platforms?: Platform[];
+    platforms: Platform[];
 };
 
 export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) {
