@@ -31,26 +31,54 @@ export default function LinkEditorPlatformField({platformsWithUrl, platform, new
             <div className="buttons-container">
                 {platformsWithUrl ?
                     (
-                    <>
-                        <CardButton name="Test link" icon="" onClick={() => platform.url && openInANewTab(platform.url)} />
-                        <FormControlLabel
-                            control={
-                                <Switch 
-                                    style={{ color: platformsVisibility[platform.id] ? "#16F1E4" : "#fef6e2" }}
-                                    checked={platformsVisibility[platform.id] || false}
-                                    onChange={(e) => onVisibilityChange(platform.id, e.target.checked)} 
-                                />}
-                            label={platformsVisibility[platform.id] ? "Visible" : "Hidden"}
-                            style={{ color: platformsVisibility[platform.id] ? "#16F1E4" : "#fef6e2" }}
-                            labelPlacement="end"
-                            className="switch"
-                        />
-                    </>                       
+                        <>
+                            <CardButton 
+                                name="Test link" 
+                                icon="" 
+                                onClick={() => platform.url && openInANewTab(platform.url)} 
+                            />
+                            <VisibilitySwitch 
+                                platformVisibility={platformsVisibility[platform.id]} 
+                                platformId={platform.id} 
+                                onVisibilityChange={onVisibilityChange} 
+                            />
+                        </>                       
                     )
                     :
-                    (<CardButton name="Add" icon="" onClick={onAddButtonClick} />)
+                    (
+                        <CardButton 
+                            name="Add" 
+                            icon="" 
+                            onClick={onAddButtonClick} 
+                        />
+                    )
                 }
             </div>
         </div>
     )
+};
+
+interface VisibilitySwitchProps {
+    platformVisibility: boolean; 
+    platformId: number;
+    onVisibilityChange: (platformId: number, checked: boolean) => void;
+}
+
+function VisibilitySwitch({ platformVisibility, platformId, onVisibilityChange }: VisibilitySwitchProps) {
+    return (
+        <FormControlLabel
+            control=
+                {
+                    <Switch 
+                        style={{ color: platformVisibility ? "#16F1E4" : "#fef6e2" }}
+                        checked={platformVisibility || false}
+                        onChange={(e) => onVisibilityChange(platformId, e.target.checked)} 
+                    />
+                }
+            label={platformVisibility ? "Visible" : "Hidden"}
+            style={{ color: platformVisibility ? "#16F1E4" : "#fef6e2" }}
+            labelPlacement="end"
+            className="switch"
+        />
+    );
 };
