@@ -92,6 +92,12 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
     
             // reset the selectedPlatform
             setSelectedPlatform(null);
+
+            // reset the select to default option 
+            const selectElement = document.getElementById('platform-select') as HTMLSelectElement | null;
+            if (selectElement) {
+                selectElement.selectedIndex = 0;
+            }
     
             // allow the form submission
             setShouldSubmitUpdate(true);
@@ -210,7 +216,7 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
                         </div>
                     )}
 
-                    <select onChange={handlePlatformChange}>
+                    <select onChange={handlePlatformChange} id="platform-select">
                         <option disabled selected className="default-option">- - add a platform</option>
                         {platformsWithoutUrl.map(platform => (
                             <option key={platform.id} value={platform.id}>{platform.name}</option>
