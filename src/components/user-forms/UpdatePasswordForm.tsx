@@ -1,22 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { validatePassword, validateConfirmPassword } from "../../utils/validateData";
 import { updatePassword } from "../../services/authService";
 import { useUserStore } from "../../stores";
 import { useNavigate } from "react-router-dom";
 import UserFormField from "./UserFormField";
+import LoadingSpinner from "../common/LoadingSpinner";
 import FormButton from "../common/FormButton";
 import '../../assets/sass/common/forms-style.scss';
 
 export default function UpdatePasswordForm() {
 
-    const [currentPassword, setCurrentPassword] = useState('');
-    const [newUserPassword, setNewUserPassword] = useState('');
-    const [confirmNewUserPassword, setConfirmNewUserPassword] = useState('');
+    const [currentPassword, setCurrentPassword] = useState<string>('');
+    const [newUserPassword, setNewUserPassword] = useState<string>('');
+    const [confirmNewUserPassword, setConfirmNewUserPassword] = useState<string>('');
+    const [isNewUserPasswordValid, setIsNewUserPasswordValid] = useState<boolean>(false);
+    const [isConfirmNewUserPasswordValid, setIsConfirmNewUserPasswordValid] = useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const userStore = useUserStore();
     const navigate = useNavigate();
 
+    useEffect(() => {
+        setIsNewUserPasswordValid(validatePassword(newUserPassword));
+        setIsConfirmNewUserPasswordValid(validateConfirmPassword(newUserPassword, confirmNewUserPassword));
+    }, [newUserPassword, confirmNewUserPassword]);
+
     const updateUserPassword = async(e: React.FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
+        setIsLoading(true);
 
         if (!validatePassword(newUserPassword) || !validateConfirmPassword(newUserPassword, confirmNewUserPassword)) {
             console.error('Invalid email or password format');
@@ -40,14 +51,28 @@ export default function UpdatePasswordForm() {
 
         try {
             const data = await updatePassword(token, userId, currentPassword, newUserPassword);
-            console.log(data.message);
+            setIsLoading(false);
             userStore.logOutUser();
-            navigate('/login')
+            navigate('/login');
+            return data;
 
         } catch (error) {
+            setErrorMessage(true);
+            setIsLoading(false);
+            // if error reset the form after 3s
+            setTimeout(() => {
+                setErrorMessage(false);
+                resetForm();
+            }, 3000);
             console.error('Error during updating password: ', error);
         }
+    };
 
+    // function to reset the form
+    const resetForm = () => {
+        setCurrentPassword('');
+        setNewUserPassword('');
+        setConfirmNewUserPassword('');
     };
 
     return (
@@ -68,6 +93,7 @@ export default function UpdatePasswordForm() {
                 onChange={(e) => setNewUserPassword(e.target.value)}
                 mention="8 characters, 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character" 
                 className="password-input" 
+                isValid={isNewUserPasswordValid}
             />
             <UserFormField 
                 label="Confirm your new password" 
@@ -77,8 +103,14 @@ export default function UpdatePasswordForm() {
                 onChange={(e) => setConfirmNewUserPassword(e.target.value)} 
                 mention="must be identical to your new password"
                 className="password-input" 
+                isValid={isConfirmNewUserPasswordValid && !!confirmNewUserPassword}
             />
-            <FormButton type="submit" name="Update your password" />
+            {errorMessage && <p className="error-message">Wrong current password !</p>}
+            {isLoading ? (
+                <div className="spinner-container">
+                    <LoadingSpinner />
+                </div>
+            ) : <FormButton type="submit" name="Update your password" />}
         </form>
     )
 }

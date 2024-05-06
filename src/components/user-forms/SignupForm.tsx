@@ -7,7 +7,6 @@ import LoadingSpinner from "../common/LoadingSpinner";
 import FormButton from "../common/FormButton";
 import '../../assets/sass/common/forms-style.scss';
 
-
 export default function SignupForm() {
 
     const [email, setEmail] = useState<string>('');
