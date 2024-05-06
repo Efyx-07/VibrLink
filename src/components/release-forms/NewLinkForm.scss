@@ -21,6 +21,14 @@
       width: 100%;
       padding-left: .5rem;
       background: $darkColorRelief;
+      color: $whiteColor;
       border: solid 1px rgba($whiteColor, .1);
+      outline: none;
+      font-size: .9rem;
+      font-weight: 400;
+
+      &:focus {
+        border-color: $accentColor;
+      }
     }
 }
