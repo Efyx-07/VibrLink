@@ -1,22 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { validatePassword, validateConfirmPassword } from "../../utils/validateData";
 import { resetPassword } from "../../services/authService";
 import { useNavigate } from "react-router-dom";
 import UserFormField from "./UserFormField";
+import LoadingSpinner from "../common/LoadingSpinner";
 import FormButton from "../common/FormButton";
 import '../../assets/sass/common/forms-style.scss';
 
 export default function ResetPasswordForm() {
 
-    const [newPassword, setNewPassword] = useState('');
-    const [confirmNewPassword, setConfirmNewPassword] = useState('');
+    const [newPassword, setNewPassword] = useState<string>('');
+    const [confirmNewPassword, setConfirmNewPassword] = useState<string>('');
+    const [isNewPasswordValid, setIsNewPasswordValid] = useState<boolean>(false);
+    const [isConfirmNewPasswordValid, setIsConfirmNewPasswordValid] = useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const {token} = useParams();
     const navigate = useNavigate();
 
+    useEffect(() => {
+        setIsNewPasswordValid(validatePassword(newPassword));
+        setIsConfirmNewPasswordValid(validateConfirmPassword(newPassword, confirmNewPassword));
+    }, [newPassword, confirmNewPassword]);
+
     const resetUserPassword = async(e: React.FormEvent<HTMLFormElement>): Promise <void> => {
         e.preventDefault();
+        setIsLoading(true);
 
         if (!validatePassword(newPassword) || !validateConfirmPassword(newPassword, confirmNewPassword)) {
             console.error('Invalid password format');
@@ -31,11 +42,25 @@ export default function ResetPasswordForm() {
             }
 
             await resetPassword(token, newPassword);
+            setIsLoading(false);
             navigate('/login');
             
         } catch (error) {
-            console.error('Erreur lors de la réinitialisation du mot de passe: ', error);
+            setErrorMessage(true);
+            setIsLoading(false);
+            // if error reset the form after 3s
+            setTimeout(() => {
+                setErrorMessage(false);
+                resetForm();
+            }, 3000);
+            console.error('Error while resetting password: ', error);
         }
+    };
+
+    // function to reset the form
+    const resetForm = () => {('');
+        setNewPassword('');
+        setConfirmNewPassword('');
     };
 
     return (
@@ -48,6 +73,7 @@ export default function ResetPasswordForm() {
                 onChange={(e) => setNewPassword(e.target.value)}
                 mention="8 characters, 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character" 
                 className="password-input" 
+                isValid={isNewPasswordValid}
             />
             <UserFormField 
                 label="Confirm your new password" 
@@ -57,8 +83,14 @@ export default function ResetPasswordForm() {
                 onChange={(e) => setConfirmNewPassword(e.target.value)} 
                 mention="must be identical to your new password"
                 className="password-input" 
+                isValid={isConfirmNewPasswordValid && !!confirmNewPassword}
             />
-            <FormButton type="submit" name="Reset your password" />
+            {errorMessage && <p className="error-message">Error while resetting password !</p>}
+            {isLoading ? (
+                <div className="spinner-container">
+                    <LoadingSpinner />
+                </div>
+            ) : <FormButton type="submit" name="Reset your password" />}
         </form>
     )
 }

@@ -17,6 +17,7 @@ export default function UpdatePasswordForm() {
     const [isConfirmNewUserPasswordValid, setIsConfirmNewUserPasswordValid] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    
     const userStore = useUserStore();
     const navigate = useNavigate();
 
