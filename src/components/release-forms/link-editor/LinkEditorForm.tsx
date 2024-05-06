@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { updateRelease } from "../../../services/releaseService";
 import LinkEditorPlatformField from "./LinkEditorPlatformField";
 import LinkEditorSelect from "./LinkEditorSelect";
+import LoadingSpinner from "../../common/LoadingSpinner";
 import FormButton from "../../common/FormButton";
 import './LinkEditorForm.scss';
 
@@ -15,6 +16,12 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
 
     // get all the platforms of the release
     const platforms: Platform[] = selectedRelease.platforms;
+
+    // state for error message
+    const [errorMessage, setErrorMessage] = useState<boolean>(false);
+
+    // state for isLoading
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     // filter the platforms to get the ones with url
     const [platformsWithUrl, setPlatformsWithUrl] = useState<Platform[]>(platforms.filter(platform => platform.url));
@@ -144,15 +151,21 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
 
     // submit the form with the updated datas
     const submitReleaseUpdate = async (): Promise <void> => {
-
+        setIsLoading(true)
         // get the id of the selected release
         const releaseId: number = selectedRelease.id;
 
         try {
             const data = await updateRelease(newUrls, platformsVisibility, releaseId);
-            console.log('updated succesfully: ', data)
+            setIsLoading(false);
+            return data;
 
         } catch (error) {
+            setErrorMessage(true);
+            setIsLoading(false);
+            setTimeout(() => {
+                setErrorMessage(false);
+            }, 3000);
             console.error('Failed to update release: ', error);
         }
     };
@@ -193,7 +206,12 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
                     />
                 </div>
             )}
-            <FormButton type="submit" name="Update link" />
+            {errorMessage && <p className="error-message">Failed to update release !</p>}
+            {isLoading ? (
+                <div className="spinner-container">
+                    <LoadingSpinner />
+                </div>
+            ) : <FormButton type="submit" name="Update link" />}
         </form>
     )
 };
