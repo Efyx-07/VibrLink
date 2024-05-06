@@ -1,0 +1,9 @@
+@import '../../assets/sass/common/colors.scss';
+
+.mobile-menu {
+    position: fixed;
+    top: 5rem;
+    width: 100vw;
+    height: calc(100vh - 5rem);
+    background: $darkColorRelief;
+}
