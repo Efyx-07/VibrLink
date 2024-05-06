@@ -42,13 +42,19 @@ form {
                 letter-spacing: 5px;
             }
 
-            .field-okIcon {
+            .isValid-icon {
                 position: absolute;
                 top: 50%;
                 right: 1rem;
                 transform: translateY(-50%);
             }
         }
+    }
+
+    .error-message {
+        font-size: .9rem;
+        align-self: flex-end;
+        color: rgb(226, 23, 23);
     }
 
     .form-button {

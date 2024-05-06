@@ -9,9 +9,9 @@ import '../../assets/sass/common/forms-style.scss';
 
 export default function LoginForm() {
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [errorMessage, setErrorMessage] = useState<boolean>(false);
     const userStore = useUserStore();
     const navigate = useNavigate();
 
@@ -19,7 +19,12 @@ export default function LoginForm() {
         e.preventDefault();
 
         if (!validateData(email, password)) {
-            console.error('Invalid email or password format');
+            setErrorMessage(true);
+            // if error reset the form after 3s
+            setTimeout(() => {
+                setErrorMessage(false);
+                resetForm();
+            }, 3000);
             return;
         }
 
@@ -34,8 +39,15 @@ export default function LoginForm() {
             navigate('/my-vibrlinks');
 
         } catch (error) {
+            setErrorMessage(true);
             console.error('Error while connecting: ', error);
         }
+    };
+
+    // function to reset the form
+    const resetForm = () => {
+        setEmail('');
+        setPassword('');
     };
 
     return (
@@ -55,6 +67,7 @@ export default function LoginForm() {
                 onChange={(e) => setPassword(e.target.value)} 
                 className="password-input" 
             />
+            {errorMessage && <p className="error-message">Wrong email or password</p>}
             <FormButton type="submit" name="Log in" />
         </form>
     )
