@@ -1,6 +1,7 @@
 import SiteName from './SiteName';
 import Navigation from './Navigation';
 import MobileMenu from './MobileMenu';
+import MobileMenuIcon from './MobileMenuIcon';
 import './Header.scss';
 
 export default function Header() {
@@ -9,6 +10,7 @@ export default function Header() {
             <div className="content">
                 <SiteName />
                 <Navigation />
+                <MobileMenuIcon />
             </div>
             <MobileMenu />
         </header>
