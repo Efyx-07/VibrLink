@@ -5,6 +5,10 @@ export function validateData(email: string, password: string): boolean {
     return emailRegex.test(email) && passwordRegex.test(password);
 };
 
+export function validateEmail(email: string): boolean {
+    return emailRegex.test(email);
+};
+
 export function validatePassword(password: string): boolean {
     return passwordRegex.test(password);
 };

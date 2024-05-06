@@ -25,14 +25,13 @@ export default function LoginForm() {
 
         try {
             const data = await login(email, password);
-            console.log(data.message);
             userStore.setUserData(data.user);
 
             const token = data.token;
             localStorage.setItem('token', token);
             userStore.setToken(token);
 
-            navigate('/');
+            navigate('/my-vibrlinks');
 
         } catch (error) {
             console.error('Error while connecting: ', error);

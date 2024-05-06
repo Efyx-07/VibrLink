@@ -43,7 +43,7 @@ export default function NewVibrlinkForm() {
         <form onSubmit={sendSpotifyUrlAndUserId}>
             <div className="input-container">
                 <label htmlFor="spotifyId">Enter your release Spotify id:</label>
-                <div className="input-wrapper">
+                <div className="newLinkForm-input-wrapper">
                 <p>{spotifyPrefix}</p>
                 <input 
                     className="input" 

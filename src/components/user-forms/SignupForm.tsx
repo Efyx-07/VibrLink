@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { validateData, validateConfirmPassword } from "../../utils/validateData";
+import { useState, useEffect } from "react";
+import { validateEmail, validatePassword, validateData, validateConfirmPassword } from "../../utils/validateData";
 import { useNavigate } from "react-router-dom";
 import { register } from "../../services/authService";
 import UserFormField from "./UserFormField";
@@ -12,7 +12,17 @@ export default function SignupForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [isEmailValid, setEmailValid] = useState(false);
+    const [isPasswordValid, setPasswordValid] = useState(false);
+    const [isConfirmPasswordValid, setConfirmPasswordValid] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        setEmailValid(validateEmail(email));
+        setPasswordValid(validatePassword(password));
+        setConfirmPasswordValid(validateConfirmPassword(password, confirmPassword));
+    }, [email, password, confirmPassword]);
+
 
     const signup = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
@@ -24,11 +34,11 @@ export default function SignupForm() {
 
         try {
             const data = await register(email, password);
-            console.log('Successfully registered, datas:', data)
             navigate('/login');
+            return data;
 
         } catch (error) {
-            console.error('Error during registration:', error);
+            console.error('Error during registration: ' + error);
         }
     };
     
@@ -39,7 +49,8 @@ export default function SignupForm() {
                 type="email" 
                 name="email" 
                 value={email} 
-                onChange={(e) => setEmail(e.target.value)} 
+                onChange={(e) => setEmail(e.target.value)}
+                isValid={isEmailValid}
             />
             <UserFormField 
                 label="Create a password" 
@@ -49,6 +60,7 @@ export default function SignupForm() {
                 onChange={(e) => setPassword(e.target.value)}
                 mention="8 characters, 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character" 
                 className="password-input" 
+                isValid={isPasswordValid}
             />
             <UserFormField 
                 label="Confirm your password" 
@@ -58,6 +70,7 @@ export default function SignupForm() {
                 onChange={(e) => setConfirmPassword(e.target.value)} 
                 mention="must be identical to your password"
                 className="password-input" 
+                isValid={isConfirmPasswordValid && !!confirmPassword}
             />
             <FormButton type="submit" name="Sign up" />
         </form>
