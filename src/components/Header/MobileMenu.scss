@@ -1,7 +1,7 @@
 @import '../../assets/sass/common/colors.scss';
 
 .hidden-menu {
-    transform: translate(100%, 100%);
+    transform: translateX(100%);
 }
 .mobile-menu {
     position: fixed;
