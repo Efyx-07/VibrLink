@@ -3,18 +3,21 @@ import { validateEmail, validatePassword, validateData, validateConfirmPassword 
 import { useNavigate } from "react-router-dom";
 import { register } from "../../services/authService";
 import UserFormField from "./UserFormField";
+import LoadingSpinner from "../common/LoadingSpinner";
 import FormButton from "../common/FormButton";
 import '../../assets/sass/common/forms-style.scss';
 
 
 export default function SignupForm() {
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
-    const [isEmailValid, setEmailValid] = useState(false);
-    const [isPasswordValid, setPasswordValid] = useState(false);
-    const [isConfirmPasswordValid, setConfirmPasswordValid] = useState(false);
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
+    const [confirmPassword, setConfirmPassword] = useState<string>('');
+    const [isEmailValid, setEmailValid] = useState<boolean>(false);
+    const [isPasswordValid, setPasswordValid] = useState<boolean>(false);
+    const [isConfirmPasswordValid, setConfirmPasswordValid] = useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -26,6 +29,7 @@ export default function SignupForm() {
 
     const signup = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
+        setIsLoading(true);
 
         if (!validateData(email, password) || !validateConfirmPassword(password, confirmPassword)) {
             console.error('Invalid email or password format');
@@ -34,12 +38,27 @@ export default function SignupForm() {
 
         try {
             const data = await register(email, password);
+            setIsLoading(false);
             navigate('/login');
             return data;
 
         } catch (error) {
+            setErrorMessage(true);
+            setIsLoading(false);
+            // if error reset the form after 3s
+            setTimeout(() => {
+                setErrorMessage(false);
+                resetForm();
+            }, 3000);
             console.error('Error during registration: ' + error);
         }
+    };
+
+    // function to reset the form
+    const resetForm = () => {
+        setEmail('');
+        setPassword('');
+        setConfirmPassword('');
     };
     
     return (
@@ -72,7 +91,12 @@ export default function SignupForm() {
                 className="password-input" 
                 isValid={isConfirmPasswordValid && !!confirmPassword}
             />
-            <FormButton type="submit" name="Sign up" />
+            {errorMessage && <p className="error-message">This email already exists !</p>}
+            {isLoading ? (
+                <div className="spinner-container">
+                    <LoadingSpinner />
+                </div>
+            ) : <FormButton type="submit" name="Sign up" />}
         </form>
     )
 }
