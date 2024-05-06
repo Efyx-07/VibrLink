@@ -3,11 +3,15 @@ import { useUserStore, useReleaseStore } from "../../stores";
 import { createLink } from "../../services/releaseService";
 import { useNavigate } from "react-router-dom";
 import FormButton from "../common/FormButton";
+import LoadingSpinner from "../common/LoadingSpinner";
 import './NewLinkForm.scss';
 
 export default function NewVibrlinkForm() {
 
-    const [spotifyId, setSpotifyId] = useState('');
+    const [spotifyId, setSpotifyId] = useState<string>('');
+    const [errorMessage, setErrorMessage] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+
     const spotifyPrefix: string = "https://open.spotify.com/intl-fr/album/";
     const userStore = useUserStore();
     const releaseStore = useReleaseStore();
@@ -19,13 +23,15 @@ export default function NewVibrlinkForm() {
 
     const sendSpotifyUrlAndUserId = async (e: React.FormEvent<HTMLFormElement>): Promise <void> => {
         e.preventDefault();
+        setIsLoading(true);
 
         const albumUrl: string = getSpotifyUrl();
         const userId: number | undefined = userStore.user?.id;
 
         try {
             const data  = await createLink(albumUrl, userId);
-            console.log('New release datas:',data);
+
+            setIsLoading(false);
 
             const releaseSlug: string = data.releaseSlug;
         
@@ -35,6 +41,13 @@ export default function NewVibrlinkForm() {
             }
             
           } catch (error) {
+            setErrorMessage(true);
+            setIsLoading(false);
+            // if error reset the form after 3s
+            setTimeout(() => {
+                setErrorMessage(false);
+                setSpotifyId('Hey');
+            }, 3000);
             console.error('Failed to send album URL: ', error);
           }
     }
@@ -55,7 +68,12 @@ export default function NewVibrlinkForm() {
                 />
                 </div>
             </div>
-            <FormButton type="submit" name="Create the link" />
+            {errorMessage && <p className="error-message">This is not a valid Id or the release already exists !</p>}
+            {isLoading ? (
+                <div className="spinner-container">
+                    <LoadingSpinner />
+                </div>
+            ) : <FormButton type="submit" name="Create your link" />}
         </form>
     )
 }

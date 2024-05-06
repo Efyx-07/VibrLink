@@ -34,6 +34,7 @@ export default function LoginForm() {
 
         try {
             const data = await login(email, password);
+            setIsLoading(false);
             userStore.setUserData(data.user);
 
             const token = data.token;
@@ -73,7 +74,7 @@ export default function LoginForm() {
                 onChange={(e) => setPassword(e.target.value)} 
                 className="password-input" 
             />
-            {errorMessage && <p className="error-message">Wrong email or password</p>}
+            {errorMessage && <p className="error-message">Wrong email or password !</p>}
             {isLoading ? (
                 <div className="spinner-container">
                     <LoadingSpinner />
