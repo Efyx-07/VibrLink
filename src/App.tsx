@@ -16,6 +16,7 @@ import VibrlinkLandingPage from './pages/VibrlinkLandingPage';
 
 // components available in the whole app
 import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
 import SignoutModal from './components/modals/SignoutModal';
 import DeleteAccountModal from './components/modals/DeleteAccountModal';
 import RemoveReleaseModal from './components/modals/RemoveReleaseModal';
@@ -50,17 +51,17 @@ export default function App() {
 
   // conditionnal display of the header by pathname
   const location = useLocation();
-  const [shouldShowHeader, setShouldShowHeader] = useState(true);
+  const [shouldShowComponent, setShouldShowComponent] = useState(true);
 
   useEffect(() => {
     const isVibrlinkLandingPage = location.pathname.includes('/v');
-    setShouldShowHeader(!isVibrlinkLandingPage);
+    setShouldShowComponent(!isVibrlinkLandingPage);
   }, [location.pathname]);
 
   return (
     <ModalProvider>
       <div>
-      {shouldShowHeader && <Header />}
+      {shouldShowComponent && <Header />}
         <Routes>
           <Route index path="/" element={<HomePage />} />
           <Route index path="/login" element={<LoginPage />} />
@@ -72,6 +73,7 @@ export default function App() {
           <Route index path="/link-editor/:releaseSlug" element={<LinkEditorPage />} />
           <Route index path="/v/:releaseSlug" element={<VibrlinkLandingPage />} />
         </Routes>
+      {shouldShowComponent && <Footer />}
         <SignoutModal />
         <DeleteAccountModal />
         <RemoveReleaseModal />
