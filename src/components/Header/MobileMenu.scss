@@ -1,9 +1,13 @@
 @import '../../assets/sass/common/colors.scss';
 
+.hidden-menu {
+    transform: translate(100%, 100%);
+}
 .mobile-menu {
     position: fixed;
     top: 5rem;
     width: 100vw;
     height: calc(100vh - 5rem);
     background: $darkColorRelief;
+    transition: .2s ease-in-out;
 }

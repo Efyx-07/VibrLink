@@ -1,8 +1,13 @@
 import './MobileMenu.scss';
 
-export default function MobileMenu() {
+interface MobileMenuProps {
+    isOpen: boolean;
+}
+
+export default function MobileMenu({isOpen}: MobileMenuProps) {
+
     return (
-        <div className="mobile-menu">
+        <div className={`mobile-menu ${!isOpen ? "hidden-menu" : ""}`}>
         </div>
     )
 }
