@@ -57,6 +57,13 @@ form {
         color: rgb(226, 23, 23);
     }
 
+    .spinner-container {
+        height: 4.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     .form-button {
         align-self: flex-end;
     }

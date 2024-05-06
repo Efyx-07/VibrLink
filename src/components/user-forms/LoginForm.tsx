@@ -56,35 +56,30 @@ export default function LoginForm() {
     };
 
     return (
-        <>
+
+        <form onSubmit={userLogin}>
+            <UserFormField 
+                label="Email address" 
+                type="email" 
+                name="email" 
+                value={email} 
+                onChange={(e) => setEmail(e.target.value)} 
+            />
+            <UserFormField 
+                label="Enter your password" 
+                type="password" 
+                name="password" 
+                value={password} 
+                onChange={(e) => setPassword(e.target.value)} 
+                className="password-input" 
+            />
+            {errorMessage && <p className="error-message">Wrong email or password</p>}
             {isLoading ? (
-                <>
+                <div className="spinner-container">
                     <LoadingSpinner />
-                </>
-                ) 
-                : 
-                (
-                    <form onSubmit={userLogin}>
-                        <UserFormField 
-                            label="Email address" 
-                            type="email" 
-                            name="email" 
-                            value={email} 
-                            onChange={(e) => setEmail(e.target.value)} 
-                        />
-                        <UserFormField 
-                            label="Enter your password" 
-                            type="password" 
-                            name="password" 
-                            value={password} 
-                            onChange={(e) => setPassword(e.target.value)} 
-                            className="password-input" 
-                        />
-                        {errorMessage && <p className="error-message">Wrong email or password</p>}
-                        <FormButton type="submit" name="Log in" />
-                    </form>
-                )}
-        </>    
+                </div>
+            ) : <FormButton type="submit" name="Log in" />}
+        </form>  
     )
 };
 
