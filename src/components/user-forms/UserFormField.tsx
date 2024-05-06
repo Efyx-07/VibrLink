@@ -8,7 +8,7 @@ interface Field {
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     mention?: string;
     className?: string;
-    isValid: boolean;
+    isValid?: boolean;
 };
 
 export default function UserFormField({ label, type, name, value, onChange, mention, className, isValid }: Field) {
