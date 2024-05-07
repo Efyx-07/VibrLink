@@ -32,6 +32,7 @@ export default function SignupForm() {
 
         if (!validateData(email, password) || !validateConfirmPassword(password, confirmPassword)) {
             console.error('Invalid email or password format');
+            handleErrorAndApply();
             return;
         }
 
@@ -42,15 +43,19 @@ export default function SignupForm() {
             return data;
 
         } catch (error) {
-            setErrorMessage(true);
+            handleErrorAndApply();
+            console.error('Error during registration: ' + error);
+        }
+    };
+
+    const handleErrorAndApply = () => {
+        setErrorMessage(true);
             setIsLoading(false);
             // if error reset the form after 3s
             setTimeout(() => {
                 setErrorMessage(false);
                 resetForm();
             }, 3000);
-            console.error('Error during registration: ' + error);
-        }
     };
 
     // function to reset the form
@@ -90,7 +95,7 @@ export default function SignupForm() {
                 className="password-input" 
                 isValid={isConfirmPasswordValid && !!confirmPassword}
             />
-            {errorMessage && <p className="error-message">This email already exists !</p>}
+            {errorMessage && <p className="error-message">This email already exists or your passwords are not identical !</p>}
             {isLoading ? (
                 <div className="spinner-container">
                     <LoadingSpinner />
