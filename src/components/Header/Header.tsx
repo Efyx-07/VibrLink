@@ -8,13 +8,14 @@ import './Header.scss';
 
 export default function Header() {
 
+    // state for the open status of the mobile menu
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
-    const openMobileMenu = () => {
+    const openMobileMenu = (): void => {
         setIsOpen(true);
     };
 
-    const closeMobileMenu = () => {
+    const closeMobileMenu = (): void => {
         setIsOpen(false);
     };
 

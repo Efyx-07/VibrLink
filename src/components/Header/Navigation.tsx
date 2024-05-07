@@ -11,7 +11,7 @@ interface NavItemProps {
 
 function NavItem({name, navTo, onItemClick}: NavItemProps & NavigationProps) {
 
-    const handleClick = () => {
+    const handleClick = (): void => {
         onItemClick();
     }
 

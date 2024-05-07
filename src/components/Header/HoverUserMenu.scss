@@ -1,4 +1,5 @@
 @import '../../assets/sass/common/colors.scss';
+@import '../../assets/sass/common/breakpoints.scss';
 
 .hover-user-menu {
     width: 15rem;
@@ -8,7 +9,7 @@
     border-radius: .5rem;
     position: absolute;
     top: 5rem;
-    right: 0;
+    right: -1.5rem;
 
     .items-container {
         display: flex;
@@ -54,5 +55,12 @@
                 font-weight: 600;
             }
         }
+    }
+}
+
+@media (min-width: $breakpointLargeTablet) {
+
+    .hover-user-menu {
+        right: 0;
     }
 }

@@ -5,6 +5,7 @@ import { useModal } from "../../contexts/ModalContext";
 import { Icon } from '@iconify-icon/react';
 import './HoverUserMenu.scss';
 
+// component for an item
 interface UserItem {
     name: string;
     icon: string;
@@ -22,6 +23,7 @@ function UserItem({name, icon, onClick}: UserItem) {
 
 export default function HoverUserMenu() {
 
+    // get the user from the store
     const user = useUserStore(state => state.user );
 
     const navigate = useNavigate();
@@ -29,10 +31,9 @@ export default function HoverUserMenu() {
         navigate('/account-settings');
     };
 
+    // use the modalContext to get the functions
     const { openSignOutModal } = useModal();
-
     const { openDeleteAccountModal } = useModal();
-
 
     return (
         <>
