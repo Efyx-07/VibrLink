@@ -1,3 +1,4 @@
+import Navigation from './Navigation';
 import './MobileMenu.scss';
 
 interface MobileMenuProps {
@@ -8,6 +9,7 @@ export default function MobileMenu({isOpen}: MobileMenuProps) {
 
     return (
         <div className={`mobile-menu ${!isOpen ? "hidden-menu" : ""}`}>
+            <Navigation />
         </div>
     )
 }

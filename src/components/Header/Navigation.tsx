@@ -19,15 +19,15 @@ function NavItem({name, navTo}: NavItem) {
 
 export default function Navigation() {
 
-    const isLogged = useUserStore(state => state.isLoggedIn);
+    const isLogged: boolean = useUserStore(state => state.isLoggedIn);
 
-    const [isHoverUserMenuVisible, setIsHoverUserMenuVisible] = useState(false);
+    const [isHoverUserMenuVisible, setIsHoverUserMenuVisible] = useState<boolean>(false);
 
-    const handleEmailMouseEnter = () => {
+    const handleEmailMouseEnter = (): void => {
         setIsHoverUserMenuVisible(true);
     };
 
-    const handleEmailMouseLeave = () => {
+    const handleEmailMouseLeave = (): void => {
         setIsHoverUserMenuVisible(false);
     };
 

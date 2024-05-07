@@ -22,6 +22,12 @@ header {
         justify-content: space-between;
         position: relative;
 
+        .menu-icon-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
         .navigation-container {
             display: none;
         }
