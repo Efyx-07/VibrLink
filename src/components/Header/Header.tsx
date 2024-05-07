@@ -37,7 +37,7 @@ export default function Header() {
             </div>
             <MobileMenu
                 isOpen={isOpen}
-                closeMenu={closeMobileMenu}
+                closeMenu={closeMobileMenu} 
              />
         </header>
     )

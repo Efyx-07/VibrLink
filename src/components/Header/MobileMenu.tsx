@@ -10,7 +10,8 @@ export default function MobileMenu({isOpen, closeMenu}: MobileMenuProps) {
 
     return (
         <div className={`mobile-menu ${!isOpen ? "hidden-menu" : ""}`}>
-            <Navigation onItemClick={closeMenu}/>
+            {/* "onItemClick" prop to close the mobile menu when an navItem is clicked */}
+            <Navigation onItemClick={closeMenu}/> 
         </div>
     )
 }
