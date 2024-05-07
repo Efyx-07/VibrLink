@@ -23,7 +23,7 @@ export default function Header() {
             <div className="content">
                 <SiteName />
                 <div className="nav-wrapper-desktop">
-                    <Navigation />
+                    <Navigation onItemClick={() => {}}/>
                     <MyAccountItem />
                 </div>
                 <div className="nav-wrapper-mobile">
@@ -37,6 +37,7 @@ export default function Header() {
             </div>
             <MobileMenu
                 isOpen={isOpen}
+                closeMenu={closeMobileMenu}
              />
         </header>
     )

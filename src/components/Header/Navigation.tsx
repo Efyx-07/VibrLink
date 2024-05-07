@@ -8,15 +8,24 @@ interface NavItem {
     navTo: string
 };
 
-function NavItem({name, navTo}: NavItem) {
+function NavItem({name, navTo, onItemClick}: NavItem & NavigationProps) {
+
+    const handleClick = () => {
+        onItemClick();
+    }
+
     return (
-        <Link className="navItem" to={navTo}>
+        <Link className="navItem" to={navTo} onClick={handleClick}>
             <p>{name}</p>
         </Link>
     )
 };
 
-export default function Navigation() {
+interface NavigationProps {
+    onItemClick: () => void; 
+}
+
+export default function Navigation({onItemClick}: NavigationProps) {
 
     const isLogged: boolean = useUserStore(state => state.isLoggedIn);
 
@@ -38,13 +47,13 @@ export default function Navigation() {
             {isLogged ? 
                 (
                     loggedInNavItems.map(item => (
-                        <NavItem key={item.name} name={item.name} navTo={item.navTo} />
+                        <NavItem key={item.name} name={item.name} navTo={item.navTo} onItemClick={onItemClick}/>
                     ))
                 ) 
                 : 
                 (
                     loggedOutNavItems.map(item => (
-                        <NavItem key={item.name} name={item.name} navTo={item.navTo} />
+                        <NavItem key={item.name} name={item.name} navTo={item.navTo} onItemClick={onItemClick}/>
                     ))
 
                 ) 
