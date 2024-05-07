@@ -1,4 +1,5 @@
 @import '../../assets/sass/common/colors.scss';
+@import '../../assets/sass/common/breakpoints.scss';
 
 .card-button {
     width: 100%;
@@ -20,5 +21,12 @@
         background: rgba($accentColor, .25);
         border-color: rgba($accentColor, 1);
         transform: translateY(.15rem);
+    }
+}
+
+@media (min-width: $breakpointLargeTablet) {
+
+    .card-button {
+        max-width: 14rem;
     }
 }
