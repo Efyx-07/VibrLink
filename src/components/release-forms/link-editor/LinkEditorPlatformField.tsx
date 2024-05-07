@@ -1,7 +1,7 @@
 import { Platform } from "../../../types/releaseTypes";
 import CardButton from "../../cards/CardButton";
 import { openInANewTab } from "../../../utils/openInANewTab";
-import { Switch, FormControlLabel } from '@mui/material';
+import VisibilitySwitch from "./VisibilitySwitch";
 import { MouseEventHandler } from "react";
 
 interface PlatformFieldProps {
@@ -56,29 +56,4 @@ export default function LinkEditorPlatformField({platformsWithUrl, platform, new
             </div>
         </div>
     )
-};
-
-interface VisibilitySwitchProps {
-    platformVisibility: boolean; 
-    platformId: number;
-    onVisibilityChange: (platformId: number, checked: boolean) => void;
-}
-
-function VisibilitySwitch({ platformVisibility, platformId, onVisibilityChange }: VisibilitySwitchProps) {
-    return (
-        <FormControlLabel
-            control=
-                {
-                    <Switch 
-                        style={{ color: platformVisibility ? "#16F1E4" : "#fef6e2" }}
-                        checked={platformVisibility || false}
-                        onChange={(e) => onVisibilityChange(platformId, e.target.checked)} 
-                    />
-                }
-            label={platformVisibility ? "Visible" : "Hidden"}
-            style={{ color: platformVisibility ? "#16F1E4" : "#fef6e2" }}
-            labelPlacement="end"
-            className="switch"
-        />
-    );
 };
