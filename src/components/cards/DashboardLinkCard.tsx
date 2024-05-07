@@ -5,7 +5,7 @@ import { openInANewTab } from "../../utils/openInANewTab";
 import CardButton from "./CardButton";
 import './DashboardLinkCard.scss';
 
-interface DashboardLinkCard {
+interface DashboardLinkCardProps {
     releases: Release[];
 };
 
@@ -14,7 +14,7 @@ const reverseReleases = (releases: readonly Release[]) => {
     return [...releases].reverse();
 };
 
-export default function DashboardLinkCard({releases}: DashboardLinkCard) {
+export default function DashboardLinkCard({releases}: DashboardLinkCardProps) {
 
     const reversedReleases = reverseReleases(releases);
     const navigate = useNavigate();
@@ -23,6 +23,7 @@ export default function DashboardLinkCard({releases}: DashboardLinkCard) {
         navigate(`/link-editor/${releaseSlug}`);
     };
 
+    // use the context to get the function 
     const { openRemoveReleaseModal } = useModal();
 
     const navToReleaseLandingPage = (releaseSlug: string): void => {
@@ -30,15 +31,17 @@ export default function DashboardLinkCard({releases}: DashboardLinkCard) {
     };
 
     return (
-        <div className="container">
+        <div className="link-cards-container">
             {reversedReleases.map(release => (
                 <div className="link-card" key={release.id}>
-                    <div className="image-container">
-                        <img src={release.cover} />
-                    </div>
-                    <div className="infos-container">
-                        <p className="title">{release.title}</p>
-                        <p className="artist">{release.artist}</p>
+                    <div className="card-imageAndInfos-container">
+                        <div className="image-container">
+                            <img src={release.cover} />
+                        </div>
+                        <div className="infos-container">
+                            <p className="title">{release.title}</p>
+                            <p className="artist">{release.artist}</p>
+                        </div>
                     </div>
                     <div className="buttons-container">
                         <CardButton name="Edit link" icon="mdi:tools" onClick={() => navToReleaseToEditPage(release.slug)}/>
