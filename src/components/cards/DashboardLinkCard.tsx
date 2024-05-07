@@ -9,7 +9,7 @@ interface DashboardLinkCardProps {
     releases: Release[];
 };
 
-// function to invert the display of the releases
+// function to create an new array for reversed releases
 const reverseReleases = (releases: readonly Release[]) => {
     return [...releases].reverse();
 };
