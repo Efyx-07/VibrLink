@@ -21,6 +21,13 @@
 }
 
 @media (min-width: $breakpointLargeTablet) {
+    
+    .page .content {
+        padding: 4rem 2rem;
+    }
+}
+
+@media (min-width: $breakpointLargeDesktop) {
     .page .content {
         max-width: 90rem;
     }

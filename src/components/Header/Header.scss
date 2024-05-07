@@ -31,6 +31,8 @@ header {
 @media (min-width: $breakpointLargeTablet) {
 
     header .content {
+        padding: 0 2rem;
+
         .menu-icon-container {
             display: none;
         }
