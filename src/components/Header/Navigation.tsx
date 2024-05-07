@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useUserStore } from "../../stores";
 import { useEffect } from "react";
-//import HoverUserMenu from './HoverUserMenu';
 import './Navigation.scss';
 
 interface NavItem {
@@ -20,17 +19,6 @@ function NavItem({name, navTo}: NavItem) {
 export default function Navigation() {
 
     const isLogged: boolean = useUserStore(state => state.isLoggedIn);
-
-    /*
-    const [isHoverUserMenuVisible, setIsHoverUserMenuVisible] = useState<boolean>(false);
-
-    const handleEmailMouseEnter = (): void => {
-        setIsHoverUserMenuVisible(true);
-    };
-
-    const handleEmailMouseLeave = (): void => {
-        setIsHoverUserMenuVisible(false);
-    }; */
 
     useEffect(() => {
     }, [isLogged]);
@@ -61,19 +49,6 @@ export default function Navigation() {
 
                 ) 
             }
-        
-            {/* {isLogged && (
-                <div
-                    className="navItem"
-                    onMouseEnter={handleEmailMouseEnter}
-                    onMouseLeave={handleEmailMouseLeave}
-                >
-                    <p>My Account</p>
-                    {isHoverUserMenuVisible && (
-                        <HoverUserMenu />
-                    )}
-                </div>
-            )} */}
         </div>
     )
 }; 
