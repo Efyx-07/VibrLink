@@ -10,7 +10,7 @@ interface MobileMenuIconProps {
 
 export default function MobileMenuIcon({isOpen, onOpenClick, onCloseClick}: MobileMenuIconProps) {
     return (
-        <div className="menu-icon-container">
+        <>
             {!isOpen ? 
                 (
                     <Icon icon="material-symbols:menu" className='menu-icon' onClick={onOpenClick}/>
@@ -20,6 +20,6 @@ export default function MobileMenuIcon({isOpen, onOpenClick, onCloseClick}: Mobi
                     <Icon icon="material-symbols:close" className='menu-icon' onClick={onCloseClick}/>
                 )
             }
-        </div>
+        </>
     )
 };
