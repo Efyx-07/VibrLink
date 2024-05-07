@@ -22,16 +22,17 @@ export default function Header() {
         <header>
             <div className="content">
                 <SiteName />
-                <div className="navigation-container">
+                <div className="nav-wrapper-desktop">
                     <Navigation />
+                    <MyAccountItem />
                 </div>
-                <MyAccountItem />
-                <div className="menu-icon-container">
+                <div className="nav-wrapper-mobile">
+                    <MyAccountItem />
                     <MobileMenuIcon 
-                        isOpen={isOpen}
-                        onOpenClick={openMobileMenu}
-                        onCloseClick={closeMobileMenu}
-                    />
+                            isOpen={isOpen}
+                            onOpenClick={openMobileMenu}
+                            onCloseClick={closeMobileMenu}
+                        />
                 </div>
             </div>
             <MobileMenu

@@ -22,15 +22,16 @@ header {
         justify-content: space-between;
         position: relative;
 
-        .menu-icon-container {
+        .nav-wrapper-mobile {
+            height: 100%;
             display: flex;
-            justify-content: center;
             align-items: center;
         }
 
-        .navigation-container {
+        .nav-wrapper-desktop {
             display: none;
         }
+
     }
 }
 
@@ -39,13 +40,17 @@ header {
     header .content {
         padding: 0 2rem;
 
-        .menu-icon-container {
+        .nav-wrapper-mobile {
             display: none;
         }
 
-        .navigation-container {
-            display: block;
+        .nav-wrapper-desktop {
+            display: flex;
             height: 100%;
+
+            .navigation-container {
+                display: flex;
+            }
         }
     } 
 }
