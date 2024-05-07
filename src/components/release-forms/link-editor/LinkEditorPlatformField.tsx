@@ -1,10 +1,8 @@
 import { Platform } from "../../../types/releaseTypes";
 import CardButton from "../../cards/CardButton";
 import { openInANewTab } from "../../../utils/openInANewTab";
-import VisibilitySwitch from "./VisibilitySwitch";
-import { MouseEventHandler } from "react";
-
 import CustomSwitch from "../../common/CustomSwitch";
+import { MouseEventHandler } from "react";
 
 interface PlatformFieldProps {
     platformsWithUrl?: Platform[];
@@ -39,10 +37,11 @@ export default function LinkEditorPlatformField({platformsWithUrl, platform, new
                                 icon="" 
                                 onClick={() => platform.url && openInANewTab(platform.url)} 
                             />
-                            <VisibilitySwitch 
+                            
+                            <CustomSwitch 
                                 platformVisibility={platformsVisibility[platform.id]} 
                                 platformId={platform.id} 
-                                onVisibilityChange={onVisibilityChange} 
+                                onVisibilityChange={onVisibilityChange}
                             />
                         </>                       
                     )
@@ -56,11 +55,6 @@ export default function LinkEditorPlatformField({platformsWithUrl, platform, new
                     )
                 }
             </div>
-            <CustomSwitch 
-                platformVisibility={platformsVisibility[platform.id]} 
-                platformId={platform.id} 
-                onVisibilityChange={onVisibilityChange}
-            />
         </div>
     )
 };

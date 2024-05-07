@@ -39,12 +39,8 @@
         .buttons-container {
             display: flex;
             flex-direction: column;
-
-            .switch {
-                width: 100%;
-                display: flex;
-                justify-content: center;
-            }
+            align-items: center;
+            gap: .5rem;
         }
     }
 

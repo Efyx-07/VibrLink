@@ -11,7 +11,7 @@ export default function CustomSwitch({ platformVisibility, platformId, onVisibil
     const labelText = platformVisibility ? "Visible" : "Hidden";
 
     return (
-        <div>
+        <div className='switch-container'>
             <label className="switch">
                 <input 
                     type="checkbox"
