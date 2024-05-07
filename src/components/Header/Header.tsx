@@ -29,10 +29,10 @@ export default function Header() {
                 <div className="nav-wrapper-mobile">
                     <MyAccountItem />
                     <MobileMenuIcon 
-                            isOpen={isOpen}
-                            onOpenClick={openMobileMenu}
-                            onCloseClick={closeMobileMenu}
-                        />
+                        isOpen={isOpen}
+                        onOpenClick={openMobileMenu}
+                        onCloseClick={closeMobileMenu}
+                    />
                 </div>
             </div>
             <MobileMenu
