@@ -4,6 +4,8 @@ import { openInANewTab } from "../../../utils/openInANewTab";
 import VisibilitySwitch from "./VisibilitySwitch";
 import { MouseEventHandler } from "react";
 
+import Switch from "../../common/Switch";
+
 interface PlatformFieldProps {
     platformsWithUrl?: Platform[];
     platformsWithoutUrl?: Platform [];
@@ -54,6 +56,7 @@ export default function LinkEditorPlatformField({platformsWithUrl, platform, new
                     )
                 }
             </div>
+            <Switch />
         </div>
     )
 };
