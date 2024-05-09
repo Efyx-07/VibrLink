@@ -1,6 +1,6 @@
 import { MouseEventHandler } from "react";
 import { Icon } from '@iconify-icon/react';
-import './CardButton.scss';
+import './DBCardButton.scss';
 
 interface CardButtonProps {
     name: string;

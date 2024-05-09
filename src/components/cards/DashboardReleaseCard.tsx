@@ -3,7 +3,9 @@ import { useModal } from "../../contexts/ModalContext";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { openInANewTab } from "../../utils/openInANewTab";
-import CardButton from "./CardButton";
+import { MouseEventHandler } from "react";
+import { Icon } from '@iconify-icon/react';
+import './DBCardButton.scss';
 import './DashboardReleaseCard.scss';
 
 interface DashboardReleaseCardProps {
@@ -47,11 +49,28 @@ export default function DashboardReleaseCard({ release }: DashboardReleaseCardPr
             </div>
             {shouldShowButtons &&
                 <div className="buttons-container">
-                    <CardButton name="Edit link" icon="mdi:tools" onClick={() => navToReleaseToEditPage(release.slug)}/>
-                    <CardButton name="Delete link" icon="mdi:skull-crossbones" onClick={() => openRemoveReleaseModal(release.id)}/>
-                    <CardButton name="View landing page" icon="mdi:telescope" onClick={() => navToReleaseLandingPage(release.slug)} />
+                    <DBCardButton name="Edit link" icon="mdi:tools" onClick={() => navToReleaseToEditPage(release.slug)}/>
+                    <DBCardButton name="Delete link" icon="mdi:skull-crossbones" onClick={() => openRemoveReleaseModal(release.id)}/>
+                    <DBCardButton name="View landing page" icon="mdi:telescope" onClick={() => navToReleaseLandingPage(release.slug)} />
                 </div>
             }    
+        </div>
+    )
+};
+
+// local component for the card button
+interface DBCardButtonProps {
+    name: string;
+    icon: string;
+    onClick: MouseEventHandler<HTMLDivElement>;
+};
+
+function DBCardButton({name, icon, onClick}: DBCardButtonProps) {
+
+    return (
+        <div className="dashboard-card-button" onClick={onClick}>
+            <Icon icon={icon} />
+            <p>{name}</p>
         </div>
     )
 }
