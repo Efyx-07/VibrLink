@@ -51,7 +51,7 @@ export default function App() {
 
   // conditionnal display of the header by pathname
   const location = useLocation();
-  const [shouldShowComponent, setShouldShowComponent] = useState(true);
+  const [shouldShowComponent, setShouldShowComponent] = useState<boolean>(true);
 
   useEffect(() => {
     const isVibrlinkLandingPage = location.pathname.includes('/v');

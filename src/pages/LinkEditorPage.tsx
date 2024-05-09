@@ -2,10 +2,10 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Release } from "../types/releaseTypes";
 import { useReleaseStore, useUserStore } from "../stores";
-import ReleaseBanner from "../components/cards/ReleaseBanner";
+import DashboardReleaseCard from "../components/cards/DashboardReleaseCard";
 import LinkEditorForm from "../components/release-forms/link-editor/LinkEditorForm";
 import LoadingSpinner from "../components/common/LoadingSpinner";
-import './LinkEditorPage.scss'
+import './LinkEditorPage.scss';
 
 export default function LinkEditorPage() {
 
@@ -29,7 +29,7 @@ export default function LinkEditorPage() {
             <div className="content">
                 {selectedRelease ? (
                     <div className="linkEditor-wrapper">
-                        <ReleaseBanner selectedRelease={selectedRelease} />
+                        <DashboardReleaseCard release={selectedRelease} />
                         <LinkEditorForm selectedRelease={selectedRelease} />
                     </div>
                 ) 
