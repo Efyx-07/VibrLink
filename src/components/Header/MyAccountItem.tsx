@@ -28,10 +28,7 @@ export default function MyAccountItem() {
                     onMouseLeave={handleEmailMouseLeave}
                 >
                     <p>My Account</p>
-                    {isHoverUserMenuVisible && 
-                        (
-                            <HoverUserMenu />
-                        )}
+                    {isHoverUserMenuVisible && (<HoverUserMenu />)}
                 </div>
             )}  
         </div>
