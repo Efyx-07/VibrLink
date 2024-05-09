@@ -26,8 +26,8 @@ export default function VibrlinkLandingPage() {
         }
     }, [releaseSlug]);
 
-
     return (
+
         <div className="landing-page" style={{ backgroundImage: `url(${selectedRelease?.cover})`, backgroundSize: 'cover', backgroundAttachment: 'fixed', backgroundPosition:'center' }}>
             {selectedRelease && (
                 <div className="content">
