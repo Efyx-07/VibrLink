@@ -1,8 +1,9 @@
 import { Platform } from "../../../types/releaseTypes";
-import CardButton from "../../cards/CardButton";
 import { openInANewTab } from "../../../utils/openInANewTab";
 import CustomSwitch from "../../common/CustomSwitch";
+import { Icon } from '@iconify-icon/react';
 import { MouseEventHandler } from "react";
+import './ActionButton.scss';
 
 interface PlatformFieldProps {
     platformsWithUrl?: Platform[];
@@ -32,9 +33,9 @@ export default function LinkEditorPlatformField({platformsWithUrl, platform, new
                 {platformsWithUrl ?
                     (
                         <>
-                            <CardButton 
+                            <ActionButton 
                                 name="Test link" 
-                                icon="" 
+                                icon="majesticons:open" 
                                 onClick={() => platform.url && openInANewTab(platform.url)} 
                             />
                             
@@ -47,9 +48,9 @@ export default function LinkEditorPlatformField({platformsWithUrl, platform, new
                     )
                     :
                     (
-                        <CardButton 
+                        <ActionButton
                             name="Add" 
-                            icon="" 
+                            icon="dashicons:plus" 
                             onClick={onAddButtonClick} 
                         />
                     )
@@ -58,3 +59,19 @@ export default function LinkEditorPlatformField({platformsWithUrl, platform, new
         </div>
     )
 };
+
+// local component for action button
+interface ActionButtonProps {
+    name: string;
+    icon: string;
+    onClick: MouseEventHandler<HTMLDivElement>;
+}
+
+function ActionButton({ name, icon, onClick }: ActionButtonProps) {
+    return (
+        <div className="action-button" onClick={onClick}>
+            <Icon icon={icon} className="icon"/>
+            <p>{name}</p>
+        </div>
+    )
+}
