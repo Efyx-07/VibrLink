@@ -172,20 +172,24 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
 
     return (
         <form className="linkEditor-form" onSubmit={(e) => { e.preventDefault(); submitReleaseUpdate(); }}>
-            {platformsWithUrl.map(platform => (
-                // field for the platform with url
-                <LinkEditorPlatformField 
-                    platformsWithUrl={platformsWithUrl} 
-                    platform={platform}
-                    newUrls={newUrls}
-                    onChange={handleUrlChange}
-                    platformsVisibility={platformsVisibility}
-                    onVisibilityChange={handleVisibilityChange}
-                    onAddButtonClick={() => {}}
-                />
-            ))}
+            <div className="generated-links">
+                <SectionTitle name="Generated links"/>
+                {platformsWithUrl.map(platform => (
+                    // field for the platform with url
+                    <LinkEditorPlatformField 
+                        platformsWithUrl={platformsWithUrl} 
+                        platform={platform}
+                        newUrls={newUrls}
+                        onChange={handleUrlChange}
+                        platformsVisibility={platformsVisibility}
+                        onVisibilityChange={handleVisibilityChange}
+                        onAddButtonClick={() => {}}
+                    />
+                ))}
+            </div>   
             {platformsWithoutUrl.length > 0 && (
                 <div className="manual-links">
+                    <SectionTitle name="Enter more links manually"/>
                     {selectedPlatform && (
                         // field for the platform without url
                         <LinkEditorPlatformField 
@@ -213,5 +217,18 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
                 </div>
             ) : <FormButton type="submit" name="Update link" />}
         </form>
+    )
+};
+
+// local component for SectionTitle
+interface SectionTitleProps {
+    name: string;
+}
+
+function SectionTitle({ name }: SectionTitleProps) {
+    return (
+        <div className="section-name">
+            <p>{name}</p><div className="separator"></div>
+        </div>
     )
 };
