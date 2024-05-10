@@ -54,6 +54,7 @@ export default function LinkEditorPlatformField({platformsWithUrl, platform, new
                         }
                     </div>
                 </div>
+                
                 <div className="logo-container">
                     <img src={platform.logoUrl} />
                 </div>
