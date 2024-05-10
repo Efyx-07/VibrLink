@@ -35,7 +35,7 @@ export default function MyLinksPage() {
                 <PageTitle mainPart="Manage" secondaryPart="your vibrlinks"/>
                 <div className="dashboard-releaseCards-container">
                     {reversedReleases.map(release => (
-                        <DashboardReleaseCard release={release}/>
+                        <DashboardReleaseCard release={release} key={release.id}/>
                     ))}
                 </div>
             </div>

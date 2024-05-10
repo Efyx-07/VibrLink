@@ -37,7 +37,7 @@ export default function DashboardReleaseCard({ release }: DashboardReleaseCardPr
     }, [location.pathname]);
     
     return (
-        <div className="dashboard-releaseCard" key={release.id}>
+        <div className="dashboard-releaseCard">
             <div className="card-imageAndInfos-container">
                 <div className="image-container">
                     <img src={release.cover} />
