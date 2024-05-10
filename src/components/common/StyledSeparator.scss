@@ -1,7 +1,7 @@
 @import '../../assets/sass/common/colors.scss';
 @import '../../assets/sass/common/breakpoints.scss';
 
-.direction-separator {
+.styled-separator {
     min-height: 3rem;
     width: 100%;
     position: relative;
@@ -15,7 +15,7 @@
         background: rgba($whiteColor, .1);
     }
 
-    .direction-icon {
+    .styled-separator-icon {
         width: 3rem;
         height: 3rem;
         background: $darkColor;
@@ -30,7 +30,6 @@
         animation: moveLeftRight 3s infinite;
 
         .icon {
-            transform: rotate(180deg);
             font-size: 1.5rem;
         }
     }
@@ -38,7 +37,7 @@
 
 @media (min-width: $breakpointLargeTablet) {
 
-    .direction-separator {
+    .styled-separator {
         width: unset;
         min-height: unset;
         min-width: 6rem;
@@ -52,7 +51,7 @@
             transform: translateX(-50%);
         }
     
-        .direction-icon {
+        .styled-separator-icon {
             width: 6rem;
             height: 6rem;
             left: unset;
@@ -61,7 +60,6 @@
             animation: moveUpDown 3s infinite;
     
             .icon {
-                transform: rotate(90deg);
                 font-size: 2rem;
             }
         }

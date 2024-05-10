@@ -1,6 +1,6 @@
 import NewLinkForm from "../components/release-forms/NewLinkForm";
 import FormPageMessage from "../components/common/FormPageMessage";
-import DirectionSeparator from "../components/common/DirectionSeparator";
+import StyledSeparator from "../components/common/StyledSeparator";
 import '../assets/sass/common/messageAndFormContainer.scss';
 
 export default function NewLinkPage() {
@@ -14,7 +14,7 @@ export default function NewLinkPage() {
             <div className="content">
                 <div className="message-and-form-container">
                     <FormPageMessage mainTextPrimary={mainTextPrimary} mainTextSecondary={mainTextSecondary} subText={subText} />
-                    <DirectionSeparator />
+                    <StyledSeparator icon="ph:music-notes-simple-fill" />
                     <div className="form-container">
                         <NewLinkForm />
                     </div>
