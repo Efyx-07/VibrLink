@@ -1,5 +1,6 @@
 import { ChangeEventHandler } from 'react';
 import { Platform } from "../../../types/releaseTypes";
+import './LinkEditorSelect.scss';
 
 interface LinkEditorSelectProps {
     onChange: ChangeEventHandler<HTMLSelectElement>,
