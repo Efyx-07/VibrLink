@@ -32,12 +32,22 @@ export default function MyLinksPage() {
     return (
         <div className="page myLinks-page">
             <div className="content">
-                <PageTitle mainPart="Manage" secondaryPart="your vibrlinks"/>
-                <div className="dashboard-releaseCards-container">
-                    {reversedReleases.map(release => (
-                        <DashboardReleaseCard release={release} key={release.id}/>
-                    ))}
-                </div>
+                {releases.length > 0 ? 
+                (
+                    <>
+                        <PageTitle mainPart="Manage" secondaryPart="your vibrlinks"/>
+                        <div className="dashboard-releaseCards-container">
+                            {reversedReleases.map(release => (
+                                <DashboardReleaseCard release={release} key={release.id}/>
+                            ))}
+                        </div>
+                    </>
+                )
+                :
+                (
+                    <p>No vibrlink yet !</p>
+                )
+                }
             </div>
         </div>
     )
