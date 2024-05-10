@@ -57,15 +57,15 @@ export default function NewVibrlinkForm() {
             <div className="input-container">
                 <label htmlFor="spotifyId">Enter your release Spotify id:</label>
                 <div className="newLinkForm-input-wrapper">
-                <p>{spotifyPrefix}</p>
-                <input 
-                    className="input" 
-                    type="text" 
-                    name="spotifyId" 
-                    id="spotifyId" 
-                    required 
-                    onChange={(e) => setSpotifyId(e.target.value)}
-                />
+                    <p>{spotifyPrefix}</p>
+                    <input 
+                        className="input" 
+                        type="text" 
+                        name="spotifyId" 
+                        id="spotifyId" 
+                        required 
+                        onChange={(e) => setSpotifyId(e.target.value)}
+                    />
                 </div>
             </div>
             {errorMessage && <p className="error-message">This is not a valid Id or the release already exists !</p>}
