@@ -2,19 +2,14 @@ import { useState, useEffect } from "react";
 import { Release } from "../types/releaseTypes";
 import { useParams } from "react-router-dom";
 import { fetchReleaseDataBySlug } from "../services/releasesApi";
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import VibrlinkCard from "../components/cards/VibrlinkCard";
-import { Helmet } from 'react-helmet-async';
 import './VibrlinkLandingPage.scss';
 
 export default function VibrlinkLandingPage() {
 
     const {releaseSlug} = useParams();
     const [selectedRelease, setSelectedRelease] = useState<Release | null>(null);
-
-    const seoTitle = selectedRelease?.title;
-    const seoArtist = selectedRelease?.artist;
-
-    console.log('datas: ', seoTitle, seoArtist)
 
     useEffect(() => {
 
@@ -33,16 +28,18 @@ export default function VibrlinkLandingPage() {
     }, [releaseSlug]);
 
     return (
-
+        <HelmetProvider>
         <div className="landing-page" style={{ backgroundImage: `url(${selectedRelease?.cover})`, backgroundSize: 'cover', backgroundAttachment: 'fixed', backgroundPosition:'center' }}>
-            <Helmet>
-                <title>{seoArtist} | {seoTitle}</title>
-            </Helmet>
             {selectedRelease && (
                 <div className="content">
+                    <Helmet>
+                        {/* specific SEO part */}
+                        <title>{selectedRelease.artist} | {selectedRelease.title}</title>
+                    </Helmet>
                     <VibrlinkCard selectedRelease={selectedRelease} />
                 </div>
             )}  
         </div>
+        </HelmetProvider>
     )
 };
