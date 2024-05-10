@@ -1,9 +1,10 @@
 @import '../../assets/sass/common/colors.scss';
 
-.navItems-container {
+.myAccountItem-container {
     display: flex;
+    height: 100%;
 
-    .navItem {
+    .myAccountItem {
         display: flex;
         align-items: center;
         cursor: pointer;

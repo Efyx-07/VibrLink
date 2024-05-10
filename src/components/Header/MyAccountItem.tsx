@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useUserStore } from "../../stores";
 import HoverUserMenu from './HoverUserMenu';
-import './Navigation.scss';
+//import './Navigation.scss';
+import './MyAccountItem.scss';
 
 export default function MyAccountItem() {
 
@@ -20,10 +21,10 @@ export default function MyAccountItem() {
     };
 
     return (
-        <div className="navItems-container">
+        <div className="myAccountItem-container">
             {isLogged && (
                 <div
-                    className="navItem"
+                    className="myAccountItem"
                     onMouseEnter={handleEmailMouseEnter}
                     onMouseLeave={handleEmailMouseLeave}
                 >
