@@ -1,0 +1,73 @@
+@import './colors.scss';
+
+.message-and-form-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 2rem;
+
+    .message-container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        position: relative;
+
+        h1 {
+            font-size: 4.5rem;
+
+            span {
+                color: $accentColor;
+            }
+        }
+
+        p {
+            font-weight: 200;
+        }
+    }
+
+    .separator-container {
+        min-width: 6rem;
+        height: 50vh;
+        position: relative;
+
+        .slider-line {
+            width: 1px;
+            height: 100%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba($whiteColor, .1);
+        }
+
+        .direction-icon {
+            width: 6rem;
+            height: 6rem;
+            background: $darkColor;
+            border: dotted .25rem rgba($whiteColor, .5);
+            color: rgba($whiteColor, .5);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: moveUpDown 3s infinite;
+
+            .icon {
+                transform: rotate(90deg);
+                font-size: 2rem;
+            }
+        }
+    }
+}
+
+@keyframes moveUpDown {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6rem);
+    }
+}
