@@ -34,7 +34,7 @@ export default function LoginPage() {
 
                     <div className="message-and-form-container">
                         <FormPageMessage mainTextPrimary={mainTextPrimary} mainTextSecondary={mainTextSecondary} subText={subText} />
-                        <StyledSeparator icon="uiw:login" />
+                        <StyledSeparator icon="game-icons:brain-freeze" />
                         <div className="form-container">
                             <LoginForm />
                             <p className="option" onClick={hideLoginForm}>I forgot my password</p>
