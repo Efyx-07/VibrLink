@@ -5,11 +5,12 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    text-align: center;
+    gap: 1rem;
     position: relative;
 
     h1 {
-        font-size: 4.5rem;
+        font-size: 2.5rem;
 
         span {
             color: $accentColor;
@@ -17,10 +18,32 @@
     }
 
     p {
+        font-size: .9rem;
         font-weight: 200;
     }
 }
 
 @media (min-width: $breakpointLargeTablet) {
+
+    .message-container {
+        text-align: start;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        position: relative;
     
+        h1 {
+            font-size: 4.5rem;
+    
+            span {
+                color: $accentColor;
+            }
+        }
+    
+        p {
+            font-size: 1rem;
+            font-weight: 200;
+        }
+    }
 }
