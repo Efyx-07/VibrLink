@@ -4,6 +4,7 @@ import { createLink } from "../../services/releaseService";
 import { useNavigate } from "react-router-dom";
 import FormButton from "../common/FormButton";
 import LoadingSpinner from "../common/LoadingSpinner";
+import { validateSpotifyId } from "../../utils/validateSpotifyId";
 import './NewLinkForm.scss';
 
 export default function NewVibrlinkForm() {
@@ -24,6 +25,17 @@ export default function NewVibrlinkForm() {
     const sendSpotifyUrlAndUserId = async (e: React.FormEvent<HTMLFormElement>): Promise <void> => {
         e.preventDefault();
         setIsLoading(true);
+
+        // check if spotifyId is valid or return an error
+        if (!validateSpotifyId(spotifyId)) {
+            setIsLoading(false);
+            setErrorMessage(true);
+            // if error reset the form after 3s
+            setTimeout(() => {
+                setErrorMessage(false);
+            }, 3000);
+            return;
+        }
 
         const albumUrl: string = getSpotifyUrl();
         const userId: number | undefined = userStore.user?.id;
@@ -46,7 +58,6 @@ export default function NewVibrlinkForm() {
             // if error reset the form after 3s
             setTimeout(() => {
                 setErrorMessage(false);
-                setSpotifyId('Hey');
             }, 3000);
             console.error('Failed to send album URL: ', error);
           }
