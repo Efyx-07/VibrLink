@@ -31,7 +31,7 @@
 
         .icon {
             transform: rotate(180deg);
-            font-size: 2rem;
+            font-size: 1.5rem;
         }
     }
 }
@@ -43,31 +43,21 @@
         min-height: unset;
         min-width: 6rem;
         height: 50vh;
-        position: relative;
     
         .slider-line {
             width: 1px;
             height: 100%;
-            position: absolute;
             top: unset;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba($whiteColor, .1);
         }
     
         .direction-icon {
             width: 6rem;
             height: 6rem;
-            background: $darkColor;
-            border: dotted .25rem rgba($whiteColor, .5);
-            color: rgba($whiteColor, .5);
-            position: absolute;
             left: unset;
             top: 50%;
             transform: translateY(-50%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
             animation: moveUpDown 3s infinite;
     
             .icon {
