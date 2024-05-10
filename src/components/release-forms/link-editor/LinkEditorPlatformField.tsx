@@ -20,8 +20,40 @@ interface PlatformFieldProps {
 export default function LinkEditorPlatformField({platformsWithUrl, platform, newUrls, onChange, platformsVisibility, onVisibilityChange, onAddButtonClick}: PlatformFieldProps) {
     return (
         <>
-            {/* only visible on devices with a width > 830px */}
             <div className="field-wrapper" key={platform.id}>
+                {/* only visible on devices with a width > 830px */}
+                <div className="mobile-logo-and-buttons-container">
+                    <div className="mobile-logo-container">
+                        <img src={platform.logoUrl} />
+                    </div>
+                    <div className="mobile-buttons-container">
+                        {platformsWithUrl ?
+                            (
+                                <>
+                                    <ActionButton 
+                                        name="Test link" 
+                                        icon="majesticons:open" 
+                                        onClick={() => platform.url && openInANewTab(platform.url)} 
+                                    />
+                                    
+                                    <CustomSwitch 
+                                        platformVisibility={platformsVisibility[platform.id]} 
+                                        platformId={platform.id} 
+                                        onVisibilityChange={onVisibilityChange}
+                                    />
+                                </>                       
+                            )
+                            :
+                            (
+                                <ActionButton
+                                    name="Add" 
+                                    icon="dashicons:plus" 
+                                    onClick={onAddButtonClick} 
+                                />
+                            )
+                        }
+                    </div>
+                </div>
                 <div className="logo-container">
                     <img src={platform.logoUrl} />
                 </div>
@@ -59,48 +91,6 @@ export default function LinkEditorPlatformField({platformsWithUrl, platform, new
                         )
                     }
                 </div>
-            </div>
-            {/* only visible on devices with a width < 830px */}
-            <div className="mobile-field-wrapper" key={platform.id}>
-                <div className="logo-and-buttons-container">
-                    <div className="logo-container">
-                        <img src={platform.logoUrl} />
-                    </div>
-                    <div className="buttons-container">
-                        {platformsWithUrl ?
-                            (
-                                <>
-                                    <ActionButton 
-                                        name="Test link" 
-                                        icon="majesticons:open" 
-                                        onClick={() => platform.url && openInANewTab(platform.url)} 
-                                    />
-                                    
-                                    <CustomSwitch 
-                                        platformVisibility={platformsVisibility[platform.id]} 
-                                        platformId={platform.id} 
-                                        onVisibilityChange={onVisibilityChange}
-                                    />
-                                </>                       
-                            )
-                            :
-                            (
-                                <ActionButton
-                                    name="Add" 
-                                    icon="dashicons:plus" 
-                                    onClick={onAddButtonClick} 
-                                />
-                            )
-                        }
-                    </div>
-                </div>
-                <input 
-                    type="url" 
-                    name="url"
-                    id="url"
-                    value={newUrls[platform.id] || ""}
-                    onChange={(e) => onChange(platform.id, e.target.value)}
-                />
             </div>
         </>
     )
