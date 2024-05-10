@@ -5,6 +5,7 @@ import LinkEditorPlatformField from "./LinkEditorPlatformField";
 import LinkEditorSelect from "./LinkEditorSelect";
 import LoadingSpinner from "../../common/LoadingSpinner";
 import FormButton from "../../common/FormButton";
+import Separator from "../../common/Separator";
 import './LinkEditorForm.scss';
 
 interface SelectedReleaseProps {
@@ -228,7 +229,8 @@ interface SectionTitleProps {
 function SectionTitle({ name }: SectionTitleProps) {
     return (
         <div className="section-name">
-            <p>{name}</p><div className="separator"></div>
+            <p>{name}</p>
+            <Separator />
         </div>
     )
 };

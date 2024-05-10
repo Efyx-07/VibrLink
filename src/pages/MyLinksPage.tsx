@@ -2,6 +2,7 @@ import { Release } from "../types/releaseTypes";
 import { useEffect } from "react";
 import { useUserStore, useReleaseStore } from "../stores";
 import DashboardReleaseCard from "../components/cards/DashboardReleaseCard";
+import PageTitle from "../components/common/PageTitle";
 import '../assets/sass/common/pages-common-styles.scss';
 import './MyLinksPage.scss';
 
@@ -31,6 +32,7 @@ export default function MyLinksPage() {
     return (
         <div className="page myLinks-page">
             <div className="content">
+                <PageTitle mainPart="Manage" secondaryPart="your vibrlinks"/>
                 <div className="dashboard-releaseCards-container">
                     {reversedReleases.map(release => (
                         <DashboardReleaseCard release={release}/>
