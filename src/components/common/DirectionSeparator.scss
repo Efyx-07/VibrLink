@@ -2,36 +2,78 @@
 @import '../../assets/sass/common/breakpoints.scss';
 
 .direction-separator {
-    min-width: 6rem;
-    height: 50vh;
+    min-height: 3rem;
+    width: 100%;
     position: relative;
 
     .slider-line {
-        width: 1px;
-        height: 100%;
+        width: 100%;
+        height: 1px;
         position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
+        top: 50%;
+        transform: translateY(-50%);
         background: rgba($whiteColor, .1);
     }
 
     .direction-icon {
-        width: 6rem;
-        height: 6rem;
+        width: 3rem;
+        height: 3rem;
         background: $darkColor;
         border: dotted .25rem rgba($whiteColor, .5);
         color: rgba($whiteColor, .5);
         position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
+        left: 50%;
+        transform: translateX(-50%);
         display: flex;
         justify-content: center;
         align-items: center;
-        animation: moveUpDown 3s infinite;
+        animation: moveLeftRight 3s infinite;
 
         .icon {
-            transform: rotate(90deg);
+            transform: rotate(180deg);
             font-size: 2rem;
+        }
+    }
+}
+
+@media (min-width: $breakpointLargeTablet) {
+
+    .direction-separator {
+        width: unset;
+        min-height: unset;
+        min-width: 6rem;
+        height: 50vh;
+        position: relative;
+    
+        .slider-line {
+            width: 1px;
+            height: 100%;
+            position: absolute;
+            top: unset;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba($whiteColor, .1);
+        }
+    
+        .direction-icon {
+            width: 6rem;
+            height: 6rem;
+            background: $darkColor;
+            border: dotted .25rem rgba($whiteColor, .5);
+            color: rgba($whiteColor, .5);
+            position: absolute;
+            left: unset;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: moveUpDown 3s infinite;
+    
+            .icon {
+                transform: rotate(90deg);
+                font-size: 2rem;
+            }
         }
     }
 }
@@ -42,5 +84,14 @@
     }
     50% {
       transform: translateY(-6rem);
+    }
+}
+
+@keyframes moveLeftRight {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(-6rem);
     }
 }
