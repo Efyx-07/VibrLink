@@ -1,0 +1,96 @@
+@import '../../../assets/sass/common/colors.scss';
+@import '../../../assets/sass/common/breakpoints.scss';
+
+// shared styles between breakpoints
+@mixin input-style {
+    height: 4rem;
+    width: 100%;
+    background: $darkColorRelief;
+    border: solid 1px rgba($whiteColor, .1);
+    outline: none;
+    color: $whiteColor;
+    padding-left: 1rem;
+    font-size: .9rem;
+    font-weight: 400;
+
+    &:focus {
+        border: solid 1px $accentColor;
+    }
+}
+
+@mixin image-style {
+    display: block;
+    width: 100%;
+}
+
+// mobile style
+.field-wrapper {
+    display: none;
+}
+
+.mobile-field-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5rem;
+
+    .logo-and-buttons-container {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .logo-container {
+            display: inline-block;
+            width: 6rem;
+    
+            img {
+                @include image-style
+            }
+        }
+
+        .buttons-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+    }
+
+    input {
+        @include input-style;
+    }
+}
+
+// larger devices style
+@media (min-width: $breakpointLargeTablet) {
+
+    .mobile-field-wrapper {
+        display: none;
+    }
+    
+    .field-wrapper {
+        display: grid;
+        grid-template-columns: .75fr 5fr .75fr;
+        gap: 2rem;
+        align-items: center;
+    
+        .logo-container {
+            display: inline-block;
+    
+            img {
+                @include image-style
+            }
+        }
+    
+        input {
+            @include input-style;
+        }
+    
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .5rem;
+        }
+    }
+}
