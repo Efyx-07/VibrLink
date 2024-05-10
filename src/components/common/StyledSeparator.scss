@@ -29,8 +29,13 @@
         align-items: center;
         animation: moveLeftRight 3s infinite;
 
+        &:hover > .icon {
+            transform: rotate(360deg);
+        }
+
         .icon {
             font-size: 1.5rem;
+            transition: transform .3s;
         }
     }
 }
