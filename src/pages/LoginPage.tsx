@@ -24,7 +24,7 @@ export default function LoginPage() {
 
     const mainTextPrimary2: string = 'Oops';
     const mainTextSecondary2: string = ' it seems you forgot your password';
-    const subText2: string = 'Don\t worry, if your email exists in our database, we\'ll send you a reset link to choose anothe one !';
+    const subText2: string = 'Don\'t worry, if your email exists in our database, we\'ll send you a reset link to choose another one !';
 
     return (
         <div className="page">
