@@ -5,6 +5,7 @@ import { useReleaseStore, useUserStore } from "../stores";
 import DashboardReleaseCard from "../components/cards/DashboardReleaseCard";
 import LinkEditorForm from "../components/release-forms/link-editor/LinkEditorForm";
 import LoadingSpinner from "../components/common/LoadingSpinner";
+import PageTitle from "../components/common/PageTitle";
 import './LinkEditorPage.scss';
 
 export default function LinkEditorPage() {
@@ -28,10 +29,13 @@ export default function LinkEditorPage() {
         <div className="page">
             <div className="content">
                 {selectedRelease ? (
-                    <div className="linkEditor-wrapper">
-                        <DashboardReleaseCard release={selectedRelease} />
-                        <LinkEditorForm selectedRelease={selectedRelease} />
-                    </div>
+                    <>
+                        <PageTitle mainPart="Edit" secondaryPart="your links"/>
+                        <div className="linkEditor-wrapper">
+                            <DashboardReleaseCard release={selectedRelease} />
+                            <LinkEditorForm selectedRelease={selectedRelease} />
+                        </div>
+                    </>
                 ) 
                 : 
                 <LoadingSpinner />}   
