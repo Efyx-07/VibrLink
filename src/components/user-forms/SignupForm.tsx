@@ -5,6 +5,7 @@ import { register } from "../../services/authService";
 import UserFormField from "./UserFormField";
 import LoadingSpinner from "../common/LoadingSpinner";
 import FormButton from "../common/FormButton";
+import FormSuccessMessage from "./FormSuccessMessage";
 import '../../assets/sass/common/forms-style.scss';
 
 export default function SignupForm() {
@@ -17,6 +18,8 @@ export default function SignupForm() {
     const [isConfirmPasswordValid, setConfirmPasswordValid] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [successMessage, setSuccessMessage] = useState<boolean>(false);
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -39,7 +42,7 @@ export default function SignupForm() {
         try {
             const data = await register(email, password);
             setIsLoading(false);
-            navigate('/login');
+            setSuccessMessage(true);
             return data;
 
         } catch (error) {
@@ -66,41 +69,54 @@ export default function SignupForm() {
     };
     
     return (
-        <form onSubmit={signup}>
-            <UserFormField 
-                label="Email address" 
-                type="email" 
-                name="email" 
-                value={email} 
-                onChange={(e) => setEmail(e.target.value)}
-                isValid={isEmailValid}
-            />
-            <UserFormField 
-                label="Create a password" 
-                type="password" 
-                name="password" 
-                value={password} 
-                onChange={(e) => setPassword(e.target.value)}
-                mention="8 characters, 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character" 
-                className="password-input" 
-                isValid={isPasswordValid}
-            />
-            <UserFormField 
-                label="Confirm your password" 
-                type="password" 
-                name="confirm-password" 
-                value={confirmPassword} 
-                onChange={(e) => setConfirmPassword(e.target.value)} 
-                mention="must be identical to your password"
-                className="password-input" 
-                isValid={isConfirmPasswordValid && !!confirmPassword}
-            />
-            {errorMessage && <p className="error-message">This email already exists or your passwords are not identical !</p>}
-            {isLoading ? (
-                <div className="spinner-container">
-                    <LoadingSpinner />
-                </div>
-            ) : <FormButton type="submit" name="Sign up" />}
-        </form>
+        <>
+            {successMessage ? (
+                    <FormSuccessMessage 
+                        message="Your account has been succesfully created !"
+                        buttonName="Login to your account"
+                        onClick={() => navigate('/login')}
+                    />
+                )
+                :
+                (
+                    <form onSubmit={signup}>
+                        <UserFormField 
+                            label="Email address" 
+                            type="email" 
+                            name="email" 
+                            value={email} 
+                            onChange={(e) => setEmail(e.target.value)}
+                            isValid={isEmailValid}
+                        />
+                        <UserFormField 
+                            label="Create a password" 
+                            type="password" 
+                            name="password" 
+                            value={password} 
+                            onChange={(e) => setPassword(e.target.value)}
+                            mention="8 characters, 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character" 
+                            className="password-input" 
+                            isValid={isPasswordValid}
+                        />
+                        <UserFormField 
+                            label="Confirm your password" 
+                            type="password" 
+                            name="confirm-password" 
+                            value={confirmPassword} 
+                            onChange={(e) => setConfirmPassword(e.target.value)} 
+                            mention="must be identical to your password"
+                            className="password-input" 
+                            isValid={isConfirmPasswordValid && !!confirmPassword}
+                        />
+                        {errorMessage && <p className="error-message">This email already exists or your passwords are not identical !</p>}
+                        {isLoading ? (
+                            <div className="spinner-container">
+                                <LoadingSpinner />
+                            </div>
+                        ) : <FormButton type="submit" name="Sign up" />}
+                    </form>
+                )
+            }
+        </>
     )
 }

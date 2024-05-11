@@ -66,10 +66,6 @@ export default function UpdatePasswordForm() {
         }
     };
 
-    const navToLoginPage = (): void => {
-        navigate('/login');
-    }
-
     const handleErrorAndApply = () => {
         setErrorMessage(true);
             setIsLoading(false);
@@ -93,7 +89,7 @@ export default function UpdatePasswordForm() {
                     <FormSuccessMessage
                         message="Password succesfully updated !"
                         buttonName="Back to login"
-                        onClick={navToLoginPage}
+                        onClick={() => navigate('/login')}
                      />
                 )
                 :
