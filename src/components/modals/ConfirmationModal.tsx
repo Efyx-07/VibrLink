@@ -2,7 +2,7 @@ import { MouseEventHandler } from "react";
 import { Icon } from '@iconify-icon/react';
 import './ConfirmationModal.scss';
 
-interface ConfirmationModal {
+interface ConfirmationModalProps {
     icon: string;
     topline: string;
     message: string;
@@ -11,10 +11,10 @@ interface ConfirmationModal {
     isOpen: boolean;
 }
 
-export default function ConfirmationModal({ icon, topline, message, onConfirm, onCancel, isOpen }: ConfirmationModal) {
+export default function ConfirmationModal({ icon, topline, message, onConfirm, onCancel, isOpen }: ConfirmationModalProps) {
     
     return (
-        <div className={`modal ${isOpen ? '' : 'hidden'}`}>
+        <div className="modal">
             <div className={`modal-content ${isOpen ? '' : 'hidden-modal-content'}`}>
                 <div className="icon-container">
                     <Icon icon={icon} className="icon"/>
