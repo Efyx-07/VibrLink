@@ -1,4 +1,5 @@
 import { useModal } from "../../contexts/ModalContext";
+import { useState, useEffect } from "react";
 import { useUserStore, useReleaseStore } from "../../stores";
 import { removeReleaseById } from "../../services/releaseService";
 import ConfirmationModal from "./ConfirmationModal";
@@ -7,9 +8,27 @@ export default function RemoveReleaseModal() {
 
     const { isRemoveReleaseModalOpen, modalReleaseId, closeRemoveReleaseModal } = useModal();
     const releaseStore = useReleaseStore();
-    const release = useReleaseStore(state => state.getReleaseById(modalReleaseId ?? 0));
     const userStore = useUserStore();
     const userId = userStore.user?.id;
+
+    // state for the release title
+    const [releaseTitle, setReleaseTitle] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (modalReleaseId !== null) {
+            // get the release matching with modalReleaseId
+            releaseStore.getReleaseById(modalReleaseId)
+                .then(release => {
+                    // update the release title
+                    if (release) {
+                        setReleaseTitle(release.title);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error while fetching release:', error);
+                });
+        }
+    }, [modalReleaseId, releaseStore]);
 
     const removeRelease = async (): Promise <void> => {
 
@@ -42,7 +61,7 @@ export default function RemoveReleaseModal() {
             {isRemoveReleaseModalOpen && (
                 <ConfirmationModal 
                     icon="mdi:skull-crossbones"
-                    topline={`Are you sure you want to delete "${release?.title}?"`}
+                    topline={`Are you sure you want to delete "${releaseTitle}?"`}
                     message="This will definitely remove this release."
                     onConfirm={() => {
                         if (modalReleaseId !== null) {
