@@ -4,14 +4,14 @@ import './FormSuccessMessage.scss';
 
 interface FormSuccessMessageProps {
     message: string;
-    buttonName: string;
-    onClick: MouseEventHandler<HTMLButtonElement>;
+    buttonName?: string;
+    onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 export default function FormSuccessMessage({ message, buttonName, onClick }: FormSuccessMessageProps) {
     return (
         <div className="form-success-message">
             <p>{message}</p>
-            <FormButton type="button" name={buttonName} onClick={onClick}/>
+            {buttonName && onClick && <FormButton type="button" name={buttonName} onClick={onClick}/>}
         </div>
     )
 }
