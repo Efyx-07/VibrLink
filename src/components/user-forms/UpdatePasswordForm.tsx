@@ -31,7 +31,8 @@ export default function UpdatePasswordForm() {
         setIsLoading(true);
 
         if (!validatePassword(newUserPassword) || !validateConfirmPassword(newUserPassword, confirmNewUserPassword)) {
-            console.error('Invalid email or password format');
+            console.error('Invalid password format');
+            handleErrorAndApply();
             return;
         }
 
@@ -58,15 +59,19 @@ export default function UpdatePasswordForm() {
             return data;
 
         } catch (error) {
-            setErrorMessage(true);
+            handleErrorAndApply();
+            console.error('Error during updating password: ', error);
+        }
+    };
+
+    const handleErrorAndApply = () => {
+        setErrorMessage(true);
             setIsLoading(false);
             // if error reset the form after 3s
             setTimeout(() => {
                 setErrorMessage(false);
                 resetForm();
             }, 3000);
-            console.error('Error during updating password: ', error);
-        }
     };
 
     // function to reset the form
@@ -106,7 +111,7 @@ export default function UpdatePasswordForm() {
                 className="password-input" 
                 isValid={isConfirmNewUserPasswordValid && !!confirmNewUserPassword}
             />
-            {errorMessage && <p className="error-message">Wrong current password !</p>}
+            {errorMessage && <p className="error-message">Wrong current password or invalid new password format !</p>}
             {isLoading ? (
                 <div className="spinner-container">
                     <LoadingSpinner />
