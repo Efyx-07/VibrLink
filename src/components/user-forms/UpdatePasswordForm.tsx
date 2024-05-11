@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import UserFormField from "./UserFormField";
 import LoadingSpinner from "../common/LoadingSpinner";
 import FormButton from "../common/FormButton";
+import FormSuccessMessage from "./FormSuccessMessage";
 import '../../assets/sass/common/forms-style.scss';
 
 export default function UpdatePasswordForm() {
@@ -17,6 +18,7 @@ export default function UpdatePasswordForm() {
     const [isConfirmNewUserPasswordValid, setIsConfirmNewUserPasswordValid] = useState<boolean>(false);
     const [errorMessage, setErrorMessage] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [successMessage, setSuccessMessage] = useState<boolean>(false);
     
     const userStore = useUserStore();
     const navigate = useNavigate();
@@ -55,7 +57,7 @@ export default function UpdatePasswordForm() {
             const data = await updatePassword(token, userId, currentPassword, newUserPassword);
             setIsLoading(false);
             userStore.logOutUser();
-            navigate('/login');
+            setSuccessMessage(true);
             return data;
 
         } catch (error) {
@@ -63,6 +65,10 @@ export default function UpdatePasswordForm() {
             console.error('Error during updating password: ', error);
         }
     };
+
+    const navToLoginPage = (): void => {
+        navigate('/login');
+    }
 
     const handleErrorAndApply = () => {
         setErrorMessage(true);
@@ -82,41 +88,54 @@ export default function UpdatePasswordForm() {
     };
 
     return (
-        <form onSubmit={updateUserPassword}>
-            <UserFormField 
-                label="Type your current password" 
-                type="password" 
-                name="password" 
-                value={currentPassword} 
-                onChange={(e) => setCurrentPassword(e.target.value)}
-                className="password-input" 
-            />
-            <UserFormField 
-                label="Create a new password" 
-                type="password" 
-                name="password" 
-                value={newUserPassword} 
-                onChange={(e) => setNewUserPassword(e.target.value)}
-                mention="8 characters, 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character" 
-                className="password-input" 
-                isValid={isNewUserPasswordValid}
-            />
-            <UserFormField 
-                label="Confirm your new password" 
-                type="password" 
-                name="confirm-password" 
-                value={confirmNewUserPassword} 
-                onChange={(e) => setConfirmNewUserPassword(e.target.value)} 
-                mention="must be identical to your new password"
-                className="password-input" 
-                isValid={isConfirmNewUserPasswordValid && !!confirmNewUserPassword}
-            />
-            {errorMessage && <p className="error-message">Wrong current password or invalid new password format !</p>}
-            {isLoading ? (
-                <div className="spinner-container">
-                    <LoadingSpinner />
-                </div>
-            ) : <FormButton type="submit" name="Update your password" />}
-        </form>
+        <>
+            {successMessage ? (
+                    <FormSuccessMessage
+                        message="Password succesfully updated !"
+                        buttonName="Back to login"
+                        onClick={navToLoginPage}
+                     />
+                )
+                :
+                (
+                    <form onSubmit={updateUserPassword}>
+                        <UserFormField 
+                            label="Type your current password" 
+                            type="password" 
+                            name="password" 
+                            value={currentPassword} 
+                            onChange={(e) => setCurrentPassword(e.target.value)}
+                            className="password-input" 
+                        />
+                        <UserFormField 
+                            label="Create a new password" 
+                            type="password" 
+                            name="password" 
+                            value={newUserPassword} 
+                            onChange={(e) => setNewUserPassword(e.target.value)}
+                            mention="8 characters, 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character" 
+                            className="password-input" 
+                            isValid={isNewUserPasswordValid}
+                        />
+                        <UserFormField 
+                            label="Confirm your new password" 
+                            type="password" 
+                            name="confirm-password" 
+                            value={confirmNewUserPassword} 
+                            onChange={(e) => setConfirmNewUserPassword(e.target.value)} 
+                            mention="must be identical to your new password"
+                            className="password-input" 
+                            isValid={isConfirmNewUserPasswordValid && !!confirmNewUserPassword}
+                        />
+                        {errorMessage && <p className="error-message">Wrong current password or invalid new password format !</p>}
+                        {isLoading ? (
+                            <div className="spinner-container">
+                                <LoadingSpinner />
+                            </div>
+                        ) : <FormButton type="submit" name="Update your password" />}
+                    </form>
+                )
+            }
+        </>
     )
 }
