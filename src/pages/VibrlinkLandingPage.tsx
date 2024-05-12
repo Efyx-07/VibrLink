@@ -36,8 +36,11 @@ export default function VibrlinkLandingPage() {
                         
                         {/* specific SEO part */}
                         <title>{selectedRelease.artist} - {selectedRelease.title}</title>
+                        <meta name="title" content={`${selectedRelease.artist} - ${selectedRelease.title}`} />
                         <meta name="description" content={`Listen to ${selectedRelease.title} by ${selectedRelease.artist}`} />
+                        <meta name="image" content={selectedRelease.cover} />
                         <link rel="canonical" href={`https://vibrlinks-react-demo.vercel.app/v/${selectedRelease.artist}-${selectedRelease.title}`} />
+                        
                         <meta property="og:title" content={`${selectedRelease.artist} - ${selectedRelease.title}`} />
                         <meta property="og:description" content={`Listen to ${selectedRelease.title} by ${selectedRelease.artist}`} />
                         <meta property="og:image" content={selectedRelease.cover} />
@@ -45,9 +48,9 @@ export default function VibrlinkLandingPage() {
                         <meta property="og:image:width" content="600"/>
                         <meta property="og:image:height" content="315"/>
 
-                        <meta property="twitter:title" content={`${selectedRelease.artist} - ${selectedRelease.title}`} />
-                        <meta property="twitter:description" content={`Listen to ${selectedRelease.title} by ${selectedRelease.artist}`} />
-                        <meta property="twitter:image" content={selectedRelease.cover} />
+                        <meta name="twitter:title" content={`${selectedRelease.artist} - ${selectedRelease.title}`} />
+                        <meta name="twitter:description" content={`Listen to ${selectedRelease.title} by ${selectedRelease.artist}`} />
+                        <meta name="twitter:image" content={selectedRelease.cover} />
 
                     </Helmet>
                     <VibrlinkCard selectedRelease={selectedRelease} />
