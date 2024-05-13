@@ -4,7 +4,7 @@
     width: 100%;
     display: inline-block;
     position: sticky;
-    top: 0;
+    top: -5.5rem;
     z-index: 1;
 
     img {
@@ -19,16 +19,16 @@
         left: 50%;
         transform: translate(-50%, -50%);
         z-index: 1;
-        background: rgba(black, .5);
+        background: rgba($darkColor, .5);
         border-radius: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: .1rem;
         cursor: pointer;
 
         .icon {
             font-size: 4rem;
+            color: rgba($whiteColor, 1)
         }
     }
 

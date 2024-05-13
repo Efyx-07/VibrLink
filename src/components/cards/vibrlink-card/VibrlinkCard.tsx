@@ -13,6 +13,9 @@ export default function VibrlinkCard({selectedRelease}: SelectedReleaseProps) {
             <VCardCoverPlayer selectedRelease={selectedRelease}/>
             <ReleaseInfos selectedRelease={selectedRelease}/>
             <ReleaseLinks selectedRelease={selectedRelease}/>
+            <div className="mark-container">
+                <p>Create yours on VibrLink</p>
+            </div>
         </div>
     )
 };
