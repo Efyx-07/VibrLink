@@ -1,4 +1,6 @@
 import { Release } from "../../types/releaseTypes";
+import { useState } from "react";
+import { Icon } from '@iconify-icon/react';
 import { openInANewTab } from "../../utils/openInANewTab";
 import './VibrlinkCard.scss';
 
@@ -17,9 +19,34 @@ export default function VibrlinkCard({selectedRelease}: SelectedReleaseProps) {
 };
 
 function ReleaseCoverAndPlayer({selectedRelease}: SelectedReleaseProps) {
+
+    const [isPlaying, setIsPlaying] = useState<boolean>(false);
+    const [audio] = useState(new Audio());
+
+    const playPreview = (previewUrl: string): void => {
+        if (previewUrl) {
+          audio.src = previewUrl;
+          audio.play();
+          setIsPlaying(true);
+        }
+    };
+
+    const stopPreview = (): void => {
+        audio.pause();
+        setIsPlaying(false);
+    };
+
     return (
         <div className="image-container">
             <img src={selectedRelease.cover} />
+            <div className="player-icon-container">
+                {isPlaying ? 
+                    (<Icon icon="carbon:pause-outline" onClick={stopPreview} className="icon" />)
+                :
+                    (<Icon icon="carbon:play-outline" onClick={() => playPreview(selectedRelease.preview)} className="icon"/>)
+                }
+            </div>
+            <div className={` ${isPlaying ? "progress-bar" : "hidden-progress-bar" }`}></div>
         </div>
     )
 };
