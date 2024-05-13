@@ -41,8 +41,7 @@ export default function VibrlinkLandingPage() {
                         <meta name="image" content={selectedRelease.cover} />
                         <link rel="canonical" href={`https://vibrlinks-react-demo.vercel.app/v/${selectedRelease.artist}-${selectedRelease.title}`} />
 
-                        {/* <meta property="og:title" content={`${selectedRelease.artist} - ${selectedRelease.title}`} /> */}
-                        <meta property="og:title" content="TEST" />
+                        <meta property="og:title" content={`${selectedRelease.artist} - ${selectedRelease.title}`} />
                         <meta property="og:description" content={`Listen to ${selectedRelease.title} by ${selectedRelease.artist}`} />
                         <meta property="og:image" content={selectedRelease.cover} />
                         <meta property="og:image:secure_url" content={selectedRelease.cover} />
