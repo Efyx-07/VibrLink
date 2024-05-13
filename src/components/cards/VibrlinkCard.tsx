@@ -39,14 +39,18 @@ function ReleaseCoverAndPlayer({selectedRelease}: SelectedReleaseProps) {
     return (
         <div className="image-container">
             <img src={selectedRelease.cover} />
-            <div className="player-icon-container">
-                {isPlaying ? 
-                    (<Icon icon="carbon:pause-outline" onClick={stopPreview} className="icon" />)
-                :
-                    (<Icon icon="carbon:play-outline" onClick={() => playPreview(selectedRelease.preview)} className="icon"/>)
-                }
-            </div>
-            <div className={` ${isPlaying ? "progress-bar" : "hidden-progress-bar" }`}></div>
+            {selectedRelease.preview && 
+                <>
+                    <div className="player-icon-container">
+                        {isPlaying ? 
+                            (<Icon icon="carbon:pause-outline" onClick={stopPreview} className="icon" />)
+                        :
+                            (<Icon icon="carbon:play-outline" onClick={() => playPreview(selectedRelease.preview)} className="icon"/>)
+                        }
+                    </div>
+                    <div className={` ${isPlaying ? "progress-bar" : "hidden-progress-bar" }`}></div>
+                </>
+            }
         </div>
     )
 };
