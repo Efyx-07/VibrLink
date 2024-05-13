@@ -71,6 +71,18 @@
     }
 }
 
+@media (min-width: $breakpointLargeDesktop) {
+
+    .styled-separator {
+        min-width: 5rem;
+    
+        .styled-separator-icon {
+            width: 5rem;
+            height: 5rem;
+        }
+    }
+}
+
 @keyframes moveUpDown {
     0%, 100% {
       transform: translateY(0);
