@@ -26,9 +26,14 @@
         align-items: center;
         cursor: pointer;
 
-        .icon {
+        &:hover > .icon {
             font-size: 4rem;
-            color: rgba($whiteColor, 1)
+        }
+
+        .icon {
+            font-size: 3.5rem;
+            color: rgba($whiteColor, 1);
+            transition: font-size .1s ease-in-out;
         }
     }
 
