@@ -54,8 +54,8 @@ export default function MyLinksPage() {
                                 <div className="image-container">
                                     <img src="../../public/decoration/empty-list.svg" />
                                 </div>
-                                <p>You have no vibrlink yet!</p>
-                                <FormButton type="button" name="Create a vibrLink" onClick={() => navigate('/new-vibrlink')}/>
+                                <p>You have no vibrlink yet !</p>
+                                <FormButton type="button" name="Create a vibrlink" onClick={() => navigate('/new-vibrlink')} id="empty-button"/>
                             </div>
                         </>
                     )
