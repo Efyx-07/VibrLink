@@ -2,11 +2,11 @@
 
 .vibrlink-card {
     width: 100%;
-    min-height: 100vh;
-    max-width: 20rem;
+    width: 20rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 
         .infos-container {
             width: 100%;
@@ -17,9 +17,12 @@
             justify-content: center;
             gap: .5rem;
             padding: .5rem;
-            position: relative;
+            position: sticky;
+            top: 15rem;
             background: $whiteColor;
             color: $darkColor;
+            z-index: 2;
+            
 
             .triangle {
                 position: absolute;
