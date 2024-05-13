@@ -3,7 +3,7 @@ import { Release } from "../types/releaseTypes";
 import { useParams } from "react-router-dom";
 import { fetchReleaseDataBySlug } from "../services/releasesApi";
 import { Helmet, HelmetProvider } from 'react-helmet-async';
-import VibrlinkCard from "../components/cards/VibrlinkCard";
+import VibrlinkCard from "../components/cards/vibrlink-card/VibrlinkCard";
 import './VibrlinkLandingPage.scss';
 
 export default function VibrlinkLandingPage() {

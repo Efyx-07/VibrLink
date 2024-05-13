@@ -1,7 +1,7 @@
-import { Release } from "../../types/releaseTypes";
+import { Release } from "../../../types/releaseTypes";
 import { useState } from "react";
 import { Icon } from '@iconify-icon/react';
-import { openInANewTab } from "../../utils/openInANewTab";
+import { openInANewTab } from "../../../utils/openInANewTab";
 import './VibrlinkCard.scss';
 
 interface SelectedReleaseProps {
