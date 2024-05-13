@@ -1,20 +1,17 @@
 @import '../../assets/sass/common/colors.scss';
 
 .vibrlink-card {
-    background: rgba($whiteColor, .1);
-    backdrop-filter: blur(5rem);
     width: 100%;
+    min-height: 100vh;
     max-width: 20rem;
-    position: sticky;
-    top: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
 
-        .image-container {
+    .image-container {
             width: 100%;
             display: inline-block;
-            position: relative;
+            position: sticky;
             top: 0;
 
             img {
@@ -54,7 +51,7 @@
                 background: $whiteColor;
                 transition: width 30s;
             }
-        }
+    }
 
         .infos-container {
             width: 100%;
@@ -74,6 +71,7 @@
                 bottom: -.8rem;
                 left: 50%;
                 transform: translate(-50%);
+                z-index: 1;
                 width: 0;
                 height: 0;
                 border-left: .9rem solid transparent;
@@ -95,6 +93,8 @@
 
     .links-container {
         width: 100%;
+        background: rgba($whiteColor, .1);
+        backdrop-filter: blur(5rem);
         display: flex;
         flex-direction: column;
 
