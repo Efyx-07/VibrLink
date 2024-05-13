@@ -33,10 +33,8 @@ export default function VibrlinkLandingPage() {
             {selectedRelease && (
                 <div className="content">
                     <Helmet>
-                        
                         {/* specific SEO part */}
                         <title>{selectedRelease.artist} - {selectedRelease.title}</title>
-
                     </Helmet>
                     <VibrlinkCard selectedRelease={selectedRelease} />
                 </div>
