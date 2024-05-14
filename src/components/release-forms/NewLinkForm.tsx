@@ -30,7 +30,7 @@ export default function NewVibrlinkForm() {
         if (!validateSpotifyId(spotifyId)) {
             setIsLoading(false);
             setErrorMessage(true);
-            // if error reset the form after 3s
+            // if error reset the message after 3s
             setTimeout(() => {
                 setErrorMessage(false);
             }, 3000);
@@ -55,7 +55,7 @@ export default function NewVibrlinkForm() {
           } catch (error) {
             setErrorMessage(true);
             setIsLoading(false);
-            // if error reset the form after 3s
+            // if error reset the message after 3s
             setTimeout(() => {
                 setErrorMessage(false);
             }, 3000);
