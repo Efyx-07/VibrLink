@@ -3,12 +3,12 @@ import './Footer.scss';
 
 export default function Footer() {
 
-    const {siteName} = useGlobalDataStore();
+    const {siteName, currentYear} = useGlobalDataStore();
 
     return (
         <footer>
             <div className="content">
-                <p>{siteName} - 2024</p>
+                <p>©{currentYear} - {siteName}</p>
             </div>
         </footer>
     )
