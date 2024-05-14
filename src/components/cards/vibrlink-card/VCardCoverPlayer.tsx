@@ -17,6 +17,10 @@ export default function VCardCoverPlayer({selectedRelease}: SelectedReleaseProps
           audio.src = previewUrl;
           audio.play();
           setIsPlaying(true);
+          // reset the player after 30s
+          setTimeout(() => {
+            setIsPlaying(false);
+        }, 30000);
         }
     };
 
