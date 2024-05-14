@@ -12,11 +12,6 @@
 @media (min-width: $breakpointLargeTablet) {
 
     .message-and-form-container {
-        width: 100%;
-        display: flex;
         flex-direction: unset;
-        align-items: center;
-        position: relative;
-        gap: 2rem;
     }
 }

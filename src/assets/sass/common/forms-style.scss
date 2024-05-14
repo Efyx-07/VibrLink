@@ -55,7 +55,7 @@ form {
         font-size: .9rem;
         font-weight: 600;
         align-self: flex-end;
-        color: rgb(226, 23, 23);
+        color: $errorColor;
     }
 
     .spinner-container {
