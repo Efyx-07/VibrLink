@@ -8,6 +8,8 @@ import './VibrlinkLandingPage.scss';
 
 export default function VibrlinkLandingPage() {
 
+    // !!! this component fetch the release datas whithout userId attachment to be publicly available 
+    
     const {releaseSlug} = useParams();
     const [selectedRelease, setSelectedRelease] = useState<Release | null>(null);
 

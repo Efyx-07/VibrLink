@@ -146,6 +146,7 @@ export async function resetPassword(token:string, newPassword: string): Promise 
     }
 };
 
+// backend query to delete a user account and all its datas
 export async function deleteAccount(userId: number | undefined) {
 
     try {

@@ -15,7 +15,7 @@ export default function LinkEditorPage() {
     const releaseStore = useReleaseStore();
     const userId = useUserStore().user?.id;
 
-    
+    // initialize the store to update the releases datas after each handling
     useEffect(() => {
         const initialize = async () => {
             await releaseStore.initializeStore(Number(userId));
