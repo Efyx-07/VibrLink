@@ -178,6 +178,7 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
                 {platformsWithUrl.map(platform => (
                     // field for the platform with url
                     <LinkEditorPlatformField 
+                        key={platform.id}
                         platformsWithUrl={platformsWithUrl} 
                         platform={platform}
                         newUrls={newUrls}
@@ -194,6 +195,7 @@ export default function LinkEditorForm({selectedRelease}: SelectedReleaseProps) 
                     {selectedPlatform && (
                         // field for the platform without url
                         <LinkEditorPlatformField 
+                            key={selectedPlatform.id}
                             platformsWithoutUrl={platformsWithoutUrl} 
                             platform={selectedPlatform}
                             newUrls={newUrls}
