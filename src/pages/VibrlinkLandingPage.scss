@@ -1,5 +1,3 @@
-@import '../assets/sass/common/colors.scss';
-
 .landing-page {
     width: 100vw;
     height: 100dvh;
@@ -15,6 +13,5 @@
         backdrop-filter: blur(1rem);
         box-sizing: border-box;
         overflow-y: auto;
-        scroll-behavior: smooth;
     }
 }
