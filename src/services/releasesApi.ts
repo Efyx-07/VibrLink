@@ -30,8 +30,6 @@ export async function fetchReleasesData(userId: number): Promise<Release[]> {
                 platform.visibility = !!platform.visibility;
             });
         });
-
-        console.log('datas recupérées: ', data.formattedReleases)
         
         return data.formattedReleases;
 
@@ -63,8 +61,6 @@ export async function fetchReleaseDataBySlug(releaseSlug: string): Promise<Relea
         releaseData.platforms.forEach((platform: Platform) => {
             platform.visibility = !!platform.visibility;
         });
-
-        console.log('datas recupérées: ', releaseData)
         
         return releaseData;
 

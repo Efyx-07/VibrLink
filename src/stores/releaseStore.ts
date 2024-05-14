@@ -18,7 +18,6 @@ const useReleaseStore = create<State>((set, get) => ({
         try {
             const releasesData: Release[] = await fetchReleasesData(userId);
             set({ releases: releasesData});
-            console.log('Releases in store after loading:', get().releases);
         } catch (error) {
             console.error('Error fetching releases data:', error);
         }

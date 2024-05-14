@@ -30,7 +30,6 @@ export default function App() {
     const initApp = async (): Promise<void> => {
       try {
         await userStore.loadUserDataFromLocalStorage();
-
         const token = localStorage.getItem('token');
 
         if (token) {

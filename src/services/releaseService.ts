@@ -36,7 +36,7 @@ export async function removeReleaseById(releaseId: number): Promise <void> {
         });
 
         if (response.ok) {
-            console.log('Release succesfully removed: ', releaseId)
+            return 
         } else {
             throw new Error('Failed to delete release' + response.statusText);
         }

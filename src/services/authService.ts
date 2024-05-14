@@ -156,7 +156,7 @@ export async function deleteAccount(userId: number | undefined) {
         });
 
         if (response.ok) {
-            console.log('user account successfully deleted')
+            return
 
         } else {
             throw new Error('Erreur while deleting user account' + response.statusText);
