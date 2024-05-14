@@ -1,6 +1,6 @@
 import { Icon } from '@iconify-icon/react';
 
-interface Field {
+interface FieldProps {
     label: string;
     type: string;
     name: string;
@@ -11,7 +11,7 @@ interface Field {
     isValid?: boolean;
 };
 
-export default function UserFormField({ label, type, name, value, onChange, mention, className, isValid }: Field) {
+export default function UserFormField({ label, type, name, value, onChange, mention, className, isValid }: FieldProps) {
     return (
       <div className="input-container">
         <label htmlFor={name}>{label}</label>

@@ -3,7 +3,7 @@ import { useUserStore } from "../../stores";
 import { useEffect } from "react";
 import './Navigation.scss';
 
-// component form a navItem
+// local component form a navItem
 interface NavItemProps {
     name: string,
     navTo: string

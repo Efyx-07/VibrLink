@@ -5,7 +5,7 @@ import { useModal } from "../../contexts/ModalContext";
 import { Icon } from '@iconify-icon/react';
 import './HoverUserMenu.scss';
 
-// component for an item
+// local component for an item
 interface UserItem {
     name: string;
     icon: string;
