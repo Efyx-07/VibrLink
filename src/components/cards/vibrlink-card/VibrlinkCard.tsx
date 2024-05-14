@@ -7,6 +7,7 @@ interface SelectedReleaseProps {
     selectedRelease: Release;
 };
 
+// global component for the vibrlink card
 export default function VibrlinkCard({selectedRelease}: SelectedReleaseProps) {
     return (
         <div className="vibrlink-card">
@@ -20,6 +21,7 @@ export default function VibrlinkCard({selectedRelease}: SelectedReleaseProps) {
     )
 };
 
+// local component for the infos block
 function ReleaseInfos({selectedRelease}: SelectedReleaseProps) {
     return (
         <div className="infos-container">
@@ -30,8 +32,8 @@ function ReleaseInfos({selectedRelease}: SelectedReleaseProps) {
     )
 };
 
+// local component for the platforms links container
 function ReleaseLinks({selectedRelease}: SelectedReleaseProps) {
-
     return (
         <div className="links-container">
             {selectedRelease.platforms.map(platform => (

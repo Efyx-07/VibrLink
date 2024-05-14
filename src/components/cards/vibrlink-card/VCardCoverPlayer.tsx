@@ -9,21 +9,25 @@ interface SelectedReleaseProps {
 
 export default function VCardCoverPlayer({selectedRelease}: SelectedReleaseProps) {
 
+    // note that some releases have no preview - in this case, the player is not displayed
+
+    // state for the playing status of the audio preview
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
     const [audio] = useState(new Audio());
 
+    // an audio preview has a duration time of 30s. function to launch the preview and reset the player after 30s
     const playPreview = (previewUrl: string): void => {
         if (previewUrl) {
           audio.src = previewUrl;
           audio.play();
           setIsPlaying(true);
-          // reset the player after 30s
           setTimeout(() => {
             setIsPlaying(false);
         }, 30000);
         }
     };
 
+    // stop the preview
     const stopPreview = (): void => {
         audio.pause();
         setIsPlaying(false);
