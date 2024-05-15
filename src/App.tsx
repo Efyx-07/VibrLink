@@ -2,6 +2,7 @@ import { useUserStore, useReleaseStore } from './stores';
 import { useEffect, useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { ModalProvider } from './contexts/ModalContext';
+import ProtectedRoute from './utils/ProtectedRoute';
 
 // routed components
 import HomePage from './pages/HomePage';
@@ -63,14 +64,42 @@ export default function App() {
       {shouldShowComponent && <Header />}
         <Routes>
           <Route index path="/" element={<HomePage />} />
-          <Route index path="/login" element={<LoginPage />} />
-          <Route index path="/signup" element={<SignupPage />} />
-          <Route index path="/account-settings" element={<AccountSettingsPage />} />
-          <Route index path="/reset-password/:token" element={<ResetPasswordPage />} />
-          <Route index path="/my-vibrlinks" element={<MyLinksPage />} />
-          <Route index path="/new-vibrlink" element={<NewLinkPage />} />
-          <Route index path="/link-editor/:releaseSlug" element={<LinkEditorPage />} />
-          <Route index path="/v/:releaseSlug" element={<VibrlinkLandingPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
+          <Route path="/v/:releaseSlug" element={<VibrlinkLandingPage />} />
+          <Route 
+            path="/account-settings" 
+            element={
+              <ProtectedRoute>
+                <AccountSettingsPage />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/my-vibrlinks" 
+            element={
+              <ProtectedRoute>
+                <MyLinksPage />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/new-vibrlink" 
+            element={
+              <ProtectedRoute>
+                <NewLinkPage/>
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/link-editor/:releaseSlug" 
+            element={
+              <ProtectedRoute>
+                <LinkEditorPage />
+              </ProtectedRoute>
+            } 
+          />
         </Routes>
       {shouldShowComponent && <Footer />}
         <SignoutModal />
