@@ -2,6 +2,7 @@ import { Release } from "../types/releaseTypes";
 import { useEffect } from "react";
 import { useUserStore, useReleaseStore } from "../stores";
 import { useNavigate } from "react-router-dom";
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import DashboardReleaseCard from "../components/cards/DashboardReleaseCard";
 import PageTitle from "../components/common/PageTitle";
 import FormButton from "../components/common/FormButton";
@@ -34,33 +35,39 @@ export default function MyLinksPage() {
     const reversedReleases = reverseReleases(releases);
 
     return (
-        <div className={`page ${releases.length > 0 ? "myLinks-page" : "" }`}>
-            <div className="content">
-                {releases.length > 0 ? 
-                    (
-                        <>
-                            <PageTitle mainPart="Manage" secondaryPart="your vibrlinks"/>
-                            <div className="dashboard-releaseCards-container">
-                                {reversedReleases.map(release => (
-                                    <DashboardReleaseCard release={release} key={release.id}/>
-                                ))}
-                            </div>
-                        </>
-                    )
-                    :
-                    (
-                        <>
-                            <div className="empty-list-container">
-                                <div className="image-container">
-                                    <img src="/decoration/empty-list.svg" />
+        <HelmetProvider>
+            <Helmet>
+                {/* specific SEO part */}
+                <title>VibrLink | My links</title>
+            </Helmet>
+            <div className={`page ${releases.length > 0 ? "myLinks-page" : "" }`}>
+                <div className="content">
+                    {releases.length > 0 ? 
+                        (
+                            <>
+                                <PageTitle mainPart="Manage" secondaryPart="your vibrlinks"/>
+                                <div className="dashboard-releaseCards-container">
+                                    {reversedReleases.map(release => (
+                                        <DashboardReleaseCard release={release} key={release.id}/>
+                                    ))}
                                 </div>
-                                <p>You have no vibrlink yet !</p>
-                                <FormButton type="button" name="Create a vibrlink" onClick={() => navigate('/new-vibrlink')} id="empty-button"/>
-                            </div>
-                        </>
-                    )
-                }
+                            </>
+                        )
+                        :
+                        (
+                            <>
+                                <div className="empty-list-container">
+                                    <div className="image-container">
+                                        <img src="/decoration/empty-list.svg" />
+                                    </div>
+                                    <p>You have no vibrlink yet !</p>
+                                    <FormButton type="button" name="Create a vibrlink" onClick={() => navigate('/new-vibrlink')} id="empty-button"/>
+                                </div>
+                            </>
+                        )
+                    }
+                </div>
             </div>
-        </div>
+        </HelmetProvider>
     )
 };

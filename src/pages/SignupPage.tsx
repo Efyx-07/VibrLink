@@ -1,7 +1,8 @@
-import '../assets/sass/common/pages-common-styles.scss';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import FormPageMessage from "../components/common/FormPageMessage";
 import StyledSeparator from "../components/common/StyledSeparator";
 import SignupForm from '../components/user-forms/SignupForm';
+import '../assets/sass/common/pages-common-styles.scss';
 
 export default function SignupPage() {
 
@@ -10,16 +11,22 @@ export default function SignupPage() {
     const subText: string = 'Let\'s get started and enjoy using our service by creating your account. It\'s free !';
 
     return (
-        <div className='page'>
-            <div className="content">
-                <div className="message-and-form-container">
-                    <FormPageMessage mainTextPrimary={mainTextPrimary} mainTextSecondary={mainTextSecondary} subText={subText} />
-                    <StyledSeparator icon="simple-icons:freepik" />
-                    <div className="form-container">
-                        <SignupForm />
+        <HelmetProvider>
+            <Helmet>
+                {/* specific SEO part */}
+                <title>VibrLink | Sign up</title>
+            </Helmet>
+            <div className='page'>
+                <div className="content">
+                    <div className="message-and-form-container">
+                        <FormPageMessage mainTextPrimary={mainTextPrimary} mainTextSecondary={mainTextSecondary} subText={subText} />
+                        <StyledSeparator icon="simple-icons:freepik" />
+                        <div className="form-container">
+                            <SignupForm />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </HelmetProvider>
     )
 };

@@ -1,3 +1,4 @@
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import NewLinkForm from "../components/release-forms/NewLinkForm";
 import FormPageMessage from "../components/common/FormPageMessage";
 import StyledSeparator from "../components/common/StyledSeparator";
@@ -9,17 +10,23 @@ export default function NewLinkPage() {
     const mainTextSecondary: string = ' by entering your release Spotify id';
     const subText: string = 'It will automatically generate a new vibrlink with the Spotify, Deezer and YouTube links. Then, you\'ll be able to add other platforms links and manage them as you want. Let\'s go !';
 
-    return(
-        <div className="page">
-            <div className="content">
-                <div className="message-and-form-container">
-                    <FormPageMessage mainTextPrimary={mainTextPrimary} mainTextSecondary={mainTextSecondary} subText={subText} />
-                    <StyledSeparator icon="ph:music-notes-simple-fill" />
-                    <div className="form-container">
-                        <NewLinkForm />
+    return (
+        <HelmetProvider>
+            <Helmet>
+                {/* specific SEO part */}
+                <title>VibrLink | New link</title>
+            </Helmet>
+            <div className="page">
+                <div className="content">
+                    <div className="message-and-form-container">
+                        <FormPageMessage mainTextPrimary={mainTextPrimary} mainTextSecondary={mainTextSecondary} subText={subText} />
+                        <StyledSeparator icon="ph:music-notes-simple-fill" />
+                        <div className="form-container">
+                            <NewLinkForm />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </HelmetProvider>
     )
 }

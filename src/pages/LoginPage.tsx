@@ -1,10 +1,11 @@
+import { useState } from "react";
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import LoginForm from "../components/user-forms/LoginForm";
 import AskResetPasswordForm from "../components/user-forms/AskResetPasswordForm";
 import FormPageMessage from "../components/common/FormPageMessage";
 import StyledSeparator from "../components/common/StyledSeparator";
 import '../assets/sass/common/pages-common-styles.scss';
 import './LoginPage.scss';
-import { useState } from "react";
 
 export default function LoginPage() {
 
@@ -27,32 +28,38 @@ export default function LoginPage() {
     const subText2: string = 'Don\'t worry, if your email exists in our database, we\'ll send you a reset link to choose another one !';
 
     return (
-        <div className="page">
-            <div className="content">
-                {
-                    isLoginFormVisible ?
+        <HelmetProvider>
+            <Helmet>
+                {/* specific SEO part */}
+                <title>VibrLink | Login</title>
+            </Helmet>
+            <div className="page">
+                <div className="content">
+                    {
+                        isLoginFormVisible ?
 
-                    <div className="message-and-form-container">
-                        <FormPageMessage mainTextPrimary={mainTextPrimary} mainTextSecondary={mainTextSecondary} subText={subText} />
-                        <StyledSeparator icon="game-icons:brain-freeze" />
-                        <div className="form-container">
-                            <LoginForm />
-                            <p className="option" onClick={hideLoginForm}>I forgot my password</p>
+                        <div className="message-and-form-container">
+                            <FormPageMessage mainTextPrimary={mainTextPrimary} mainTextSecondary={mainTextSecondary} subText={subText} />
+                            <StyledSeparator icon="game-icons:brain-freeze" />
+                            <div className="form-container">
+                                <LoginForm />
+                                <p className="option" onClick={hideLoginForm}>I forgot my password</p>
+                            </div>
                         </div>
-                    </div>
-                    
-                :
-                    <div className="message-and-form-container">
-                        <FormPageMessage mainTextPrimary={mainTextPrimary2} mainTextSecondary={mainTextSecondary2} subText={subText2} />
-                        <StyledSeparator icon="emojione-monotone:face-screaming-in-fear" />
-                        <div className="form-container">
-                            <AskResetPasswordForm />
-                            <p className="option" onClick={showLoginForm}>Back to sign in</p>
+                        
+                    :
+                        <div className="message-and-form-container">
+                            <FormPageMessage mainTextPrimary={mainTextPrimary2} mainTextSecondary={mainTextSecondary2} subText={subText2} />
+                            <StyledSeparator icon="emojione-monotone:face-screaming-in-fear" />
+                            <div className="form-container">
+                                <AskResetPasswordForm />
+                                <p className="option" onClick={showLoginForm}>Back to sign in</p>
+                            </div>
                         </div>
-                    </div>
-                }    
+                    }    
+                </div>
             </div>
-        </div>
+        </HelmetProvider>
     )
 };
 

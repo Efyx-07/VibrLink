@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Release } from "../types/releaseTypes";
 import { useReleaseStore, useUserStore } from "../stores";
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import DashboardReleaseCard from "../components/cards/DashboardReleaseCard";
 import LinkEditorForm from "../components/release-forms/link-editor/LinkEditorForm";
 import LoadingSpinner from "../components/common/LoadingSpinner";
@@ -26,20 +27,26 @@ export default function LinkEditorPage() {
     }, [userId]);
 
     return (
-        <div className="page">
-            <div className="content">
-                {selectedRelease ? (
-                    <>
-                        <PageTitle mainPart="Edit" secondaryPart="your links"/>
-                        <div className="linkEditor-wrapper">
-                            <DashboardReleaseCard release={selectedRelease} />
-                            <LinkEditorForm selectedRelease={selectedRelease} />
-                        </div>
-                    </>
-                ) 
-                : 
-                <LoadingSpinner />}   
+        <HelmetProvider>
+            <Helmet>
+                {/* specific SEO part */}
+                <title>VibrLink | Link editor</title>
+            </Helmet>
+            <div className="page">
+                <div className="content">
+                    {selectedRelease ? (
+                        <>
+                            <PageTitle mainPart="Edit" secondaryPart="your links"/>
+                            <div className="linkEditor-wrapper">
+                                <DashboardReleaseCard release={selectedRelease} />
+                                <LinkEditorForm selectedRelease={selectedRelease} />
+                            </div>
+                        </>
+                    ) 
+                    : 
+                    <LoadingSpinner />}   
+                </div>
             </div>
-        </div>
+        </HelmetProvider>
     )
 };
