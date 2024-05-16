@@ -1,30 +1,69 @@
-# React + TypeScript + Vite
+<h1 style="margin: 0 0 2rem 0; text-align: center;">
+    VibrLink - fanlink generator
+</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<h2 style="margin: 0; color: grey; font-size: 1.5rem">
+    About the project
+</h2>
+<div class="separator" style="width: 100%; height: 1px; background: rgba(0, 0, 0, .25);
+margin-bottom: 1rem;"></div>
 
-Currently, two official plugins are available:
+<p>
+    VibrLink is an app to generate fanlinks for all the musical releases. It's based on the Spotify Api.  
+</p>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<h4 style="color: grey; font-size: 1.2rem">Built with:</h4>
+<p style="margin: 0;">>> SQL database</p>
+<p style="margin: 0;">>> NodeJs / Express</p>
+<p style="margin: 0;">>> React / Typescript / Sass</p>
 
-## Expanding the ESLint configuration
+<h2 style="margin: 2rem 0 0 0; color: grey; font-size: 1.5rem">
+    Installation
+</h2>
+<div class="separator" style="width: 100%; height: 1px; background: rgba(0, 0, 0, .25);
+margin-bottom: 1rem;"></div>
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+<h4 style="color: grey; font-size: 1.2rem">Backend</h4>
+<p style="margin: 0;">>> VibrLink is an app that works with a MySQL relationnal database and a backend server made with NodeJS /Express. For confidentiality reason I can't share the source code.</p>
 
-- Configure the top-level `parserOptions` property like this:
+<h4 style="color: grey; font-size: 1.2rem">Frontend setup</h4>
+<p style="margin: 0;">>> The frontend is developed using Vite and React in Typescript with Sass for styling.</p>
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+<h4 style="color: grey; font-size: 1.2rem">Getting started</h4>
+<p style="margin: 0;">>> Clone the repository.</p>
+<p style="margin: 0;">>> Install the frontend dependecies with "npm install" then run with "npm run dev".</p>
+
+## 
+```sh
+npm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+```sh
+npm run dev
+```
+
+<h4 style="color: grey; font-size: 1.2rem">Additionnal notes</h4>
+<p style="margin: 0;">>> Ensure that NodeJS and npm are installed on your system.</p>
+
+<h4 style="color: grey; font-size: 1.2rem">Project Presentation</h4>
+<p style="margin: 0 0 3rem 0;">>> <strong>Demo:</strong>
+To run a demo of the app, go to => https://vibrlink.vercel.app/
+</p>
+<p> 
+Enjoy !
+</p>
+
+<h2 style="margin: 2rem 0 0 0; color: grey; font-size: 1.5rem">
+    Screenshots
+</h2>
+<div class="separator" style="width: 100%; height: 1px; background: rgba(0, 0, 0, .25);
+margin-bottom: 1rem;"></div>
+
+<div class="screenshots-container" style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: .5rem;">
+    <img style="width: 600px" src="screenshots/pr3_view1.png"></img>
+    <img style="width: 600px" src="screenshots/pr3_view2.png"></img>
+    <img style="width: 600px" src="screenshots/pr3_view3.png"></img>
+    <img style="width: 600px" src="screenshots/pr3_view4.png"></img>
+    <img style="width: 600px" src="screenshots/pr3_view5.png"></img>
+    <img style="width: 600px" src="screenshots/pr3_view6.png"></img>
+</div>
