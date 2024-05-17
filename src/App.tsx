@@ -1,8 +1,6 @@
-//import { useUserStore, useReleaseStore } from './stores';
-import { useEffect, useState } from 'react';
 import useAppInitializer from './app/AppInitializer';
 import AppRouter from './app/AppRouter';
-import { useLocation } from 'react-router-dom';
+import useComponentVisibility from './app/ComponentVisibility';
 import { ModalProvider } from './contexts/ModalContext';
 
 // components available in the whole app
@@ -17,17 +15,10 @@ import LoadingSpinner from './components/common/LoadingSpinner';
 
 export default function App() {
 
-  // use a hook to initialize the app
-  const {loading} = useAppInitializer();
-
-  // conditionnal display of the header by pathname
-  const location = useLocation();
-  const [shouldShowComponent, setShouldShowComponent] = useState<boolean>(true);
-
-  useEffect(() => {
-    const isVibrlinkLandingPage = location.pathname.includes('/v');
-    setShouldShowComponent(!isVibrlinkLandingPage);
-  }, [location.pathname]);
+  // use a personnal hook to initialize the app
+  const loading = useAppInitializer();
+  // use a personnal hook to display a component depending on the path name
+  const shouldShowComponent = useComponentVisibility();
 
   if (loading) {
     return <div><LoadingSpinner /></div>
@@ -45,4 +36,4 @@ export default function App() {
       </div>
     </ModalProvider>
   );
-}
+};

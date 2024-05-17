@@ -34,5 +34,5 @@ export default function useAppInitializer() {
         initApp();
     }, []);
 
-    return { loading }; 
+    return loading; 
 }
