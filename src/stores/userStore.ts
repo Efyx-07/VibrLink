@@ -16,7 +16,10 @@ const useUserStore = create<State>((set, get) => ({
     user: null,
     token: null,
     isLoggedIn: false,
-    setToken: (newToken) => set ({ token: newToken, isLoggedIn: !!newToken}),
+    setToken: (newToken) => {
+        set({ token: newToken, isLoggedIn: !!newToken });
+        localStorage.setItem('token', newToken ?? '');
+    },
     logOutUser: () => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
@@ -31,8 +34,11 @@ const useUserStore = create<State>((set, get) => ({
     },
     loadUserDataFromLocalStorage: async() => {
         const localStorageUserData = localStorage.getItem('user');
-        if (localStorageUserData) {
-            set({ user: JSON.parse(localStorageUserData)})
+        const token = localStorage.getItem('token');
+        if (localStorageUserData && token) {
+            set({ user: JSON.parse(localStorageUserData), token, isLoggedIn: true });
+        } else {
+            set({ user: null, token: null, isLoggedIn: false });
         }
     }
 }));

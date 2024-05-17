@@ -7,7 +7,7 @@ import LoadingSpinner from "../common/LoadingSpinner";
 import { validateSpotifyId } from "../../utils/validateSpotifyId";
 import './NewLinkForm.scss';
 
-export default function NewVibrlinkForm() {
+export default function NewLinkForm() {
 
     const [spotifyId, setSpotifyId] = useState<string>('');
     const [errorMessage, setErrorMessage] = useState<boolean>(false);

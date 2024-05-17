@@ -22,9 +22,16 @@ import SignoutModal from './components/modals/SignoutModal';
 import DeleteAccountModal from './components/modals/DeleteAccountModal';
 import RemoveReleaseModal from './components/modals/RemoveReleaseModal';
 
+// other components
+import LoadingSpinner from './components/common/LoadingSpinner';
+
 export default function App() {
+
   const userStore = useUserStore();
   const releaseStore = useReleaseStore();
+  // state to manage the render if the user is logged or not
+  const [loading, setLoading] = useState<boolean>(true);
+  
 
   // get the datas before app initialisation
   useEffect(() => {
@@ -43,6 +50,8 @@ export default function App() {
         }
       } catch (error) {
         console.error('Error while fetching data: ', error);
+      } finally {
+        setLoading(false)
       }
     };
 
@@ -57,6 +66,10 @@ export default function App() {
     const isVibrlinkLandingPage = location.pathname.includes('/v');
     setShouldShowComponent(!isVibrlinkLandingPage);
   }, [location.pathname]);
+
+  if (loading) {
+    return <div><LoadingSpinner /></div>
+  }
 
   return (
     <ModalProvider>
