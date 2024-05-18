@@ -1,6 +1,6 @@
-import useAppInitializer from './app/AppInitializer';
-import AppRouter from './app/AppRouter';
-import useComponentVisibility from './app/ComponentVisibility';
+import useAppInitializer from './utils/AppInitializer';
+import AppRouter from './utils/AppRouter';
+import useComponentVisibility from './utils/ComponentVisibility';
 import { ModalProvider } from './contexts/ModalContext';
 
 // components available in the whole app
