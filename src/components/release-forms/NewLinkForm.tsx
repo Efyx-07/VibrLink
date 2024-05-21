@@ -79,7 +79,7 @@ export default function NewLinkForm() {
                     />
                 </div>
             </div>
-            {errorMessage && <p className="error-message">This is not a valid Id or the release already exists !</p>}
+            {errorMessage && <p data-testid="error-message" className="error-message">This is not a valid Id or the release already exists !</p>}
             {isLoading ? (
                 <div className="spinner-container">
                     <LoadingSpinner />
