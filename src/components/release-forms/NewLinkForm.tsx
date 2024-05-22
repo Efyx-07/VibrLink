@@ -40,6 +40,9 @@ export default function NewLinkForm() {
         const albumUrl: string = getSpotifyUrl();
         const userId: number | undefined = userStore.user?.id;
 
+        console.log('albumUrl:', albumUrl); 
+        console.log('userId:', userId)
+
         try {
             const data  = await createLink(albumUrl, userId);
 
@@ -79,7 +82,7 @@ export default function NewLinkForm() {
                     />
                 </div>
             </div>
-            {errorMessage && <p data-testid="error-message" className="error-message">This is not a valid Id or the release already exists !</p>}
+            {errorMessage && <p className="error-message">This is not a valid Id or the release already exists !</p>}
             {isLoading ? (
                 <div className="spinner-container">
                     <LoadingSpinner />
