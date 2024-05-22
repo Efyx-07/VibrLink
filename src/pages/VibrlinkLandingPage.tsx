@@ -31,7 +31,7 @@ export default function VibrlinkLandingPage() {
 
     return (
         <HelmetProvider>
-        <div className="landing-page" style={{ backgroundImage: `url(${selectedRelease?.cover})`, backgroundSize: 'cover', backgroundAttachment: 'fixed', backgroundPosition:'center' }}>
+        <div data-testid="landing-page" className="landing-page" style={{ backgroundImage: `url(${selectedRelease?.cover})`, backgroundSize: 'cover', backgroundAttachment: 'fixed', backgroundPosition:'center' }}>
             {selectedRelease && (
                 <div className="content">
                     <Helmet>
