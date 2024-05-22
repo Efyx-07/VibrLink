@@ -12,7 +12,7 @@ import { useUserStore } from "../stores";
 describe("Hero component", () => {
     
     // test the button to navigate to the signup page
-    it("should navigate to '/signup' when 'Create a free account' button is clicked", async () => {
+    it("should navigate to '/signup' when 'Create a free account' button is clicked", async (): Promise <void> => {
         render(
             <MemoryRouter initialEntries={['/']}>
                 <Routes> 
@@ -26,7 +26,7 @@ describe("Hero component", () => {
     });
 
     // test the button to navigate to the login page
-    it("should navigate to '/login' when 'Sign in' button is clicked", async () => {
+    it("should navigate to '/login' when 'Sign in' button is clicked", async (): Promise <void> => {
         render(
             <MemoryRouter initialEntries={['/']}>
                 <Routes> 
@@ -40,7 +40,7 @@ describe("Hero component", () => {
     });
 
     // test the button to navigate to the signup page
-    it("should navigate to '/new-vibrlink' when 'Create a new vibrLink' button is clicked", async () => {
+    it("should navigate to '/new-vibrlink' when 'Create a new vibrLink' button is clicked", async (): Promise <void> => {
         // mock the store for the conditionnal display of this button
         useUserStore.setState({ isLoggedIn: true });
 

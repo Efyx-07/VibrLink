@@ -5,7 +5,7 @@ import { describe, it, expect, vi } from 'vitest';
 //import { useUserStore } from '../stores';
 //import { createLink } from '../services/releaseService';
 
-describe('NewLinkForm component', () => {
+describe('NewLinkForm component', (): void => {
 
   /*
   beforeEach(() => {

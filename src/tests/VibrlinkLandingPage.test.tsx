@@ -3,6 +3,7 @@ import { screen } from '@testing-library/react';
 import renderWithRouter from './test-utils';
 import VibrlinkCard from '../components/cards/vibrlink-card/VibrlinkCard';
 import VibrlinkLandingPage from '../pages/VibrlinkLandingPage';
+import { Release } from '../types/releaseTypes';
 
 describe('Vibrlink landing page', () => {
 
@@ -15,7 +16,7 @@ describe('Vibrlink landing page', () => {
         fetchReleaseDataBySlug: vi.fn()
     }))
 
-    const selectedRelease = {
+    const selectedRelease: Release = {
         id: 1,
         artist: 'Artist Name',
         title: 'Release Title',
@@ -35,7 +36,7 @@ describe('Vibrlink landing page', () => {
         ]
     };
 
-    it('should render the VibrLinkLandingPage correctly', async() => {
+    it('should render the VibrLinkLandingPage correctly', async(): Promise <void> => {
 
         renderWithRouter(
             <VibrlinkLandingPage />
@@ -44,7 +45,7 @@ describe('Vibrlink landing page', () => {
         expect(screen.getByTestId("landing-page")).toBeInTheDocument();
     });
 
-    it('should render the VibrLinkCard correctly', () => {
+    it('should render the VibrLinkCard correctly', (): void => {
 
         renderWithRouter(
             <VibrlinkCard selectedRelease={selectedRelease} />
