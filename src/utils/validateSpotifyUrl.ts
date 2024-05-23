@@ -16,4 +16,4 @@ export function validateSpotifyUrl(albumUrl: string): boolean {
         }
     }
     return false;
-}
+};
