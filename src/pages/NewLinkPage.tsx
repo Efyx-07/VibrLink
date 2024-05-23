@@ -7,7 +7,7 @@ import '../assets/sass/common/messageAndFormContainer.scss';
 export default function NewLinkPage() {
 
     const mainTextPrimary: string = 'Start';
-    const mainTextSecondary: string = ' by entering your release Spotify id';
+    const mainTextSecondary: string = ' by entering your release Spotify link';
     const subText: string = 'It will automatically generate a new vibrlink with the Spotify, Deezer and YouTube links. Then, you\'ll be able to add other platforms links and manage them as you want. Let\'s go !';
 
     return (

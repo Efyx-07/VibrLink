@@ -2,8 +2,6 @@ import { screen } from '@testing-library/react';
 import renderWithRouter from './test-utils';
 import NewLinkForm from '../components/release-forms/NewLinkForm';
 import { describe, it, expect } from 'vitest';
-//import { useUserStore } from '../stores';
-//import { createLink } from '../services/releaseService';
 
 describe('NewLinkForm component', (): void => {
 
@@ -29,7 +27,7 @@ describe('NewLinkForm component', (): void => {
         <NewLinkForm />
     );
 
-    expect(screen.getByLabelText(/Enter your release Spotify id:/i)).toBeInTheDocument();
+    expect(screen.getByText(/Enter your release Spotify link:/i)).toBeInTheDocument();
     expect(screen.getByText("Create your link")).toBeInTheDocument();
   });
 

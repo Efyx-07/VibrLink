@@ -4,12 +4,12 @@ import { createLink } from "../../services/releaseService";
 import { useNavigate } from "react-router-dom";
 import FormButton from "../common/FormButton";
 import LoadingSpinner from "../common/LoadingSpinner";
-import { validateSpotifyId } from "../../utils/validateSpotifyId";
+import { validateSpotifyUrl } from "../../utils/validateSpotifyUrl";
 import './NewLinkForm.scss';
 
 export default function NewLinkForm() {
 
-    const [spotifyId, setSpotifyId] = useState<string>('');
+    const [albumUrl, setAlbumUrl] = useState<string>('');
     const [errorMessage, setErrorMessage] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -18,16 +18,12 @@ export default function NewLinkForm() {
     const releaseStore = useReleaseStore();
     const navigate = useNavigate();
 
-    const getSpotifyUrl = () => {
-        return spotifyPrefix + spotifyId;
-    };
-
     const sendSpotifyUrlAndUserId = async (e: React.FormEvent<HTMLFormElement>): Promise <void> => {
         e.preventDefault();
         setIsLoading(true);
 
-        // check if spotifyId is valid or return an error
-        if (!validateSpotifyId(spotifyId)) {
+        // check if albumUrl is valid or return an error
+        if (!validateSpotifyUrl(albumUrl)) {
             setIsLoading(false);
             setErrorMessage(true);
             // if error reset the message after 3s
@@ -37,11 +33,7 @@ export default function NewLinkForm() {
             return;
         }
 
-        const albumUrl: string = getSpotifyUrl();
         const userId: number | undefined = userStore.user?.id;
-
-        console.log('albumUrl:', albumUrl); 
-        console.log('userId:', userId)
 
         try {
             const data  = await createLink(albumUrl, userId);
@@ -69,20 +61,20 @@ export default function NewLinkForm() {
     return (
         <form onSubmit={sendSpotifyUrlAndUserId}>
             <div className="input-container">
-                <label htmlFor="spotifyId">Enter your release Spotify id:</label>
+                <label htmlFor="spotifyId">Enter your release Spotify link:</label>
                 <div className="newLinkForm-input-wrapper">
-                    <p>{spotifyPrefix}</p>
+                    <p>example: "{spotifyPrefix}..."</p>
                     <input 
                         className="input" 
                         type="text" 
-                        name="spotifyId" 
-                        id="spotifyId" 
+                        name="albumUrl" 
+                        id="albumUrl" 
                         required 
-                        onChange={(e) => setSpotifyId(e.target.value)}
+                        onChange={(e) => setAlbumUrl(e.target.value)}
                     />
                 </div>
             </div>
-            {errorMessage && <p className="error-message">This is not a valid Id or the release already exists !</p>}
+            {errorMessage && <p className="error-message">This is not a valid link or the release already exists !</p>}
             {isLoading ? (
                 <div className="spinner-container">
                     <LoadingSpinner />
