@@ -22,8 +22,6 @@ export default function NewLinkForm() {
         e.preventDefault();
         setIsLoading(true);
 
-        console.log('Original URL:', albumUrl);
-
         // check if albumUrl is valid or return an error
         if (!validateSpotifyUrl(albumUrl)) {
             setIsLoading(false);
