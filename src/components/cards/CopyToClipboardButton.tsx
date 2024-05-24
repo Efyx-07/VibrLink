@@ -33,6 +33,5 @@ export default function CopyToClipboardButton ({ release }: CopyToClipboardButto
                 )
             }
         </CopyToClipboard>
-
     )
 }
