@@ -1,8 +1,24 @@
-// hook to initialize the app
 import { useUserStore, useReleaseStore } from '../stores';
 import { useEffect, useState } from 'react';
+import isTokenExpired from './VerifyUserTokenExpiry';
+import { useNavigate } from 'react-router-dom';
 
+// hook to initialize the app
 export default function useAppInitializer() {
+    const [loading, setLoading] = useState<boolean>(true);
+
+    useAppInitialization();
+    useTokenExpirationCheck();
+
+    useEffect(() => {
+        setLoading(false);
+    }, []);
+
+    return loading;
+};
+
+// initialize the app
+function useAppInitialization(): boolean {
 
     const userStore = useUserStore();
     const releaseStore = useReleaseStore();
@@ -35,4 +51,29 @@ export default function useAppInitializer() {
     }, []);
 
     return loading; 
+};
+
+// hook to check the token expiry and apply handling 
+function useTokenExpirationCheck(): void {
+
+    const userStore = useUserStore();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        // ckeck the token expiry with regular intervals (in ms);
+        const checkTokenExpiration = setInterval(() => {
+
+          const token = localStorage.getItem('token');
+
+          if (token && isTokenExpired(token)) {
+            // if token has expired, log out user and initialiaze app
+            userStore.logOutUser();
+            navigate('/');
+          }
+        }, 360000);
+    
+        // clear the interval when component is unmounted
+        return () => clearInterval(checkTokenExpiration);
+
+      }, [userStore, navigate]);
 }
