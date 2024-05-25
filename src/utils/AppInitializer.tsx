@@ -7,12 +7,12 @@ import { useNavigate } from 'react-router-dom';
 export default function useAppInitializer() {
     const [loading, setLoading] = useState<boolean>(true);
 
-    useAppInitialization();
+    const appInitializationLoading = useAppInitialization();
     useTokenExpirationCheck();
 
     useEffect(() => {
-        setLoading(false);
-    }, []);
+        setLoading(appInitializationLoading);
+    }, [appInitializationLoading]);
 
     return loading;
 };
@@ -33,8 +33,8 @@ function useAppInitialization(): boolean {
                 const token = localStorage.getItem('token');
 
                 if (token) {
-                userStore.setToken(token);
-                const userId = userStore.user?.id;
+                    userStore.setToken(token);
+                    const userId = userStore.user?.id;
 
                     if (userId) {
                         await releaseStore.loadReleasesData(userId);
@@ -53,27 +53,25 @@ function useAppInitialization(): boolean {
     return loading; 
 };
 
-// hook to check the token expiry and apply handling 
-function useTokenExpirationCheck(): void {
 
+function useTokenExpirationCheck(): void {
+    
     const userStore = useUserStore();
     const navigate = useNavigate();
 
     useEffect(() => {
-        // ckeck the token expiry with regular intervals (in ms);
-        const checkTokenExpiration = setInterval(() => {
 
-          const token = localStorage.getItem('token');
+        const checkToken = (): void => {
+            const token = localStorage.getItem('token');
+            if(token && isTokenExpired(token)) {
+                userStore.logOutUser();
+            } 
+        };
 
-          if (token && isTokenExpired(token)) {
-            // if token has expired, log out user and initialiaze app
-            userStore.logOutUser();
-            navigate('/');
-          }
-        }, 360000);
-    
-        // clear the interval when component is unmounted
+        checkToken();
+
+        const checkTokenExpiration = setInterval(checkToken, 3600000);
         return () => clearInterval(checkTokenExpiration);
 
-      }, [userStore, navigate]);
-}
+    }, [userStore, navigate]);
+};
